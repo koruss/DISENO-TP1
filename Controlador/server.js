@@ -1,1 +1,1 @@
-class Persona(
+class Persona()
