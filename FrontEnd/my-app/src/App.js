@@ -2,7 +2,10 @@ import React from 'react';
 import './App.css';
 import './Componentes/General/Header'
 import Header from './Componentes/General/Header';
-import Login from './Componentes/Login/Login'
+import Login from './Componentes/Login/Login';
+import A from './Componentes/Consultas/miembrosXelemento';
+import Card from './Componentes/Consultas/Card1';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -10,12 +13,10 @@ function App() {
     <div className="App">
       <div>    
         <Header></Header> 
-        <Login></Login>
-        <h1> HOla</h1>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
       </div>
-
-
-
     </div>
   );
 }
