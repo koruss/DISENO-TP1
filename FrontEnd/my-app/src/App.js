@@ -3,6 +3,7 @@ import './App.css';
 import './Componentes/General/Header'
 import Header from './Componentes/General/Header';
 import Login from './Componentes/Login/Login'
+import RegistroMiembro from './Componentes/RegistroMiembro/RegistroMiembro'
 
 function App() {
   return (
@@ -10,11 +11,9 @@ function App() {
     <div className="App">
       <div>    
         <Header></Header> 
-        <Login></Login>
-        <h1> HOla</h1>
+        <RegistroMiembro></RegistroMiembro>   
+        
       </div>
-
-
 
     </div>
   );

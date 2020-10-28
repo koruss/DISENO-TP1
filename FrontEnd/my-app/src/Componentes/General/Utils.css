@@ -1,0 +1,15 @@
+/* container amarillo para el borde de la pantalla */
+
+.box-container-yellow{              
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    border: 18px solid #d2d816;
+}
+
+/* el input estandar para la recoleccion de datos */
+.input-standar{ 
+    width: 300px;
+    height: 40px;
+}
+
