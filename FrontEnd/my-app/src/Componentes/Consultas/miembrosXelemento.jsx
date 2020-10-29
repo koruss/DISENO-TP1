@@ -32,12 +32,12 @@ export default class miembroXelemento extends Component {
 
     render() {
         return (
-            <div>
-                <div id="center-section">
-                    <Button variant="dark">Dark</Button>
+            <div >
+                <div id="box-container" >
+                    <div id="center-section">
                     <div id="main-section">
                         <div className="spacing-base">
-                            <label> Zonas </label>
+                            <label>Zonas</label>
                             <Select components={makeAnimated} name="zonas" value={this.state.selectedZona} onChange={this.handleChange} options={this.state.zonas} className="basic-multi-select" classNamePrefix="select" />
                         </div>
                     </div>
@@ -56,7 +56,10 @@ export default class miembroXelemento extends Component {
                     </div>
                 </div >
 
-                <div>
+                    </div>
+
+
+                <div className="box-container">
                 {this.state.resultMembers.map((p,index) => 
                                     (<Card key={p._id} index={index} miembroData={p} isFriend={false} />)
                                 )}

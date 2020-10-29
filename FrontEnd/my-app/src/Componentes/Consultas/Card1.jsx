@@ -9,12 +9,12 @@ export default class Card1 extends Component {
     }
 
     render() {
-        // const { id,nombre}= this.props.miembroData;
+        const { id,nombre}= this.props.miembroData;
         return (
-            <div >
-                <Card style={{ width: '18rem' }}>
+            <div className="card1-container" >
+                <Card style={{width: '18rem'}}>
                 <Card.Body>
-                    {/* <Card.Title>{nombre}</Card.Title> */}
+                    <Card.Title>{nombre}</Card.Title>
                     <Card.Text>
                         Some quick example text to build on the card title and make up the bulk of
                         the card's content.
