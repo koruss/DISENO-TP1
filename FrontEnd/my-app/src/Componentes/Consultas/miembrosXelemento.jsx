@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import './miembrosXelemento.css'
-import Button from 'react-bootstrap/Button'
 import Card from './Card1'
 
 export default class miembroXelemento extends Component {
@@ -14,13 +13,15 @@ export default class miembroXelemento extends Component {
         selectedGrupo: [],
         selectedZona: [],
         resultMembers: [{ _id: 1, nombre: "Kenth" }, { _id: 2, nombre: "Kenneth" }, { _id: 3, nombre: "Kh" }, { _id: 4, nombre: "Knth" }, { _id: 5, nombre: "eth" }],
-
     }
 
 
     handleChange = selectedZona => {
         this.setState(
-            { selectedZona },
+            { 
+                selectedZona 
+            },
+
             () => console.log(`Option selected:`, this.state.selectedZona)
         );
     };
@@ -55,10 +56,7 @@ export default class miembroXelemento extends Component {
                         </div>
                     </div>
                 </div >
-
                     </div>
-
-
                 <div className="box-container">
                 {this.state.resultMembers.map((p,index) => 
                                     (<Card key={p._id} index={index} miembroData={p} isFriend={false} />)
