@@ -14,8 +14,7 @@ function App() {
   return (
     <div>
       <Header></Header>
-      <Rama></Rama>
-      <Grupo></Grupo>
+      <Zona></Zona>
     </div>
   );
 }

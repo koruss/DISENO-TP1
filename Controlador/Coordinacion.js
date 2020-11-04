@@ -3,7 +3,7 @@
  * Clase Coordinación que conecta con los gestores
  * 
  */
-export class Coordinacion {
+export default class Coordinacion {
     cedulaJuridica;
     nombre;
     direccionWeb;
