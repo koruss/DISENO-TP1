@@ -2,20 +2,20 @@ import React from 'react';
 import './App.css';
 import './Componentes/General/Header'
 import Header from './Componentes/General/Header';
-import Login from './Componentes/Login/Login'
+import Login from './Componentes/Login/Login';
+import A from './Componentes/Consultas/miembrosXelemento';
+import Card from './Componentes/Consultas/Card1';
+import Zona from './Componentes/Paginas/CrearZona';
+import Rama from './Componentes/Paginas/CrearRama'
+import Grupo from './Componentes/Paginas/CrearGrupo'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    
-    <div className="App">
-      <div>    
-        <Header></Header> 
-        <Login></Login>
-        <h1> HOla</h1>
-      </div>
-
-
-
+    <div>
+      <Header></Header>
+      <Rama></Rama>
+      <Grupo></Grupo>
     </div>
   );
 }
