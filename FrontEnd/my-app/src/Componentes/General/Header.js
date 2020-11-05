@@ -17,18 +17,8 @@ class Header extends Component {
     render() {
         return (
             <Navbar className="header" bg="dark" variant="dark">
-                <Navbar.Brand href="/">Tinder++</Navbar.Brand>
-                <Nav className="mr-auto">
-                    <Nav.Link href="/user">Ingresa</Nav.Link>
-                    <Nav.Link href="/friend">Features</Nav.Link>
-
-                </Nav>
-                <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-info">Search</Button>
-                </Form>
+                <Navbar.Brand href="/" className="textito">Movilize!!</Navbar.Brand>
             </Navbar>
-
         )
 
     }
