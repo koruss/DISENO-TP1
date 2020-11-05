@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { BrowserRouter as Router, Route,Switch } from 'react-router-dom'
 import './App.css';
 import './Componentes/General/Header'
@@ -10,10 +10,10 @@ import CrearRama from './Componentes/Paginas/CrearRama';
 import CrearZona from './Componentes/Paginas/CrearZona';
 import MenuEstructura from './Componentes/Paginas/MenuEstructuras';
 import RegistroMiembro from './Componentes/RegistroMiembro/RegistroMiembro';
-import TrasladarMiembro from './Componentes/RegistroMiembro/TrasladarMiembro';
+import TrasladarMiembro from './Componentes/TrasladarMiembro/TrasladarMiembro';
 import TreeContainer from './Componentes/Tree/TreeContainer';
 import CambiarNombreGrupo from './Componentes/CambiarNombreGrupo/CambiarNombreGrupo';
-import MiembroXElemento from './Componentes/Consultas/miembroXelemento';
+import MiembroXElemento from './Componentes/Consultas/miembrosXelemento';
 
 class App extends Component{
 //function App() {

@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import "./Estructura.css"
+import {Button} from 'react';
+
 export default class Card1 extends Component {
 
     state={
-        is
+        
     }
-
-
-
-
 
     render() {
 
