@@ -3,6 +3,8 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Button from 'react-bootstrap/Button'
 import "./Estructura.css"
+import Header from '../General/Header';
+
 export default class CrearRama extends Component {
 
     state = {
@@ -29,6 +31,7 @@ export default class CrearRama extends Component {
 
         return (
             <div id="center-section">
+                <Header></Header>
                 <div id="main-section">
 
                     <div class="border">

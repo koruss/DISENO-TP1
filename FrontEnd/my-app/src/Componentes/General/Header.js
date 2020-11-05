@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Nav from 'react-bootstrap/Nav'
 import FormControl from 'react-bootstrap/FormControl'
 import Image from 'react-bootstrap/Image'
 import { Link } from 'react-router-dom';
 import { Route } from 'react-router';
 import axios from 'axios';
+import Menu, { SubMenu, MenuItem } from 'rc-menu';
+import {Nav,NavDropdown} from 'react-bootstrap';
+
 import './Header.css'
 
 
@@ -45,28 +47,55 @@ class Header extends Component {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
             </head>
             <header className="header">
-                <div className="topContainer">
+                <div className="topContainer" display="inline">
                     {/* Home logo */}
                     <h1 display="inline-block">
-                        <Link className="link" to="/">Movilize!!</Link>
+                        <Link className="link" to="/VentanaAsesor">Movilize!!</Link>
                     </h1>
-                    <div id="menu">
-                        <Route render={() => {
-                            if(!session){ return <>{" | "} <Link className="link" to="/login">Iniciar Sesión</Link></>}
-                            else{ return <></> }
-                        }}/>
-                        <Route render={() => {
-                            if(!session){ return <>{" | "} <Link className="link" to={{pathname:"/registroMiembro", state:{ newAdmin: false }}}>Registrarse</Link></>}
-                            else{ return <></> }
-                        }}/>
-                        <Route render={() => {
-                            if(session){ return <>{" | "}<Link className="link" to="/" onClick={() => this.logOut()}>Cerrar sesión</Link></>}
-                            else{ return <></> }
-                        }}/>
-                       <Route render={() => {
-                            return <>{" | "} <Link className="link" onClick={()=>this.showSession()}>Show Session</Link></>
-                        }}/>
-                    </div>
+                    <Navbar  variant="dark"  expand="lg">
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="mr-auto">
+                            <Route render={() => {
+                                if(!session){ 
+                                    return <> 
+                                        <Nav.Link href="/contacto">Contáctenos</Nav.Link>
+                                        <Nav.Link href="/registroMiembro">Registrarse</Nav.Link>
+                                        <Nav.Link href="/login">Iniciar Sesión</Nav.Link>
+                                    </>
+                                }
+                                else{ 
+                                    return <>
+                                        <Nav.Link href="/ventanaAsesor">Inicio</Nav.Link>                                 
+                                        <NavDropdown title="Realizar movimientos" id="basic-nav-dropdown">
+                                            <NavDropdown.Item href="/afiliacionMiembros">Afiliar nuevo miembro</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/asignacionMiembros">Asignar miembros a grupo</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/trasladoMiembro">Trasladar miembro de grupo</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/afiliacionPersonal">Afiliar personal</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/estructura">Definir estructura</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/cambiarNombreGrupo">Cambiar nombre de grupo</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                        </NavDropdown>  
+                                        <NavDropdown alignItems="left" title="Consultas" id="basic-nav-dropdown">
+                                            <NavDropdown.Item href="/consultaComposicionGrupo">Ver composición de un grupo</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/consultaGruposPorMiembro">Grupos y roles por miembro</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/consultaMiembrosPorElemento">Miembros por elemento</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                        </NavDropdown>   
+                                        <Nav.Link className="link" to="/" onClick={() => this.logOut()}>Cerrar sesión</Nav.Link>                                 
+                                    </> 
+                                }
+                            }}/>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Navbar>
                 </div>
             </header>
             </>

@@ -3,6 +3,8 @@ import './TrasladarMiembro.css'
 import '../../Componentes/General/Utils.css'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import Header from '../General/Header';
+
 class TrasladarMiembro extends Component{
     state = {
         options:[
@@ -12,6 +14,8 @@ class TrasladarMiembro extends Component{
 
     render() {
         return (
+            <div>
+            <Header></Header>
             <main className = "container">
                 <form>
                     <div id="center-section">
@@ -29,6 +33,7 @@ class TrasladarMiembro extends Component{
                     </div>
                 </form>
             </main>
+        </div>
         )
     };
 
