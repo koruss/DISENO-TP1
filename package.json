@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "name": "DISENO-TP1",
     "version": "1.0.0",
     "description": "",
@@ -28,7 +27,6 @@
         "semver": "^5.7.1"
     }
 }
-=======
     "type": "module",
     "scripts": {
         "start": "react-scripts start",
@@ -37,4 +35,3 @@
         "eject": "react-scripts eject"
       }
 }
->>>>>>> develop
