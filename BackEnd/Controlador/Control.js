@@ -1,10 +1,11 @@
-import { Coordinacion } from './Coordinacion.js';
-
-export class Control{
-    coordinacion;
+module.exports= class Control{
+    // coordinacion;
      
-    constructor(coordinacion){
-        this.coordinacion=coordinacion;
+    // constructor(coordinacion){
+    //     this.coordinacion=coordinacion;
+    // }
+    constructor(){
+
     }
 
     setCoordinacion(coordinacion){
@@ -15,6 +16,7 @@ export class Control{
     }
 
     definirEstructura(){
+        console.log("A huevo")
 
     }
 
@@ -49,6 +51,6 @@ export class Control{
     consultarComposicionGrupo(){
 
     }
-
 }
+
 

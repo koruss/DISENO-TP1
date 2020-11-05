@@ -1,10 +1,34 @@
 import React, { Component } from 'react'
+import axios from 'axios';
+import Button from 'react-bootstrap/Button'
 import "./Estructura.css"
-export default class CrearZona extends Component {
+
+
+class CrearZona extends Component {
 
     state = {
+        nombreZona:""
 
     }
+
+    onChange = (e) => this.setState({[e.target.name]:e.target.value}); 
+
+    onClick = (e) => {
+        // e.preventDefault();
+        console.log("ENTRE AL evento");
+        axios.post("/guardarZona",{
+            nombreZona:this.state.nombreZona
+        }).then(res =>{
+            if(!res.data.success){
+                alert(res.data.err);
+            }
+            else{
+                alert("Zona Guardada correctamente")
+            }
+        })
+
+    }
+
 
     render() {
 
@@ -22,7 +46,7 @@ export default class CrearZona extends Component {
                                 </div>
                             </div>
                             <div>
-                                <Button variant="dark">Dark</Button>{' '}
+                                <Button variant="dark" onClick={this.onClick}>Dark</Button>{' '}
                             </div>
 
                         </div>
@@ -41,3 +65,5 @@ export default class CrearZona extends Component {
     };
 
 }
+
+export default CrearZona;

@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import "./Estructura.css"
 export default class Card1 extends Component {
 
+    state={
+        is
+    }
+
+
+
 
 
     render() {
