@@ -1,31 +1,40 @@
-class DataSource {
-    get Connect() {
-        this.mongoose = require('mongoose');
-        const dbroute =
-            'mongodb+srv://kenitoUwU:1234@tp-diseno.hwnkz.mongodb.net/test?authSource=admin&replicaSet=atlas-j7zojs-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true'
-        this.mongoose.connect(dbroute, { useNewUrlParser: true, useUnifiedTopology: true });
-        return this.mongoose;
-    }
-}
+const Zona = require("./ZonaSchema");
+const DataSource= require('./DataSource');
 
 
 
-class DAO {
+
+module.exports= class DAO {
+    dataSource = new DataSource();
     openConnection() {
         //////////////////////////////
         ///   MONGODB CONNECTION
         //////////////////////////////
-        const dataSource = new DataSource();
-        const connection = dataSource.Connect;
 
-        let state = connection.connection;
+        connection = dataSource.Connect;
+
+        state = connection.connection;
         state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
         state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
 
     }
 
 
-    guardarZona(){
+    guardarZona(info){
+        const connection = this.dataSource.Connect;
+        let state = connection.connection;
+        state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
+        state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
+        console.log("Llegue al DAO");
+        console.log(info)
+        let zona = new Zona();
+        zona.nombreZona=info;
+        zona.save((err)=>{
+            if(err)return res.json({success:false, error:"Se ha producido un error guardando"+err});
+            else{
+                console.log("Algo hice");
+            }
+        });
         
     }
 }

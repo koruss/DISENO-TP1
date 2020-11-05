@@ -1,8 +1,5 @@
 var Control = require('./Control');
 var Coordinacion= require('./Coordinacion');
-
-
-
 const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors');
@@ -24,8 +21,13 @@ var cord = new Coordinacion("116", "tec", "San Jose.com", "asd", "090123", "dasd
 const control = new Control(cord);
 
 app.post('/guardarZona', (req, res) => {
-    control.definirEstructura();
+    const data =req.body.nombreZona;
+    control.definirEstructura(data);
     console.log("en el server");
+    console.log(data);
 
 })
+
+
+
 

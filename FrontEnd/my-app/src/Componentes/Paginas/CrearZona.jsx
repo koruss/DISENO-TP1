@@ -46,7 +46,7 @@ class CrearZona extends Component {
                                 </div>
                             </div>
                             <div>
-                                <Button variant="dark" onClick={this.onClick}>Dark</Button>{' '}
+                                <Button variant="dark" onClick={this.onClick}>Dark</Button>
                             </div>
 
                         </div>

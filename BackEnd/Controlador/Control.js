@@ -1,4 +1,7 @@
+const DAO = require('../DAO/DAO.js')
+
 module.exports= class Control{
+    dao = new DAO();
     // coordinacion;
      
     // constructor(coordinacion){
@@ -15,8 +18,8 @@ module.exports= class Control{
 
     }
 
-    definirEstructura(){
-        console.log("A huevo")
+    definirEstructura(info){
+        this.dao.guardarZona(info);
 
     }
 
