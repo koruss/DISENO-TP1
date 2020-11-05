@@ -2,8 +2,19 @@
 import React,{ Component } from 'react'
 import './RegistroMiembro.css'
 import '../../Componentes/General/Utils.css'
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
 class RegistroMiembro extends Component{
+    state = {
+        options:[
+            { value: "chocolate", label: "Chocolate" },
+            { value: "strawberry", label: "Strawberry" },
+            { value: "vanilla", label: "Vanilla" }
+        ]
+    }
+    
+
     render() {
         return (
             <div>
@@ -32,13 +43,38 @@ class RegistroMiembro extends Component{
                                 <input type="text" name="apellido1" onChange={this.onChange} tabIndex="5" className="input-standar"/>
                             </div>
                             <div className="label-wrapper">
-                                <label for="pais">Pais: </label>
-                                <input type="text" name="pais" onChange={this.onChange} tabIndex="6" className="input-standar"/>
+                                <label for="apellido2">Apellido2: </label>
+                                <input type="text" name="apellido2" onChange={this.onChange} tabIndex="5" className="input-standar"/>
                             </div>
                         </div>
-                        <span class="button buttonInside">
-                                <button type="submit" class="button-indent" tabIndex="3">Afiliar miembro</button>
-                        </span>
+                        
+                        <div class="label-container">
+                            <div className="label-wrapper">
+                            <label for="pais">Pais: </label>
+                                <div className="label-select" id="center-section">
+                                    <Select components={makeAnimated} name="pais" onChange={this.handleChange} options={this.state.options} className="basic-multi-select" classNamePrefix="select" />
+                                </div>
+                            </div>
+                            <div className="label-wrapper">
+                                <label for="provincia">Provincia: </label>
+                                <div className="label-select" id="center-section">
+                                    <Select components={makeAnimated} name="provincia" onChange={this.handleChange} options={this.state.options} className="basic-multi-select" classNamePrefix="select" />
+                                </div>
+                            </div>
+                            <div className="label-wrapper">
+                                <label for="canton">Canton: </label>
+                                <div className="label-select" id="center-section">
+                                    <Select components={makeAnimated} name="Canton" onChange={this.handleChange} options={this.state.options} className="basic-multi-select" classNamePrefix="select" />
+                                </div>
+                            </div>
+                            <div className="label-wrapper">
+                                <label for="distrito">Distrito: </label>
+                                <div className="label-select" id="center-section">
+                                    <Select components={makeAnimated} name="Canton" onChange={this.handleChange} options={this.state.options} classNamePrefix="select" width="200px"/>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-dark">Afiliar miembro</button>
                 </div>      
             </form>
             </div>

@@ -1,4 +1,3 @@
-
 #center-section{
     margin:auto;
     width:350px;
@@ -29,26 +28,6 @@
     width: 100%;
     margin: 0 0 1.5em 0;
     padding: 0;
-}
-
-/* funcion es poder asignar label a la izquierda, derecha y luego abajo, se asigna en el <div> general donde luego 
-van  a estar los label-wrapper  VER REGISTRO MIEMBRO PARA EJEMPLO*/
-.label-container:after {            
-    clear: both;
-    display: block;
-}
-
-/* funcion es poder asignar label a la izquierda, derecha y luego abajo, se asigna en el <div> general donde luego 
-van  a estar los label-wrapper  VER REGISTRO MIEMBRO PARA EJEMPLO*/
-.label-wrapper {
-    size: 50;
-    width: 50%;
-    float: left;
-    height: 85px;
-}
-
-.label-select {
-    width: 250px;
 }
 
 .label-full-left{
@@ -88,4 +67,14 @@ label {
     padding-left: 2px;
     padding-bottom: 2px;
     font-weight: 700;
+}
+
+body {
+    background-color: #c9cc72;
+}
+
+.spacing-base{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
 }

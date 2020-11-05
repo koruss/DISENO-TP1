@@ -4,7 +4,8 @@
     position: absolute;
     left: 0px;
     width: 100%;
-    border: 18px solid #d2d816;
+    height: 100%;
+    border: 35px solid #d2d816;
 }
 
 /* el input estandar para la recoleccion de datos */
@@ -13,3 +14,14 @@
     height: 40px;
 }
 
+/* estilos para los combobox se debe importar solo el class box */
+
+  .box {
+    width: 300px;
+    height: 40px;
+  }
+
+
+  .form-style-2 label > span {
+    text-align: left;
+}
