@@ -1,13 +1,20 @@
-export class GestorMiembro{
+var PersonaDAO = require('../DAO/PersonaDAO');
+
+module.exports = class GestorMiembro{
     miembros=[];
+    personaDAO = new PersonaDAO();
 
-    // Operaciones sobre miembros
-    agregarMiembro(){
 
+    constructor(){
     }
 
-    cambiarMiembroGrupo(){
+    // Operaciones sobre miembros
+    agregarMiembro(data){
+        this.personaDAO.postPersona(data);
+    }
 
+    cambiarMiembroGrupo(data){
+        this.personaDAO.updatePersona(data);
     }
 
     getMiembros(){

@@ -1,12 +1,7 @@
-module.exports= class Control{
-    // coordinacion;
-     
-    // constructor(coordinacion){
-    //     this.coordinacion=coordinacion;
-    // }
-    constructor(){
+var GestorMiembro = require('./GestorMiembro');
 
-    }
+module.exports = class Control{
+    gestorMiembro = new GestorMiembro();
 
     setCoordinacion(coordinacion){
     }
@@ -18,6 +13,10 @@ module.exports= class Control{
     definirEstructura(){
         console.log("A huevo")
 
+    }
+
+    guardarMiembro(data){
+        this.gestorMiembro.agregarMiembro(data);
     }
 
     registrarMiembro(){
@@ -36,8 +35,9 @@ module.exports= class Control{
 
     }
 
-    cambiarMiembroDeGrupo(){
-
+    cambiarMiembroGrupo(data){
+        console.log("cambiar");
+        this.gestorMiembro.cambiarMiembroGrupo(data);
     }
 
     definirMonitor(){

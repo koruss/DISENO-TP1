@@ -29,3 +29,11 @@ app.post('/guardarZona', (req, res) => {
 
 })
 
+app.post('/guardarMiembro', (req, res) => {
+  control.guardarMiembro(res);
+})
+
+app.post('/cambiarMiembroGrup', (req, res) => {
+  control.cambiarMiembroGrupo(res);
+})
+
