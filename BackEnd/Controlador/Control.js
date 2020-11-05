@@ -1,4 +1,4 @@
-class Control{
+module.exports= class Control{
     // coordinacion;
      
     // constructor(coordinacion){
@@ -53,5 +53,4 @@ class Control{
     }
 }
 
-module.exports= Control
 
