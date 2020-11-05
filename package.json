@@ -1,11 +1,10 @@
 {
-    "type": "module",
     "name": "DISENO-TP1",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "concurrently \"cd BackEnd && cd DAO && node DAO.js\" \"cd Controlador && node server.js\" \"cd FrontEnd && cd my-app && npm start\""
+        "start": "concurrently \"cd BackEnd && cd Controlador && node server.js\" \"cd FrontEnd && cd my-app && npm start\""
     },
     "repository": {
         "type": "git",
@@ -27,4 +26,12 @@
         "morgan": "^1.10.0",
         "semver": "^5.7.1"
     }
+}
+    "type": "module",
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+      }
 }

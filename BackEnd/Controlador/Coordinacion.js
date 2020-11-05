@@ -3,7 +3,7 @@
  * Clase Coordinación que conecta con los gestores
  * 
  */
-export class Coordinacion {
+module.exports = class Coordinacion {
     cedulaJuridica;
     nombre;
     direccionWeb;
@@ -100,3 +100,6 @@ export class Coordinacion {
     }
 
 }
+
+
+

@@ -1,26 +1,3 @@
-const express = require('express');
-
-const bodyParser = require('body-parser');
-var cors = require('cors');
-const logger = require('morgan');
-//const session = require('express-session');
-const API_PORT = 3001;
-const app = express();
-
-app.use(cors());
-
-app.listen(3001, () => console.log(`LISTENING ON PORT ${API_PORT}`));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(logger('dev'));
-
-
-
-// let db = mongoose.connection;
-// db.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
-// db.on('error', console.error.bind(console, '------->>> FAILED CONNECTION WITH MONGO DB <<<------:'));
-
-
 class DataSource {
     get Connect() {
         this.mongoose = require('mongoose');
@@ -31,15 +8,35 @@ class DataSource {
     }
 }
 
-//////////////////////////////
-///   MONGODB CONNECTION
-//////////////////////////////
-const dataSource = new DataSource();
-const connection = dataSource.Connect;
 
-let state=connection.connection;
-state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
-state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
+
+class DAO {
+    openConnection() {
+        //////////////////////////////
+        ///   MONGODB CONNECTION
+        //////////////////////////////
+        const dataSource = new DataSource();
+        const connection = dataSource.Connect;
+
+        let state = connection.connection;
+        state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
+        state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
+
+    }
+
+
+    guardarZona(){
+        
+    }
+}
+
+
+
+
+
+
+
+
 
 
 // checks if connection with the database is successful
