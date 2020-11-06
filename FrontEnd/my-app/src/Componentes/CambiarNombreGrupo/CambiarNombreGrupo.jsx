@@ -3,6 +3,8 @@ import './CambiarNombreGrupo.css'
 import '../../Componentes/General/Utils.css'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import Header from '../General/Header';
+
 class CambiarNombreGrupo extends Component{
 state = {
     options:[
@@ -21,6 +23,8 @@ _handleChangeNombreAnterior(val) {
 
 render() {
     return (
+        <div>
+        <Header></Header>
         <main className = "container">
                 <div id="center-section">
                     <h2>Cambiar nombre grupo</h2>
@@ -48,7 +52,7 @@ render() {
                 </div>
                 <button type="button" class="btn btn-dark">Cambiar</button>
         </main>
-        
+    </div>    
     )
 };
 

@@ -1,9 +1,10 @@
-
 import React,{ Component } from 'react'
 import './RegistroMiembro.css'
 import '../../Componentes/General/Utils.css'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import Header from '../General/Header';
+
 
 class RegistroMiembro extends Component{
     state = {
@@ -18,6 +19,7 @@ class RegistroMiembro extends Component{
     render() {
         return (
             <div>
+            <Header></Header>
             <form onSubmit={this.registroFunc}> 
                 <div class="box-container-yellow">
                     <h1>Afiliar nuevo miembro a la organizacion</h1>
