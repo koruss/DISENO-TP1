@@ -24,8 +24,6 @@ app.post('/guardarZona', (req, res) => {
     control.prueba(req.body, res);
 })
 
-
-
 app.post('/guardarMiembro', (req, res) => {
   control.guardarMiembro(res);
 })
@@ -36,4 +34,11 @@ app.post("/allZonas",(req,res)=>{
 
 app.post('/cambiarMiembroGrup', (req, res) => {
   control.cambiarMiembroGrupo(res);
-})
+  })
+  
+app.post("/ramasDeZona",(req, res)=>{
+  control.ramasDeZona(req,res);
+  })
+
+
+
