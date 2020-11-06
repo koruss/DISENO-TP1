@@ -34,6 +34,8 @@ app.post("/allZonas",(req,res)=>{
   control.allZonas(req, res);
 })
 
-app.post('/cambiarMiembroGrup', (req, res) => {
-  control.cambiarMiembroGrupo(res);
+  control.ramasDeZona(req,res);
+  
+app.post("/ramasDeZona",(req, res)=>{
+  control.ramasDeZona(req,res);
 })

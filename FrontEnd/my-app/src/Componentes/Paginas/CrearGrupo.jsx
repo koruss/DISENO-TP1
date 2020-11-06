@@ -3,6 +3,7 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Button from 'react-bootstrap/Button'
 import "./Estructura.css"
+import axios from 'axios';
 import Header from '../General/Header';
 
 
@@ -15,8 +16,7 @@ export default class CrearGrupo extends Component {
         zonas: [{ value: "norte", label: "norte" }, { value: "sur", label: "Sur" }, { value: "Este", label: "Este" }, { value: "oeste", label: "oeste" }],
         ramas: [],
         monitores: [],
-        nombreGrupo:""
-
+        nombreGrupo: ""
     }
     onChange = (e) => this.setState({
         [e.target.name]: e.target.value
@@ -30,15 +30,44 @@ export default class CrearGrupo extends Component {
         );
     };
 
+    selectedZona = selectedZona =>{
+        this.setState(
+            {selectedZona}
+        ).then(axios.post("/ramasDeZona",{selectedZona}).then(res =>{
+            const respuesta= res.data;
+
+        }))
+    }
+    componentDidMount(){
+        this.buscarZonas();
+    }
+
+    buscarZonas(){
+        axios.post("/allZonas", {}).then(res => {
+            const respuesta=res.data;
+            console.log(respuesta)
+            
+            respuesta.forEach(zona=>{
+                arreglo.push({
+                    value:zona.nombreZona,
+                    label:zona.nombreZona
+                })
+            })
+            this.setState({
+                zonas:arreglo
+            })
+        })
+    }
+
+    buscar
+
 
 
     render() {
-
         return (
             <div id="center-section">
                 <Header></Header>
                 <div id="main-section">
-
                     <div class="border">
                         <div class="box-container">
                             <div class="spacing-base">
@@ -62,15 +91,12 @@ export default class CrearGrupo extends Component {
                                 <div>
                                     <Button variant="dark">Dark</Button>{' '}
                                 </div>
-
                             </div>
                         </div>
                     </div>
                     <div class="border">
                         <div class="box-container">
-
                         </div>
-
                     </div>
                 </div>
             </div>

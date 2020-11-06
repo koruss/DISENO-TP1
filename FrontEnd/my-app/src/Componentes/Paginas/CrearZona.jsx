@@ -33,13 +33,11 @@ class CrearZona extends Component {
 
 
     render() {
-
         return (
             <div>
             <Header></Header>
             <div id="center-section">
                 <div id="main-section">
-
                     <div class="border">
                         <div class="box-container">
                             <div class="spacing-base">
