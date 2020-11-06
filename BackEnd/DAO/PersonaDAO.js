@@ -6,7 +6,8 @@ module.exports = class PersonDao {
     dao = new DAO();
     personaSchema = new PersonaSchema();
 
-    constructor(){}
+    constructor(){
+    }
 
     //Funcion encargada de guardar un nuevo usuario en la base de datos
     async postPersona(data, res){
@@ -26,7 +27,7 @@ module.exports = class PersonDao {
     }
 
     updatePersona(data){
-        console.log("persona modificada dao");
+
     }
 
  }

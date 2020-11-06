@@ -8,10 +8,8 @@ module.exports = class GestorMiembro{
     constructor(){
     }
 
-    // Operaciones sobre miembros
-    agregarMiembro(data){
-        //Funcion que crea un objeto de tipo persona y lo envia para ser guardado
-        async agregarMiembro(data, res){
+    //Funcion que crea un objeto de tipo persona y lo envia para ser guardado
+    async agregarMiembro(data, res){
         let response = await this.personaDAO.postPersona(data, res)
     }
 

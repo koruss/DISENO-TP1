@@ -5,6 +5,9 @@ const GestorEstructura = require('./GestorEstructura');
 module.exports = class Control{
     dao = new DAO();
     gestorMiembro = new GestorMiembro();
+    
+    constructor(){}
+    
 
     constructor(){
     gestorMiembro = new GestorMiembro();
