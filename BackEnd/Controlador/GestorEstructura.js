@@ -1,4 +1,4 @@
-export class GestorEstructura{
+module.exports= class GestorEstructura{
 
     crearZona(){
 

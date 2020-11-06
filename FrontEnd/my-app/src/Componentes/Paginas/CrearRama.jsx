@@ -2,17 +2,20 @@ import React, { Component } from 'react'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Button from 'react-bootstrap/Button'
+import axios from 'axios';
 import "./Estructura.css"
+import Header from '../General/Header';
+
 export default class CrearRama extends Component {
 
     state = {
         selectedZona: [],
-        zonas: [{ value: "norte", label: "norte" }, { value: "sur", label: "Sur" }, { value:"Este",label: "Este" }, {value:"oeste",label: "oeste" }],
-        nombreRama:""
+        zonas: [{ value: "norte", label: "norte" }, { value: "sur", label: "Sur" }, { value: "Este", label: "Este" }, { value: "oeste", label: "oeste" }],
+        nombreRama: ""
 
     }
     onChange = (e) => this.setState({
-        [e.target.name]:e.target.value
+        [e.target.name]: e.target.value
     });
 
 
@@ -23,14 +26,25 @@ export default class CrearRama extends Component {
         );
     };
 
+    componentDidMount() {
+        var self = this;
+        axios.post("/allZonas", {}).then(res => {
+            console.log(res)
+            self.setState({
+                zonas: res.data
+            })
+
+        })
+    }
+
 
 
     render() {
 
         return (
             <div id="center-section">
+                <Header></Header>
                 <div id="main-section">
-
                     <div class="border">
                         <div class="box-container">
                             <div class="spacing-base">
@@ -45,8 +59,8 @@ export default class CrearRama extends Component {
                                 </div>
                             </div>
                             <div>
-                                    <Button variant="dark">Dark</Button>{' '}
-                                </div>
+                                <Button variant="dark">Dark</Button>{' '}
+                            </div>
 
 
                         </div>

@@ -1,7 +1,12 @@
 var GestorMiembro = require('./GestorMiembro');
+const DAO = require('../DAO/DAO.js')
 
 module.exports = class Control{
+    dao = new DAO();
+    constructor(){}
+    
     gestorMiembro = new GestorMiembro();
+
 
     setCoordinacion(coordinacion){
     }
@@ -10,8 +15,8 @@ module.exports = class Control{
 
     }
 
-    definirEstructura(){
-        console.log("A huevo")
+    async definirEstructura(info){
+        console.log( this.dao.guardarZona(info) );
 
     }
 
@@ -19,6 +24,15 @@ module.exports = class Control{
         this.gestorMiembro.agregarMiembro(data);
     }
 
+    async prueba(info, res){
+        let response = await this.dao.guardar(info, res).then(
+            console.log(res)
+        )
+    }
+    async allZonas(req, res){
+        await this.dao.allZonas(req,res)
+    }
+    
     registrarMiembro(){
 
     }

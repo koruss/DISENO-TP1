@@ -1,8 +1,5 @@
 var Control = require('./Control');
 var Coordinacion= require('./Coordinacion');
-
-
-
 const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors');
@@ -24,16 +21,19 @@ var cord = new Coordinacion("116", "tec", "San Jose.com", "asd", "090123", "dasd
 const control = new Control(cord);
 
 app.post('/guardarZona', (req, res) => {
-    control.definirEstructura();
-    console.log("en el server");
-
+    control.prueba(req.body, res);
 })
+
+
 
 app.post('/guardarMiembro', (req, res) => {
   control.guardarMiembro(res);
 })
 
+app.post("/allZonas",(req,res)=>{
+  control.allZonas(req, res);
+})
+
 app.post('/cambiarMiembroGrup', (req, res) => {
   control.cambiarMiembroGrupo(res);
 })
-
