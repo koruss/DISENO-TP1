@@ -22,9 +22,10 @@ const control = new Control(cord);
 
 app.post('/guardarZona', (req, res) => {
     const data =req.body.nombreZona;
-    control.definirEstructura(data);
-    console.log("en el server");
-    console.log(data);
+    control.prueba(req.body, res);
+    //control.definirEstructura(data);
+    //console.log("en el server");
+    //console.log(data);
 
 })
 

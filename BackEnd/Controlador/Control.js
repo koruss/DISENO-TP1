@@ -18,10 +18,26 @@ module.exports= class Control{
 
     }
 
-    definirEstructura(info){
-        this.dao.guardarZona(info);
+    async definirEstructura(info){
+        console.log( this.dao.guardarZona(info) );
 
     }
+
+    async prueba(info, res){
+        let response = await this.dao.guardar(info, res).then(
+            console.log(res)
+        )
+        
+
+    }
+
+
+
+    
+
+    // async definirEstructura().then(req,res){
+
+    // }
 
     registrarMiembro(){
 
