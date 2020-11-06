@@ -4,11 +4,12 @@ const GestorEstructura = require('./GestorEstructura');
 
 module.exports = class Control{
     dao = new DAO();
-    
+    gestorMiembro = new GestorMiembro();
+
     constructor(){
     gestorMiembro = new GestorMiembro();
     gestorEstructura=new GestorEstructura();
-
+    }
 
     setCoordinacion(coordinacion){
     }
@@ -18,12 +19,13 @@ module.exports = class Control{
     }
 
     async definirEstructura(info){
-        console.log( this.dao.guardarZona(info) );
+        console.log( this.dao.guardarZona(info));
 
     }
 
-    guardarMiembro(data){
-        this.gestorMiembro.agregarMiembro(data);
+    //Funcion encargada de guardar un miembro en la base de datos
+    async guardarMiembro(data, res){
+        let response = await this.gestorMiembro.agregarMiembro(data, res);
     }
 
     async prueba(info, res){
@@ -31,6 +33,7 @@ module.exports = class Control{
             console.log(res)
         )
     }
+
     async allZonas(req, res){
         await this.dao.allZonas(req,res)
     }

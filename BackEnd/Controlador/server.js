@@ -24,8 +24,9 @@ app.post('/guardarZona', (req, res) => {
     control.prueba(req.body, res);
 })
 
+//Funcion para guardar un miembro en la base de datos
 app.post('/guardarMiembro', (req, res) => {
-  control.guardarMiembro(res);
+  control.guardarMiembro(req.body,res);
 })
 
 app.post("/allZonas",(req,res)=>{

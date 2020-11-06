@@ -4,10 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import './TrasladarMiembro.css'
-import '../../Componentes/General/Utils.css'
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
-import Header from '../General/Header';
+import '../../Componentes/General/Utils.css';
 class TrasladarMiembro extends Component{
     state = {
         gruposOpciones:[
