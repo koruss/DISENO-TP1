@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import axios from 'axios';
-import Button from 'react-bootstrap/Button'
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
+import React,{ Component } from 'react'
 import './RegistroMiembro.css'
 import '../../Componentes/General/Utils.css'
+import Header from '../General/Header';
+import makeAnimated from 'react-select/animated';
+import Select from 'react-select';
+
 
 class RegistroMiembro extends Component{
     state = {
@@ -61,6 +61,7 @@ class RegistroMiembro extends Component{
     render() {
         return (
             <div>
+            <Header></Header>
             <form onSubmit={this.registroFunc}> 
                 <div class="box-container-yellow">
                     <h1>Afiliar nuevo miembro a la organizacion</h1>
