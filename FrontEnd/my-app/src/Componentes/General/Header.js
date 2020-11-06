@@ -7,7 +7,6 @@ import Image from 'react-bootstrap/Image'
 import { Link } from 'react-router-dom';
 import { Route } from 'react-router';
 import axios from 'axios';
-import Menu, { SubMenu, MenuItem } from 'rc-menu';
 import {Nav,NavDropdown} from 'react-bootstrap';
 
 import './Header.css'
