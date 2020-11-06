@@ -1,7 +1,9 @@
-const DAO = require('../DAO/DAO.js')
+const DAO = require('../DAO/DAO.js');
+const GestorEstructura = require('./GestorEstructura');
 
 module.exports= class Control{
     dao = new DAO();
+    gestorEstructura=new GestorEstructura();
     // coordinacion;
      
     // constructor(coordinacion){
@@ -24,15 +26,17 @@ module.exports= class Control{
     }
 
     async prueba(info, res){
-        let response = await this.dao.guardar(info, res).then(
+            await this.dao.guardar(info, res).then(
             console.log(res)
         )
-        
-
     }
 
     async allZonas(req, res){
         await this.dao.allZonas(req,res)
+    }
+
+    async ramasDeZona(req,res){
+        await this.gestorEstructura(req,res)
     }
 
 

@@ -22,24 +22,24 @@ module.exports= class DAO {
     }
 
 
-    async guardarZona(info){
-        const connection = this.dataSource.Connect;
-        let state = connection.connection;
-        state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
-        state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
-        console.log("Llegue al DAO");
-        console.log(info)
-        let zona = new Zona();
-        zona.nombreZona=info;
-        zona.save((err)=>{
-            if(err)return res.json({success:false, error:"Se ha producido un error guardando"+err});
-            else{
-                console.log("Algo hice");
-                return true;
-            }
-        });
+    // async guardarZona(info){
+    //     const connection = this.dataSource.Connect;
+    //     let state = connection.connection;
+    //     state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
+    //     state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
+    //     console.log("Llegue al DAO");
+    //     console.log(info)
+    //     let zona = new Zona();
+    //     zona.nombreZona=info;
+    //     zona.save((err)=>{
+    //         if(err)return res.json({success:false, error:"Se ha producido un error guardando"+err});
+    //         else{
+    //             console.log("Algo hice");
+    //             return true;
+    //         }
+    //     });
         
-    }
+    // }
 
 
     async guardar(data,res){
@@ -65,7 +65,7 @@ module.exports= class DAO {
         this.openConnection();
         Zona.find({},(err,zonas)=>{
             if(err) return console.log(err);
-            console.log(zonas)
+            //console.log(zonas)
             res.send(zonas);
             res.end();
         })

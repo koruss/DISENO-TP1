@@ -30,10 +30,11 @@ app.post('/guardarZona', (req, res) => {
 
 app.post("/allZonas",(req,res)=>{
   control.allZonas(req, res);
-
-
 })
 
+app.post("/ramasDeZona",(req, res)=>{
+  control.ramasDeZona(req,res);
+})
 
 
 

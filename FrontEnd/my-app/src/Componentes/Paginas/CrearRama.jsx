@@ -8,9 +8,8 @@ export default class CrearRama extends Component {
 
     state = {
         selectedZona: [],
+        rawZonas:[],
         zonas: [{ value: "norte", label: "norte" }, { value: "sur", label: "Sur" }, { value: "Este", label: "Este" }, { value: "oeste", label: "oeste" }],
-        nombreRama: ""
-
     }
     onChange = (e) => this.setState({
         [e.target.name]: e.target.value
@@ -19,26 +18,31 @@ export default class CrearRama extends Component {
 
     handleChange = selectedOption => {
         this.setState(
-            { selectedOption },
-            () => console.log(`Option selected:`, this.state.selectedOption)
+            { selectedOption },     
         );
     };
 
-    componentDidMount() {
+    componentWillMount() {
         var self = this;
+        let arreglo =[];
         axios.post("/allZonas", {}).then(res => {
-            console.log(res)
-            self.setState({
-                zonas: res.data
+            const respuesta=res.data;
+            console.log(respuesta)
+            respuesta.forEach(zona=>{
+                arreglo.push({
+                    value:zona.nombreZona,
+                    label:zona.nombreZona
+                })
+            })   
+            this.setState({
+                zonas:arreglo
             })
-
         })
     }
 
 
 
     render() {
-
         return (
             <div id="center-section">
                 <div id="main-section">
@@ -58,21 +62,14 @@ export default class CrearRama extends Component {
                             <div>
                                 <Button variant="dark">Dark</Button>{' '}
                             </div>
-
-
                         </div>
                     </div>
                     <div class="border">
                         <div class="box-container">
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
         )
     };
-
 }
