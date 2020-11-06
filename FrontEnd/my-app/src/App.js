@@ -19,7 +19,7 @@ import AfiliacionMiembros from './Componentes/AfiliacionMiembros/AfiliacionMiemb
 import AfiliacionPersonal from './Componentes/AfiliacionPersonal/AfiliacionPersonal';
 import AsignacionMiembros from './Componentes/AsignacionMiembros/AsignacionMiembros';
 import ConsultaGruposXMiembro from './Componentes/Consultas/gruposXmiembro';
-import ConsultaComposicionGrupo from './Componentes/Consultas/composicionGrupo';
+import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/ConsultarCompGrupo';
 
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
           {/*                       Consultas             */}
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
           <Route path="/consultaGruposPorMiembro" component={ConsultaGruposXMiembro}/> 
-          <Route path="/consultaComposicionGrupo" component={ConsultaComposicionGrupo}/> 
+          <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
         </Switch>
       </div>
     </Router>
