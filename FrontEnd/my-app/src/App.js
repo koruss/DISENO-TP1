@@ -21,6 +21,7 @@ import AsignacionMiembros from './Componentes/AsignacionMiembros/AsignacionMiemb
 import ConsultaGruposXMiembro from './Componentes/Consultas/gruposXmiembro';
 import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/ConsultarCompGrupo';
 import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
+import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
       <div>
         <Switch>    
           <Route exact path="/" component={Login}/>;
-          <Route path="/ventanaAsesor" component={AsesorVentanaGeneral}/> 
+          <Route path="/ventanaAsesor" component={VentanaAsesor}/> 
           <Route path="/login" component={Login}/> 
           <Route path="/registroMiembro" component={RegistroMiembro}/> 
           <Route path="/trasladoMiembro" component={TrasladarMiembro}/> 
@@ -52,7 +53,7 @@ function App() {
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
           <Route path="/consultaGruposPorMiembro" component={ConsultaGruposXMiembro}/> 
           <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
-          <Route path="/consultarComposicionGrupoResult" Component={ConsultarGrupoResult}/>
+          <Route path="/consultarComposicionGrupoResult" component={ConsultarGrupoResult}/>
         </Switch>
       </div>
     </Router>

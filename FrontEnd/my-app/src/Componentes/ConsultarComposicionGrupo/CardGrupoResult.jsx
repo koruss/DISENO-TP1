@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
 import Card from 'react-bootstrap/Card'
-import './CardGrupoRoles.css'
+import './CardGrupoResult.css'
 
-export default class CardGrupoRoles extends Component {
+export default class CardGrupoResult extends Component {
 
     state = {
 
     }
 
     render() {
-        const { id, zona, rama, grupo, rol } = this.props.miembroData;
+        const { nombre } = this.props.miembroData;
         return (
             <div className="card1-container" >
                 <div id="center-section">
-                    <Card style={{ width: '25rem' }}>
+                    <Card style={{ width: '13rem' }}>
                         {/* <div id="center-section"> */}
                         <Card.Body>
-                            <Card.Title>{id}</Card.Title>
+                            <Card.Title></Card.Title>
                             <Card.Text>
-                                | {zona} | {rama} | {grupo} | {rol} |
+                                {nombre}
                             </Card.Text>
                         </Card.Body>
                         {/* </div> */}
