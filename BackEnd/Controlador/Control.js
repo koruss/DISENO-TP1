@@ -31,6 +31,9 @@ module.exports= class Control{
 
     }
 
+    async allZonas(req, res){
+        await this.dao.allZonas(req,res)
+    }
 
 
     

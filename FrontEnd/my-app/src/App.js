@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Componentes/General/Header';
 import Login from './Componentes/Login/Login';
 import Zona from './Componentes/Paginas/CrearZona';
+import Rama from './Componentes/Paginas/CrearRama';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
     <div className="App">
       <div>    
         <Header></Header> 
-        <Zona></Zona>
+        <Rama></Rama>
       </div>
 
 

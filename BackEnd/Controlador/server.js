@@ -21,11 +21,16 @@ var cord = new Coordinacion("116", "tec", "San Jose.com", "asd", "090123", "dasd
 const control = new Control(cord);
 
 app.post('/guardarZona', (req, res) => {
-    const data =req.body.nombreZona;
     control.prueba(req.body, res);
     //control.definirEstructura(data);
     //console.log("en el server");
     //console.log(data);
+
+})
+
+app.post("/allZonas",(req,res)=>{
+  control.allZonas(req, res);
+
 
 })
 

@@ -6,16 +6,18 @@ const DataSource= require('./DataSource');
 
 module.exports= class DAO {
     dataSource = new DataSource();
+    connection;
+    state;
     openConnection() {
         //////////////////////////////
         ///   MONGODB CONNECTION
         //////////////////////////////
 
-        connection = dataSource.Connect;
+        this.connection = this.dataSource.Connect;
 
-        state = connection.connection;
-        state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
-        state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
+        this.state = this.connection.connection;
+        this.state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
+        this.state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
 
     }
 
@@ -57,6 +59,19 @@ module.exports= class DAO {
                 return res.json({success: true});
             }
         });
+    }
+
+    async allZonas(req,res){
+        this.openConnection();
+        Zona.find({},(err,zonas)=>{
+            if(err) return console.log(err);
+            console.log(zonas)
+            res.send(zonas);
+            res.end();
+        })
+
+
+
     }
 
 }
