@@ -14,14 +14,6 @@ class VentanaAsesor extends Component {
         ]
     }
 
-    onChange = (e) => this.setState({
-        [e.target.name]:
-        e.target.value
-    });
-
-    _handleChangeNombreAnterior(val) {
-        return val;
-    }
 
     render() {
         return (
