@@ -5,7 +5,7 @@ import './Componentes/General/Header'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Componentes/General/Header';
 import AsesorVentanaGeneral from './Componentes/General/AsesorVentanaPrincipal';
-import Login from './Componentes/Login/Login';
+import Login from './Componentes/Login/login';
 import CrearGrupo from './Componentes/Paginas/CrearGrupo';
 import CrearRama from './Componentes/Paginas/CrearRama';
 import CrearZona from './Componentes/Paginas/CrearZona';

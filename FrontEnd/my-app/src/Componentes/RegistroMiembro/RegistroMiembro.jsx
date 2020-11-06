@@ -4,6 +4,7 @@ import '../../Componentes/General/Utils.css'
 import Header from '../General/Header';
 import makeAnimated from 'react-select/animated';
 import Select from 'react-select';
+import axios from 'axios';
 
 
 class RegistroMiembro extends Component{
