@@ -29,6 +29,11 @@ app.post('/guardarMiembro', (req, res) => {
   control.guardarMiembro(req.body,res);
 })
 
+app.post('/asignarMiembro', (req, res) => {
+  control.asignarMiembro(req.body,res);
+})
+
+
 //Funcion para traer todas las zonas
 app.post("/allZonas",(req,res)=>{
   control.allZonas(req, res);

@@ -74,18 +74,24 @@ class VentanaAsesor extends Component {
                     </div>
                     <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
-                                <label for="rama">Asignar miembros a los grupos</label>
+                                {/* <label for="rama">Asignar miembros a los grupos</label> */}
+                                <button type="button" class="btn btn-dark" onClick={this.onClick} >Asignar miembros a los grupos</button>
                             </div>
                             <div class="form-group" class="spacing-base">
-                                <label for="grupo">Asignar jefes a los grupos</label>
+                                {/* <label for="grupo">Asignar jefes a los grupos</label> */}
+                                <button type="button" class="btn btn-dark" onClick={this.onClick} >Registrar nuevo miembro</button>
+
                             </div>
                         </div>
                         <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
-                                <label for="rama">Definir estructura organizacional</label>
+                                {/* <label for="rama">Definir estructura organizacional</label> */}
+                                <button type="button" class="btn btn-dark" onClick={this.onClick} >Definir estructura organizacional</button>
                             </div>
                             <div class="form-group" class="spacing-base">
-                                <label for="grupo">Ver mapa organizacional</label>
+                                {/* <label for="grupo">Ver mapa organizacional</label> */}
+                                <button type="button" class="btn btn-dark" onClick={this.onClick} >Ver mapa organizacional</button>
+
                             </div>
                         </div>
                     </div>

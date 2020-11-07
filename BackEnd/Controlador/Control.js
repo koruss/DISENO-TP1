@@ -30,6 +30,10 @@ module.exports = class Control{
         let response = await this.gestorMiembro.agregarMiembro(data, res);
     }
 
+    async asignarMiembro(data, res){
+        // terminar
+    }
+
     async prueba(info, res){
             await this.dao.guardar(info, res).then(
             console.log(res)
