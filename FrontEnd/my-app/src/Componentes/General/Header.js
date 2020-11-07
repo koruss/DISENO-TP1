@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import FormControl from 'react-bootstrap/FormControl'
 import Image from 'react-bootstrap/Image'
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 import { Route } from 'react-router';
 import axios from 'axios';
 import {Nav,NavDropdown} from 'react-bootstrap';
@@ -15,33 +15,34 @@ import './Header.css'
 
 class Header extends Component {
     state = {
-        isAuth: true,
+        isAuth: false,
+        reloadMainPage:false,
     }
 
     componentDidMount(){
-        {/*if(this.props.isStore) this.state.isStore=true;          
          var self=this;
-         axios.get('/showSession').then(function(res){
+         axios.get('/getSesion').then(function(res){
              if(res.data.loggedIn == true) self.setState({isAuth:true})
              else self.setState({isAuth:false});
          })
-        */}
     }
 
     logOut(){
         try {this.props.reload()} catch(error){}
-        axios.get("logOut",{})
+        axios.get("cerrarSesion",{})
         .then(function (res) {
           })
           .catch(function (err) {
           });        
         this.setState({
-            isAuth:false
+            isAuth:false,
+            reloadMainPage:true,
         })
     }
 
     render() {
         var session = this.state.isAuth;
+        if(!this.state.reloadMainPage) {
         return (<>
             <head>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
@@ -110,7 +111,11 @@ class Header extends Component {
             </header>
             </>
         )
-
+        } else return (
+            <>
+            <Redirect to="/logIn"></Redirect>
+            </>
+        )
     }
 
 }
