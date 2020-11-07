@@ -46,7 +46,7 @@ class Header extends Component {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
             </head>
             <header className="header">
-                <div className="topContainer" display="inline">
+            <div className="topContainer" display="inline">
                     {/* Home logo */}
                     <h1 display="inline-block">
                         <Link className="link" to="/VentanaAsesor">Movilize!!</Link>
@@ -67,7 +67,7 @@ class Header extends Component {
                                     return <>
                                         <Nav.Link href="/ventanaAsesor">Inicio</Nav.Link>                                 
                                         <NavDropdown title="Realizar movimientos" id="basic-nav-dropdown">
-                                            <NavDropdown.Item href="/afiliacionMiembros">Afiliar nuevo miembro</NavDropdown.Item>
+                                            <NavDropdown.Item href="/registroMiembro">Registrar nuevo miembro</NavDropdown.Item>
                                             <NavDropdown.Divider />
                                             <NavDropdown.Item href="/asignacionMiembros">Asignar miembros a grupo</NavDropdown.Item>
                                             <NavDropdown.Divider />
@@ -87,7 +87,17 @@ class Header extends Component {
                                             <NavDropdown.Divider />
                                             <NavDropdown.Item href="/consultaMiembrosPorElemento">Miembros por elemento</NavDropdown.Item>
                                             <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/consultarComposicionGrupoResult">GrupoRolResult</NavDropdown.Item>
+                                            <NavDropdown.Divider />
                                         </NavDropdown>   
+                                        <NavDropdown title="Crear estructuras" id="basic-nav-dropdown">
+                                            <NavDropdown.Item href="/crearZona">Crear zona</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/crearRama">Crear rama</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/crearGrupo">Crear grupo</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                        </NavDropdown>
                                         <Nav.Link className="link" to="/" onClick={() => this.logOut()}>Cerrar sesión</Nav.Link>                                 
                                     </> 
                                 }

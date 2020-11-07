@@ -1,10 +1,5 @@
-import { Direccion } from './Direccion.js';
-/**
- * Abstract Class Persona.
- *
- * @class AbstractPersona
- */
-export class AbstractPersona {
+
+class AbstractPersona {
     id;
     parent;
     nombre;
@@ -30,7 +25,7 @@ export class AbstractPersona {
       }
     }
   
-
+    
     //Establece el padre composite
     setParent(parent) {                                               
         this.parent = parent;
@@ -70,10 +65,8 @@ export class AbstractPersona {
       throw new Error("Method 'getEstado()' must be implemented.");
     }
 
-
-
-
   }
 
+export default AbstractPersona;
 
   

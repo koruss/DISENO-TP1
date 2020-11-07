@@ -1,8 +1,5 @@
 var Control = require('./Control');
 var Coordinacion= require('./Coordinacion');
-
-
-
 const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors');
@@ -24,8 +21,33 @@ var cord = new Coordinacion("116", "tec", "San Jose.com", "asd", "090123", "dasd
 const control = new Control(cord);
 
 app.post('/guardarZona', (req, res) => {
-    control.definirEstructura();
-    console.log("en el server");
+    control.prueba(req.body, res);
+})
 
+//Funcion para guardar un miembro en la base de datos
+app.post('/guardarMiembro', (req, res) => {
+  control.guardarMiembro(req.body,res);
+})
+
+app.post('/asignarMiembro', (req, res) => {
+  control.asignarMiembro(req.body,res);
+})
+
+
+//Funcion para traer todas las zonas
+app.post("/allZonas",(req,res)=>{
+  control.allZonas(req, res);
+})
+
+app.post('/cambiarMiembroGrup', (req, res) => {
+  control.cambiarMiembroGrupo(res);
+  })
+  
+app.post("/ramasDeZona",(req, res)=>{
+  control.ramasDeZona(req,res);
+})
+
+app.post("/guardarRama",(req, res)=>{
+  control.crearRama(req.body,res);
 })
 

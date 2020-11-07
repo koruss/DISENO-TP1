@@ -9,22 +9,22 @@ import Header from '../General/Header';
 class CrearZona extends Component {
 
     state = {
-        nombreZona:""
+        nombreZona: ""
 
     }
 
-    onChange = (e) => this.setState({[e.target.name]:e.target.value}); 
+    onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
     onClick = (e) => {
         // e.preventDefault();
         console.log("ENTRE AL evento");
-        axios.post("/guardarZona",{
-            nombreZona:this.state.nombreZona
-        }).then(res =>{
-            if(!res.data.success){
+        axios.post("/guardarZona", {
+            nombreZona: this.state.nombreZona
+        }).then(res => {
+            if (!res.data.success) {
                 alert(res.data.err);
             }
-            else{
+            else {
                 alert("Zona Guardada correctamente")
             }
         })
@@ -33,41 +33,35 @@ class CrearZona extends Component {
 
 
     render() {
-
         return (
             <div>
-            <Header></Header>
-            <div id="center-section">
-                <div id="main-section">
-
-                    <div class="border">
-                        <div class="box-container">
-                            <div class="spacing-base">
-                                <h1 class="h1">Crear Zona</h1>
+                <Header></Header>
+                <div id="center-section">
+                    <div id="main-section">
+                        <div class="border">
+                            <div class="box-container">
+                                <div class="spacing-base">
+                                    <h1 class="h1">Crear Zona</h1>
+                                    <div>
+                                        <label> Nombre de la nueva zona</label>
+                                        <input type="text" name="nombreZona" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
+                                    </div>
+                                </div>
                                 <div>
-                                    <label> Nombre de la nueva zona</label>
-                                    <input type="text" name="nombreZona" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
+                                    <Button variant="dark" onClick={this.onClick}>Crear zona</Button>
                                 </div>
                             </div>
-                            <div>
-                                <Button variant="dark" onClick={this.onClick}>Dark</Button>{' '}
+                        </div>
+                        <div class="border">
+                            <div class="box-container">
                             </div>
 
                         </div>
-                    </div>
-                    <div class="border">
-                        <div class="box-container">
-
-                        </div>
-
                     </div>
                 </div>
             </div>
-
-        </div>
         )
     };
-
 }
 
 export default CrearZona;

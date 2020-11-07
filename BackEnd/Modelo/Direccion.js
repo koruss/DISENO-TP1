@@ -1,6 +1,6 @@
 //Clase direccion 
 
-export class Direccion { 
+module.exports = class Direccion { 
     constructor(provincia, canton, distrito, senas, zona) { 
       this.provincia = provincia;                           //Provincia de la direccion
       this.canton = canton;                                 //Canton de la direccion
