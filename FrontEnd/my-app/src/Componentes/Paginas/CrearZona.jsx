@@ -62,7 +62,6 @@ class CrearZona extends Component {
                     </div>
                 </div>
             </div>
-        </div>
         )
     };
 }

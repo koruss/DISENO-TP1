@@ -8,6 +8,7 @@ module.exports = class Control{
     gestorEstructura=new GestorEstructura();
     
 
+
     constructor(){
     
     }

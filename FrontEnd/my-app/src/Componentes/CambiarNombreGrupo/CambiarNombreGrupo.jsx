@@ -4,14 +4,13 @@ import '../../Componentes/General/Utils.css'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Header from '../General/Header';
+import axios from 'axios';
 
 class CambiarNombreGrupo extends Component{
     state = {
-        options:[
-            { value: "chocolate", label: "Chocolate" }
-        ],
+        zonas:[],
         nombreAnterior : 'NombreAnteriorEjemplo',
-        zona: ''
+        zona: []
     }
 
     onChange = (e) => this.setState({[e.target.name]:
@@ -19,6 +18,30 @@ class CambiarNombreGrupo extends Component{
 
     _handleChangeNombreAnterior(val) {
         return val;
+    }
+
+    handleChangeZona = zona => {
+        this.setState(
+            { zona },     
+        );
+    };
+
+    componentWillMount() {
+        var self = this;
+        let arreglo =[];
+        axios.post("/allZonas", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(zona=>{
+                arreglo.push({
+                    value:zona.nombreZona,
+                    label:zona.nombreZona
+                })
+            })   
+            this.setState({
+                zonas:arreglo
+            })
+        })
     }
 
 render() {
@@ -30,15 +53,18 @@ render() {
                     <h2>Cambiar nombre grupo</h2>
                     <div class="form-group">
                         <label for="zona">Seleccione la zona a la que pertenece el grupo:</label>
-                        <Select components={makeAnimated} name="zona" onChange={this.onChange} options={this.state.options} classNamePrefix="select"/>
+                        <Select components={makeAnimated} name="zona" onChange={this.handleChangeZona} 
+                        value={this.state.zona} options={this.state.zonas} classNamePrefix="select"/>
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="rama">Seleccione la rama a la que pertenece el grupo:</label>
-                        <Select components={makeAnimated} name="rama" onChange={this.onChange} options={this.state.options} classNamePrefix="select"/>
+                        <Select components={makeAnimated} name="rama" onChange={this.onChange} 
+                        options={this.state.options} classNamePrefix="select"/>
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="grupo">Seleccione el grupo al que desea cambiarle el nombre:</label>
-                        <Select components={makeAnimated} name="grupo" onChange={this.onChange} options={this.state.options} classNamePrefix="select"/>
+                        <Select components={makeAnimated} name="grupo" onChange={this.onChange} 
+                        options={this.state.options} classNamePrefix="select"/>
                     </div>
                 </div>
                 <div className="label-wrapper">
