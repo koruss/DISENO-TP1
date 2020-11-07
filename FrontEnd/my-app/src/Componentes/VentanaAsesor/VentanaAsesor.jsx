@@ -22,7 +22,6 @@ class VentanaAsesor extends Component {
             self.setState({
                 zonas: res.data
             })
-
         })
     }
 
@@ -56,7 +55,7 @@ class VentanaAsesor extends Component {
                                 <label for="rama">X grupos</label>
                             </div>
                         </div>
-                        <div className="label-wrapper" >
+                        {/* <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
                                 <label for="rama">Total de personas sin grupo asignado:</label>
                                 <label for="rama">30 personas</label>
@@ -65,7 +64,7 @@ class VentanaAsesor extends Component {
                                 <label for="grupo">Total de grupos sin jefe definido:</label>
                                 <label for="rama">6 grupos</label>
                             </div>
-                        </div>
+                        </div> */}
                         
                         {/* <button type="button" class="btn btn-dark">Atrás</button> */}
                     </div>
