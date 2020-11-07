@@ -5,12 +5,8 @@ import Header from '../General/Header';
 
 export default class GrupoRolesXMiembro extends Component {
     state = {
-        resultMembers: [{ _id: 1, zona: "Alajuela", rama: "Bomberos Junior", grupo: "Número 2", rol: "Jefe" },
-        { _id: 1, zona: "Alajuela", rama: "Bomberos Junior", grupo: "Número 2", rol: "Jefe" },
-        { _id: 1, zona: "Alajuela", rama: "Bomberos Junior", grupo: "Número 2", rol: "Jefe" },
-        { _id: 1, zona: "Alajuela", rama: "Bomberos Junior", grupo: "Número 2", rol: "Jefe" },
-        { _id: 1, zona: "Alajuela", rama: "Bomberos Junior", grupo: "Número 2", rol: "Jefe" },
-        { _id: 1, zona: "Alajuela", rama: "Bomberos Junior", grupo: "Número 2", rol: "Jefe" }],
+        nombre:'',
+        resultMembers: [],
     }
 
     onChange = (e) => this.setState({
@@ -31,12 +27,11 @@ export default class GrupoRolesXMiembro extends Component {
                     <div className="container">
                         <form action="/action_page.php">
                             <div className="spacing-base"></div>
-                            <label htmlFor="fname">ingrese nombre aqui</label>
+                            <label htmlFor="fname">Nombre: {this.state.nombre}</label>
                             <div id="center-section">
                                 <div className="spacing-base">
                                     <div className="box-container">
                                         <div className="center-section">
-                                            <label htmlFor="fname">ZONA RAMA GRUPO ROLr</label>
                                             {this.state.resultMembers.map((p, index) =>
                                                 (<Card key={p._id} index={index} miembroData={p} />))
                                             }

@@ -18,7 +18,7 @@ export default class CardGrupoRoles extends Component {
                         <Card.Body>
                             <Card.Title>{id}</Card.Title>
                             <Card.Text>
-                                | {zona} | {rama} | {grupo} | {rol} |
+                                | Zona: {zona} | Rama: {rama} | Grupo: {grupo} | Rol: {rol} |
                             </Card.Text>
                         </Card.Body>
                         {/* </div> */}
