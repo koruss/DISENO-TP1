@@ -6,20 +6,20 @@ import makeAnimated from 'react-select/animated';
 import Header from '../General/Header';
 
 class CambiarNombreGrupo extends Component{
-state = {
-    options:[
-        { value: "chocolate", label: "Chocolate" }
-    ],
-    nombreAnterior : 'NombreAnteriorEjemplo',
-    zona: ''
-}
+    state = {
+        options:[
+            { value: "chocolate", label: "Chocolate" }
+        ],
+        nombreAnterior : 'NombreAnteriorEjemplo',
+        zona: ''
+    }
 
-onChange = (e) => this.setState({[e.target.name]:
-    e.target.value}); 
+    onChange = (e) => this.setState({[e.target.name]:
+        e.target.value}); 
 
-_handleChangeNombreAnterior(val) {
-    return val;
-  }
+    _handleChangeNombreAnterior(val) {
+        return val;
+    }
 
 render() {
     return (

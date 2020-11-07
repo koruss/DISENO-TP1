@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import Header from '../General/Header';
 import makeAnimated from 'react-select/animated';
 import Select from 'react-select';
+import './RegistroMiembro.css'; 
 import axios from 'axios';
 import "./RegistroMiembro.css";
 

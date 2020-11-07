@@ -62,9 +62,9 @@ class CrearZona extends Component {
                     </div>
                 </div>
             </div>
+        </div>
         )
     };
-
 }
 
 export default CrearZona;

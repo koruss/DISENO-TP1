@@ -42,7 +42,7 @@ export default class CrearGrupo extends Component {
         this.buscarZonas();
     }
 
-    buscarZonas(){
+   /* buscarZonas(){
         axios.post("/allZonas", {}).then(res => {
             const respuesta=res.data;
             console.log(respuesta)
@@ -57,7 +57,7 @@ export default class CrearGrupo extends Component {
                 zonas:arreglo
             })
         })
-    }
+    }*/
 
     buscar
 
