@@ -1,30 +1,21 @@
 import React, { Component } from 'react'
-import "./Estructura.css"
-export default class Card1 extends Component {
+//import "./Estructura.css"
+import {Button} from 'react';
+import Header from '../General/Header';
 
-    state={
-        is
-    }
-
-
-
-
-
+export default class MenuEstructuras extends Component {
     render() {
-
         return (
             <div>
-         
-            <Button variant="dark">Agregar Zona</Button>{' '}
-            <Button variant="dark">Agregar Rama</Button>{' '}
-            <Button variant="dark">Agregar Grupo</Button>{' '}
-                                
-
-
+            <Header></Header>
+            <h1> ##Estructura##</h1>
+            <h2>Debemos implementarlo o nos va a cargar la verga :/</h2>
+            {/*
+            <Button variant="dark">Agregar Zona</Button>
+            <Button variant="dark">Agregar Rama</Button>
+            <Button variant="dark">Agregar Grupo</Button>                             
+            */}
             </div>
-
-
         )
     };
-
 }

@@ -3,6 +3,8 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import './miembrosXelemento.css'
 import Card from './Card1'
+import Header from '../General/Header';
+
 
 export default class miembroXelemento extends Component {
     state = {
@@ -34,6 +36,7 @@ export default class miembroXelemento extends Component {
     render() {
         return (
             <div >
+                <Header></Header>
                 <div id="box-container" >
                     <div id="center-section">
                     <div id="main-section">

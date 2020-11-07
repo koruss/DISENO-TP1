@@ -4,6 +4,8 @@ import makeAnimated from 'react-select/animated';
 import Button from 'react-bootstrap/Button'
 import axios from 'axios';
 import "./Estructura.css"
+import Header from '../General/Header';
+
 export default class CrearRama extends Component {
 
     state = {
@@ -45,6 +47,7 @@ export default class CrearRama extends Component {
     render() {
         return (
             <div id="center-section">
+                <Header></Header>
                 <div id="main-section">
                     <div class="border">
                         <div class="box-container">

@@ -3,7 +3,9 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Button from 'react-bootstrap/Button'
 import "./Estructura.css"
+import Header from '../General/Header';
 import axios from 'axios';
+
 
 export default class CrearGrupo extends Component {
 
@@ -64,6 +66,7 @@ export default class CrearGrupo extends Component {
     render() {
         return (
             <div id="center-section">
+                <Header></Header>
                 <div id="main-section">
                     <div class="border">
                         <div class="box-container">

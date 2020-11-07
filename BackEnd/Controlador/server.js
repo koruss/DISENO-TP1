@@ -22,19 +22,24 @@ const control = new Control(cord);
 
 app.post('/guardarZona', (req, res) => {
     control.prueba(req.body, res);
-    //control.definirEstructura(data);
-    //console.log("en el server");
-    //console.log(data);
+})
 
+//Funcion para guardar un miembro en la base de datos
+app.post('/guardarMiembro', (req, res) => {
+  control.guardarMiembro(req.body,res);
 })
 
 app.post("/allZonas",(req,res)=>{
   control.allZonas(req, res);
 })
 
+app.post('/cambiarMiembroGrup', (req, res) => {
+  control.cambiarMiembroGrupo(res);
+  })
+  
 app.post("/ramasDeZona",(req, res)=>{
   control.ramasDeZona(req,res);
-})
+  })
 
 
 

@@ -3,6 +3,7 @@ import './Login.css'
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 //import {Redirect} from 'react-router-dom';
+import Header from '../General/Header';
 
 class Login extends Component{
     state = {
@@ -67,6 +68,7 @@ class Login extends Component{
         
         return(  
             <div>
+                    <Header></Header>
                     {/*<h1>{auth.getAuth()?"hola":"no sirve"}</h1>*/}
                     <form onSubmit={this.logIn}> 
                         <div id="center-section">

@@ -8,6 +8,7 @@ module.exports= class DAO {
     dataSource = new DataSource();
     connection;
     state;
+
     openConnection() {
         //////////////////////////////
         ///   MONGODB CONNECTION
@@ -21,26 +22,16 @@ module.exports= class DAO {
 
     }
 
-
-    // async guardarZona(info){
-    //     const connection = this.dataSource.Connect;
-    //     let state = connection.connection;
-    //     state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
-    //     state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
-    //     console.log("Llegue al DAO");
-    //     console.log(info)
-    //     let zona = new Zona();
-    //     zona.nombreZona=info;
-    //     zona.save((err)=>{
-    //         if(err)return res.json({success:false, error:"Se ha producido un error guardando"+err});
-    //         else{
-    //             console.log("Algo hice");
-    //             return true;
-    //         }
-    //     });
-        
-    // }
-
+    //Funcion que recibe un esquema para guardarlo en la base de datos
+    async postData(schema, res){
+        this.openConnection();
+        schema.save((err)=>{
+            if(err)return res.json({success:false, error:"Se ha producido un error guardando"+err}) ;
+            else{
+                return res.json({success: true});
+            }
+        });
+    }
 
     async guardar(data,res){
         //console.log(data);

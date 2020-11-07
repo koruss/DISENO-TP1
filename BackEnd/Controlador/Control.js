@@ -1,16 +1,17 @@
-const DAO = require('../DAO/DAO.js');
+const DAO = require('../DAO/DAO.js')
+var GestorMiembro = require('./GestorMiembro');
 const GestorEstructura = require('./GestorEstructura');
 
-module.exports= class Control{
+module.exports = class Control{
     dao = new DAO();
-    gestorEstructura=new GestorEstructura();
-    // coordinacion;
-     
-    // constructor(coordinacion){
-    //     this.coordinacion=coordinacion;
-    // }
-    constructor(){
+    gestorMiembro = new GestorMiembro();
+    
+    constructor(){}
+    
 
+    constructor(){
+    gestorMiembro = new GestorMiembro();
+    gestorEstructura=new GestorEstructura();
     }
 
     setCoordinacion(coordinacion){
@@ -21,8 +22,13 @@ module.exports= class Control{
     }
 
     async definirEstructura(info){
-        console.log( this.dao.guardarZona(info) );
+        console.log( this.dao.guardarZona(info));
 
+    }
+
+    //Funcion encargada de guardar un miembro en la base de datos
+    async guardarMiembro(data, res){
+        let response = await this.gestorMiembro.agregarMiembro(data, res);
     }
 
     async prueba(info, res){
@@ -38,14 +44,7 @@ module.exports= class Control{
     async ramasDeZona(req,res){
         await this.gestorEstructura(req,res)
     }
-
-
     
-
-    // async definirEstructura().then(req,res){
-
-    // }
-
     registrarMiembro(){
 
     }
@@ -62,8 +61,9 @@ module.exports= class Control{
 
     }
 
-    cambiarMiembroDeGrupo(){
-
+    cambiarMiembroGrupo(data){
+        console.log("cambiar");
+        this.gestorMiembro.cambiarMiembroGrupo(data);
     }
 
     definirMonitor(){

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button'
 import "./Estructura.css"
+import Header from '../General/Header';
+
 
 
 class CrearZona extends Component {
@@ -32,6 +34,8 @@ class CrearZona extends Component {
 
     render() {
         return (
+            <div>
+            <Header></Header>
             <div id="center-section">
                 <div id="main-section">
                     <div class="border">
