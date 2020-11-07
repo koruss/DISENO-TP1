@@ -14,7 +14,7 @@ module.exports = class PersonDao {
         //const direccion = {
         //    pais: data.pais
         //}
-        //console.log("pais ---------->",data.pais);
+        //console.log("pais ---------->",data.pais.value);
         this.personaSchema.nombre=data.nombre;
         this.personaSchema.identificacion=data.identificacion;
         this.personaSchema.apellido1=data.apellido1;

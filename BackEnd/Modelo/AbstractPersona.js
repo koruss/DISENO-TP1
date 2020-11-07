@@ -31,7 +31,6 @@ export class AbstractPersona {
     }
   
     
-
     //Establece el padre composite
     setParent(parent) {                                               
         this.parent = parent;
@@ -70,9 +69,6 @@ export class AbstractPersona {
     getEstado() {
       throw new Error("Method 'getEstado()' must be implemented.");
     }
-
-
-
 
   }
 

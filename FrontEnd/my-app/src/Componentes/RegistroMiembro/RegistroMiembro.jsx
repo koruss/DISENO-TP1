@@ -2,8 +2,8 @@ import React,{Component} from 'react';
 import Header from '../General/Header';
 import makeAnimated from 'react-select/animated';
 import Select from 'react-select';
+import './RegistroMiembro.css'; 
 import axios from 'axios';
-import "./RegistroMiembro.css";
 
 class RegistroMiembro extends Component{
     state = {
@@ -29,10 +29,10 @@ class RegistroMiembro extends Component{
         celular: "",
         apellido1: "",
         apellido2: "",
-        pais: "",
-        provincia: "",
-        canton: "",
-        distrito:""
+        pais: [],
+        provincia: [],
+        canton: [],
+        distrito: []
     }
     
 
@@ -41,7 +41,6 @@ class RegistroMiembro extends Component{
 
     //Funcion para manejar los eventos de un boton
     onClick = (e) => {
-        console.log("REGISTRO MIEMBRO");
         axios.post("/guardarMiembro",{
             pais:this.state.pais,
             provincia:this.state.provincia,
@@ -63,6 +62,29 @@ class RegistroMiembro extends Component{
         })
     }
 
+    handleChangePais = pais => {
+        this.setState(
+            { pais },     
+        );
+    };
+
+    handleChangeProvincia = provincia => {
+        this.setState(
+            { provincia },     
+        );
+    };
+
+    handleChangeCanton = canton => {
+        this.setState(
+            { canton },     
+        );
+    };
+
+    handleChangeDistrito = distrito => {
+        this.setState(
+            { distrito },     
+        );
+    };
 
     render() {
         return (
@@ -102,28 +124,28 @@ class RegistroMiembro extends Component{
                             <label for="pais">Pais: </label>
                                 <div className="label-select" >
                                     <Select components={makeAnimated} name="pais" value={this.state.pais} className="basic-multi-select"
-                                    options={this.state.paisOpc} classNamePrefix="select" onChange={this.onChange} isDisabled="true"/>   
+                                    options={this.state.paisOpc} classNamePrefix="select" onChange={this.handleChangePais}/>   
                                 </div>
                             </div>
                             <div className="label-wrapper">
                                 <label for="provincia">Provincia: </label>
                                 <div className="label-select">
-                                    <Select components={makeAnimated} name="provincia" onChange={this.handleChange}
-                                    options={this.state.provinciaOpc} classNamePrefix="select" value={this.state.provincia} isDisabled="true"/>
+                                    <Select components={makeAnimated} name="provincia" onChange={this.handleChangeProvincia}
+                                    options={this.state.provinciaOpc} classNamePrefix="select" value={this.state.provincia}/>
                                 </div>
                             </div>
                             <div className="label-wrapper">
                                 <label for="canton">Canton: </label>
                                 <div className="label-select">
-                                    <Select components={makeAnimated} name="canton" 
-                                    options={this.state.cantonOpc} classNamePrefix="select" isDisabled="true"/>
+                                    <Select components={makeAnimated} name="canton" onChange={this.handleChangeCanton}
+                                    options={this.state.cantonOpc} classNamePrefix="select" value={this.state.canton}/>
                                 </div>
                             </div>
                             <div className="label-wrapper">
                                 <label for="distrito">Distrito: </label>
                                 <div className="label-select">
-                                    <Select components={makeAnimated} name="distrito" 
-                                    options={this.state.distritoOpc} classNamePrefix="select" isDisabled="true"/>
+                                    <Select components={makeAnimated} name="distrito"  onChange={this.handleChangeDistrito}
+                                    options={this.state.distritoOpc} classNamePrefix="select" value={this.state.distrito}/>
                                 </div>
                             </div>
                         </div>

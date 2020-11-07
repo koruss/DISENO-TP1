@@ -64,7 +64,6 @@ class CrearZona extends Component {
             </div>
         )
     };
-
 }
 
 export default CrearZona;
