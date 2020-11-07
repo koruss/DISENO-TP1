@@ -30,6 +30,7 @@ export class AbstractPersona {
       }
     }
   
+    
 
     //Establece el padre composite
     setParent(parent) {                                               
