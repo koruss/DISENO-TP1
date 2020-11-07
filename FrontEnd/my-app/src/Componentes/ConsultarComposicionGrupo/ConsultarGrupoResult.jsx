@@ -9,16 +9,26 @@ import axios from 'axios';
 
 class ConsultarGrupoResult extends Component {
     state = {
-        grupo:  "juanito y las hormigas",
-        zona: "San Jose",
-        rama: "Tecnologia",
-        jefe: ["kenito", "yochi"],
-        monitores: ["steven", "kenito"],
-        resultMembers: [{ nombre: "steven" }, { nombre: "kenito" }, { nombre: "yochi" },
-        { nombre: "steven" }, { nombre: "kenito" }, { nombre: "yochi" },
-        { nombre: "steven" }, { nombre: "kenito" }, { nombre: "yochi" }
+        grupo:  "",
+        zona: "",
+        rama: "",
+        jefe: [],
+        monitores: [],
+        resultMembers: [
         ]
     }
+
+    onChange = (e) => this.setState({
+        [e.target.name]: e.target.value
+    });
+
+
+    handleChange = selectedOption => {
+        this.setState(
+            { selectedOption },
+            () => console.log(`Option selected:`, this.state.selectedOption)
+        );
+    };
 
 
     render() {

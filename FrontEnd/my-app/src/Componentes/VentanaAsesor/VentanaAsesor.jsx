@@ -4,16 +4,27 @@ import '../../Componentes/General/Utils.css'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Header from '../General/Header';
+import axios from 'axios';
 // import Card from './CardGrupoResult'
 
 class VentanaAsesor extends Component {
     state = {
-        resultMembers: [{ nombre: "steven" }, { nombre: "kenito" }, { nombre: "yochi" },
-        { nombre: "steven" }, { nombre: "kenito" }, { nombre: "yochi" },
-        { nombre: "steven" }, { nombre: "kenito" }, { nombre: "yochi" }
-        ]
+        selectedZona: [],
+        zonas: [{ value: "norte", label: "norte" }, { value: "sur", label: "Sur" }, { value: "Este", label: "Este" }, { value: "oeste", label: "oeste" }],
+        nombreRama: "",
+
     }
 
+    componentDidMount() {
+        var self = this;
+        axios.post("/allZonas", {}).then(res => {
+            console.log(res)
+            self.setState({
+                zonas: res.data
+            })
+
+        })
+    }
 
     render() {
         return (
@@ -34,7 +45,7 @@ class VentanaAsesor extends Component {
                         <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
                                 <label for="rama">Cantidad de zonas:</label>
-                                <label for="rama">X zonas</label>
+                                <label for="rama">{this.state.selectedZona.length}</label>
                             </div>
                             <div class="form-group" class="spacing-base">
                                 <label for="grupo">Cantidad de ramas:</label>
