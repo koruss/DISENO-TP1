@@ -18,7 +18,7 @@ import ConsultaMiembroXElemento from './Componentes/Consultas/miembrosXelemento'
 import AfiliacionMiembros from './Componentes/AfiliacionMiembros/AfiliacionMiembros';
 import AfiliacionPersonal from './Componentes/AfiliacionPersonal/AfiliacionPersonal';
 import AsignacionMiembros from './Componentes/AsignacionMiembros/AsignacionMiembros';
-import ConsultaGruposXMiembro from './Componentes/Consultas/gruposXmiembro';
+import ConsultaGruposRolesXMiembro from './Componentes/GrupoRolesXMiembro/GrupoRolesXMiembro';
 import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/ConsultarCompGrupo';
 import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
 import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
@@ -51,7 +51,7 @@ function App() {
 
           {/*                       Consultas             */}
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
-          <Route path="/consultaGruposPorMiembro" component={ConsultaGruposXMiembro}/> 
+          <Route path="/consultaGruposPorMiembro" component={ConsultaGruposRolesXMiembro}/> 
           <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
           <Route path="/consultarComposicionGrupoResult" component={ConsultarGrupoResult}/>
         </Switch>
