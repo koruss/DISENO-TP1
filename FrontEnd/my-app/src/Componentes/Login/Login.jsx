@@ -57,6 +57,19 @@ class Login extends Component{
     onChange = (e) => this.setState({[e.target.name]:
         e.target.value}); 
 
+    
+    onClick = (e) => {
+        axios.post("/cargarComposite",{
+        }).then(res =>{
+            if(!res.data.success){
+                alert(res.data.err);
+            }
+            else{
+                alert("Miembro Guardado correctamente")
+            }
+        })
+    }
+
     render(){
         //const { isAuth } = this.state.isAuth;
         //alert("Si se ha comprobado el estado: "+this.state.isAuth);
@@ -96,7 +109,7 @@ class Login extends Component{
                                 <h5>You don't have an account?</h5>
                             </div>
                             <span id="registrationLink" class="button">
-                                    <a id="create"role="button" href="/register" class="button-text">Register Here!</a>                     
+                                <button type="button" class="btn btn-dark" onClick={this.onClick} >Afiliar miembro</button>             
                             </span>
                         </div>
                     </form>

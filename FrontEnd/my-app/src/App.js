@@ -51,9 +51,13 @@ function App() {
 
           {/*                       Consultas             */}
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
-          <Route path="/consultaGruposPorMiembro" component={ConsultaGruposRolesXMiembro}/> 
-          <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
-          <Route path="/consultarComposicionGrupoResult" component={ConsultarGrupoResult}/>
+          <Route path="/consultaGruposPorMiembro" component={ConsultaGruposXMiembro}/> 
+          <Route path="/consultaComposicionGrupo" component={ConsultaComposicionGrupo}/> 
+
+          {/*                        Creacion de estructuras */}
+          <Route path="/crearGrupo" component={CrearGrupo}/> 
+          <Route path="/crearZona" component={CrearZona}/> 
+          <Route path="/crearRama" component={CrearRama}/> 
         </Switch>
       </div>
     </Router>
