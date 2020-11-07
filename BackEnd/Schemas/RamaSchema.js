@@ -5,10 +5,9 @@ const RamaSchema = new Schema(
     {
         idCoordinacion:String,
         nombreRama:String,
-        ramas:Array,
+        zona: String,
         monitores:Array,
-        jefesRama:Array,
-        monitores:Array,
+        jefesRama:Array
     }
 );
 

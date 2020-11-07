@@ -1,10 +1,5 @@
-import { Direccion } from './Direccion.js';
-/**
- * Abstract Class Persona.
- *
- * @class AbstractPersona
- */
-export class AbstractPersona {
+
+class AbstractPersona {
     id;
     parent;
     nombre;
@@ -72,5 +67,6 @@ export class AbstractPersona {
 
   }
 
+export default AbstractPersona;
 
   

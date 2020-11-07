@@ -39,7 +39,9 @@ app.post('/cambiarMiembroGrup', (req, res) => {
   
 app.post("/ramasDeZona",(req, res)=>{
   control.ramasDeZona(req,res);
-  })
+})
 
-
+app.post("/guardarRama",(req, res)=>{
+  control.crearRama(req.body,res);
+})
 
