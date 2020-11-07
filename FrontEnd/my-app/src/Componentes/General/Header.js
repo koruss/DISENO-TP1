@@ -87,6 +87,8 @@ class Header extends Component {
                                             <NavDropdown.Divider />
                                             <NavDropdown.Item href="/consultaMiembrosPorElemento">Miembros por elemento</NavDropdown.Item>
                                             <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/consultarComposicionGrupoResult">GrupoRolResult</NavDropdown.Item>
+                                            <NavDropdown.Divider />
                                         </NavDropdown>   
                                         <Nav.Link className="link" to="/" onClick={() => this.logOut()}>Cerrar sesión</Nav.Link>                                 
                                     </> 

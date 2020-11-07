@@ -5,7 +5,7 @@ import './Componentes/General/Header'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Componentes/General/Header';
 import AsesorVentanaGeneral from './Componentes/General/AsesorVentanaPrincipal';
-import Login from './Componentes/Login/Login';
+import Login from './Componentes/Login/login';
 import CrearGrupo from './Componentes/Paginas/CrearGrupo';
 import CrearRama from './Componentes/Paginas/CrearRama';
 import CrearZona from './Componentes/Paginas/CrearZona';
@@ -18,8 +18,10 @@ import ConsultaMiembroXElemento from './Componentes/Consultas/miembrosXelemento'
 import AfiliacionMiembros from './Componentes/AfiliacionMiembros/AfiliacionMiembros';
 import AfiliacionPersonal from './Componentes/AfiliacionPersonal/AfiliacionPersonal';
 import AsignacionMiembros from './Componentes/AsignacionMiembros/AsignacionMiembros';
-import ConsultaGruposXMiembro from './Componentes/Consultas/gruposXmiembro';
-import ConsultaComposicionGrupo from './Componentes/Consultas/composicionGrupo';
+import ConsultaGruposRolesXMiembro from './Componentes/GrupoRolesXMiembro/GrupoRolesXMiembro';
+import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/ConsultarCompGrupo';
+import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
+import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
 
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
       <div>
         <Switch>    
           <Route exact path="/" component={Login}/>;
-          <Route path="/ventanaAsesor" component={AsesorVentanaGeneral}/> 
+          <Route path="/ventanaAsesor" component={VentanaAsesor}/> 
           <Route path="/login" component={Login}/> 
           <Route path="/registroMiembro" component={RegistroMiembro}/> 
           <Route path="/trasladoMiembro" component={TrasladarMiembro}/> 
@@ -49,8 +51,9 @@ function App() {
 
           {/*                       Consultas             */}
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
-          <Route path="/consultaGruposPorMiembro" component={ConsultaGruposXMiembro}/> 
-          <Route path="/consultaComposicionGrupo" component={ConsultaComposicionGrupo}/> 
+          <Route path="/consultaGruposPorMiembro" component={ConsultaGruposRolesXMiembro}/> 
+          <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
+          <Route path="/consultarComposicionGrupoResult" component={ConsultarGrupoResult}/>
         </Switch>
       </div>
     </Router>
