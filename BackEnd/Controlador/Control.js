@@ -31,12 +31,18 @@ module.exports = class Control{
         let response = await this.gestorMiembro.agregarMiembro(data, res);
     }
 
+    async asignarMiembro(data, res){
+        // terminar
+    }
+
     //HACER FUNCION EN GESTOR DE ESTRUCTURA DE CREAR ZONA
     async prueba(info, res){
             await this.dao.guardar(info, res).then(
             console.log(res)
         )
     }
+
+
 
     async allZonas(req, res){
         await this.gestorEstructura.obtenerZonas(req, res);

@@ -1,16 +1,99 @@
 import React,{ Component } from 'react'
 import '../../Componentes/General/Utils.css'
 import Header from '../General/Header';
+import './AsignacionMiembros.css'
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+import axios from 'axios';
 
 class AsignacionMiembros extends Component{
+    state = {
+        selectedNombre:[],
+        selectedZona:[],
+        selectedRoma:[],
+        selectedGrupo:[],
+        nombre:[],
+        zonas:[],
+        ramas:[],
+        grupo:[]
+
+    }
+
+    handleChangeNombre = nombre => {
+        this.setState(
+            { nombre },     
+        );
+    };
+
+    handleChangeZonas = zonas => {
+        this.setState(
+            { zonas },     
+        );
+    };
+
+    handleChangeRamas = ramas => {
+        this.setState(
+            { ramas },     
+        );
+    };
+
+    handleChangeGrupo = grupo => {
+        this.setState(
+            { grupo },     
+        );
+    };
+
+
+    onChange = (e) => this.setState({[e.target.name]:e.target.value});
+
+    onClick = (e) => {
+        axios.post("/asignarMiembro",{
+            nombre:this.state.nombre,
+            pais:this.state.pais,
+            provincia:this.state.provincia,
+            canton:this.state.canton
+        }).then(res =>{
+            if(!res.data.success){
+                alert(res.data.err);
+            }
+            else{
+                alert("Miembro Guardado correctamente")
+            }
+        })
+    }
+
+
     render() {
         return (
-            <div >
-                <Header></Header>
-                <h1> ## Asignacion miembros ##</h1>
-                <h2>Debemos implementarlo o nos va a cargar la verga :/</h2>
-            </div>
+            <div>
+            <Header></Header>
+            <main className = "container">
+                    <div class="spacing-base"></div>
+                    <div id="center-section">
+                        <h2>Nombre:</h2>
+                            <Select components={makeAnimated} name="nombre" value={this.state.nombre} className="basic-multi-select"
+                            options={this.state.selectedNombre} classNamePrefix="select" onChange={this.handleChangeNombre}/> 
+                        <div class="form-group" class="spacing-base">
+                            <label for="zona">Seleccione la zona a la que pertenecerá la persona:</label>
+                            <Select components={makeAnimated} name="zona" value={this.state.zonas} className="basic-multi-select"
+                            options={this.state.selectedZona} classNamePrefix="select" onChange={this.handleChangeZonas}/>
+                        </div>
+                        <div class="form-group" class="spacing-base">
+                            <label for="rama">Seleccione la rama a la que pertenecerá la persona:</label>
+                            <Select components={makeAnimated} name="rama" value={this.state.ramas} className="basic-multi-select"
+                            options={this.state.selectedRoma} classNamePrefix="select" onChange={this.handleChangeRamas}/>
+                        </div>
+                        <div class="form-group" class="spacing-base">
+                            <label for="grupo">Seleccione el grupo al que pertenecerá la persona:</label>
+                            <Select components={makeAnimated} name="grupo" value={this.state.grupo} className="basic-multi-select"
+                            options={this.state.selectedGrupo} classNamePrefix="select" onChange={this.handleChangeGrupo}/>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-dark">Asignar</button>
+            </main>
+        </div>    
         )
-    };        
+    };
+            
 }
 export default AsignacionMiembros;
