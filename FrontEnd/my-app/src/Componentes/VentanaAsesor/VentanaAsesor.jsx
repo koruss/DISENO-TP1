@@ -5,6 +5,8 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Header from '../General/Header';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 // import Card from './CardGrupoResult'
 
 class VentanaAsesor extends Component {
@@ -75,23 +77,21 @@ class VentanaAsesor extends Component {
                     <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
                                 {/* <label for="rama">Asignar miembros a los grupos</label> */}
-                                <button type="button" class="btn btn-dark" onClick={this.onClick} >Asignar miembros a los grupos</button>
+                                <Link class="btn btn-dark" to='./asignacionMiembros'>Asignar miembros a los grupos</Link>                                
                             </div>
                             <div class="form-group" class="spacing-base">
                                 {/* <label for="grupo">Asignar jefes a los grupos</label> */}
-                                <button type="button" class="btn btn-dark" onClick={this.onClick} >Registrar nuevo miembro</button>
-
+                                <Link class="btn btn-dark" to='./registroMiembro'>Registrar nuevo miembro</Link>    
                             </div>
                         </div>
                         <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
                                 {/* <label for="rama">Definir estructura organizacional</label> */}
-                                <button type="button" class="btn btn-dark" onClick={this.onClick} >Definir estructura organizacional</button>
+                                <Link class="btn btn-dark" to='./estructura'>Definir estructura organizacional</Link>    
                             </div>
                             <div class="form-group" class="spacing-base">
                                 {/* <label for="grupo">Ver mapa organizacional</label> */}
-                                <button type="button" class="btn btn-dark" onClick={this.onClick} >Ver mapa organizacional</button>
-
+                                <Link class="btn btn-dark" to='./arbolEstuctural'>Ver mapa organizacional</Link>    
                             </div>
                         </div>
                     </div>

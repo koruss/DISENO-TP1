@@ -20,7 +20,7 @@ import AfiliacionPersonal from './Componentes/AfiliacionPersonal/AfiliacionPerso
 import AsignacionMiembros from './Componentes/AsignacionMiembros/AsignacionMiembros';
 import ConsultaGruposRolesXMiembro from './Componentes/GrupoRolesXMiembro/GrupoRolesXMiembro';
 import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/ConsultarCompGrupo';
-import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
+//import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
 import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
 
 
@@ -51,8 +51,8 @@ function App() {
 
           {/*                       Consultas             */}
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
-          <Route path="/consultaGruposPorMiembro" component={ConsultaGruposXMiembro}/> 
-          <Route path="/consultaComposicionGrupo" component={ConsultaComposicionGrupo}/> 
+          <Route path="/consultaGruposPorMiembro" component={ConsultaGruposRolesXMiembro}/> 
+          <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
 
           {/*                        Creacion de estructuras */}
           <Route path="/crearGrupo" component={CrearGrupo}/> 
