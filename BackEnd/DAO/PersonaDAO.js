@@ -29,7 +29,6 @@ module.exports = class PersonDao {
         this.personaSchema.telefono=data.celular;
         this.personaSchema.correo=data.correo;
         this.personaSchema.direccion=direccion;
-        await this.dao.camposUnicos(this.personaSchema.identificacion, res);
         await this.dao.postData(this.personaSchema, res);
     }
 

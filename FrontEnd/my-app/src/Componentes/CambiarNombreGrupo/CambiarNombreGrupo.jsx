@@ -9,8 +9,10 @@ import axios from 'axios';
 class CambiarNombreGrupo extends Component{
     state = {
         zonas:[],
+        ramas:[],
         nombreAnterior : 'NombreAnteriorEjemplo',
-        zona: []
+        zona:[],
+        rama:[]
     }
 
     onChange = (e) => this.setState({[e.target.name]:
@@ -26,9 +28,16 @@ class CambiarNombreGrupo extends Component{
         );
     };
 
+    handleChangeRama = rama => {
+        this.setState(
+            { rama },     
+        );
+    };
+
     componentWillMount() {
         var self = this;
         let arreglo =[];
+        let arrRama = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
             console.log(respuesta)
@@ -42,7 +51,23 @@ class CambiarNombreGrupo extends Component{
                 zonas:arreglo
             })
         })
+
+        axios.post("/allRama", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(rama=>{
+                arrRama.push({
+                    value:rama.nombreRama,
+                    label:rama.nombreRama
+                })
+            })   
+            this.setState({
+                ramas:arrRama
+            })
+        })
     }
+
+    
 
 render() {
     return (
@@ -58,8 +83,8 @@ render() {
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="rama">Seleccione la rama a la que pertenece el grupo:</label>
-                        <Select components={makeAnimated} name="rama" onChange={this.onChange} 
-                        options={this.state.options} classNamePrefix="select"/>
+                        <Select components={makeAnimated} name="rama" onChange={this.handleChangeRama} 
+                        value={this.state.rama} options={this.state.ramas} classNamePrefix="select"/>
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="grupo">Seleccione el grupo al que desea cambiarle el nombre:</label>

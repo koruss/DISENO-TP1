@@ -44,8 +44,14 @@ module.exports = class Control{
         await this.dao.allZonas(req,res)
     }
 
-    async ramasDeZona(req,res){
-        await this.gestorEstructura(req,res)
+    async allRama(req,res){
+        // await this.gestorEstructura(req,res)
+        await this.dao.allRamas(req, res)
+    }
+
+    async allPersona(req,res){
+        // await this.gestorEstructura(req,res)
+        await this.dao.allPersona(req, res)
     }
     
     registrarMiembro(){
