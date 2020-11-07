@@ -46,7 +46,7 @@ export default class CrearGrupo extends Component {
         axios.post("/allZonas", {}).then(res => {
             const respuesta=res.data;
             console.log(respuesta)
-            
+            const arreglo=[];
             respuesta.forEach(zona=>{
                 arreglo.push({
                     value:zona.nombreZona,

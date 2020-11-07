@@ -1,7 +1,9 @@
+import React,{Component} from 'react';
 import Header from '../General/Header';
 import makeAnimated from 'react-select/animated';
 import Select from 'react-select';
 import axios from 'axios';
+import "./RegistroMiembro.css";
 
 class RegistroMiembro extends Component{
     state = {
@@ -131,3 +133,5 @@ class RegistroMiembro extends Component{
         )
     }
 };
+
+export default RegistroMiembro;

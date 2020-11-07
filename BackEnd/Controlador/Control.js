@@ -5,13 +5,11 @@ const GestorEstructura = require('./GestorEstructura');
 module.exports = class Control{
     dao = new DAO();
     gestorMiembro = new GestorMiembro();
-    
-    constructor(){}
+    gestorEstructura=new GestorEstructura();
     
 
     constructor(){
-    gestorMiembro = new GestorMiembro();
-    gestorEstructura=new GestorEstructura();
+    
     }
 
     setCoordinacion(coordinacion){
