@@ -14,14 +14,12 @@ export default class CardGrupoRoles extends Component {
             <div className="card1-container" >
                 <div id="center-section">
                     <Card style={{ width: '25rem' }}>
-                        {/* <div id="center-section"> */}
                         <Card.Body>
                             <Card.Title>{id}</Card.Title>
                             <Card.Text>
                                 | Zona: {zona} | Rama: {rama} | Grupo: {grupo} | Rol: {rol} |
                             </Card.Text>
                         </Card.Body>
-                        {/* </div> */}
                     </Card>
                 </div>
             </div>

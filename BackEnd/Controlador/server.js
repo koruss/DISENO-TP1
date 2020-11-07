@@ -29,6 +29,7 @@ app.post('/guardarMiembro', (req, res) => {
   control.guardarMiembro(req.body,res);
 })
 
+//Funcion para traer todas las zonas
 app.post("/allZonas",(req,res)=>{
   control.allZonas(req, res);
 })
