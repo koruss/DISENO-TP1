@@ -1,15 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const GrupoSchema = new Schema(
+const RamaSchema = new Schema(
     {
         idCoordinacion:String,
         nombreRama:String,
-        ramas:Array,
+        zona: String,
         monitores:Array,
-        jefesGrupo:Array,
-        monitores:Array,
+        jefesRama:Array
     }
 );
 
-module.exports= mongoose.model("Grupo",GrupoSchema)
+module.exports= mongoose.model("Rama",RamaSchema)

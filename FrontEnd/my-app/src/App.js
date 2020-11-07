@@ -18,8 +18,10 @@ import ConsultaMiembroXElemento from './Componentes/Consultas/miembrosXelemento'
 import AfiliacionMiembros from './Componentes/AfiliacionMiembros/AfiliacionMiembros';
 import AfiliacionPersonal from './Componentes/AfiliacionPersonal/AfiliacionPersonal';
 import AsignacionMiembros from './Componentes/AsignacionMiembros/AsignacionMiembros';
-import ConsultaGruposXMiembro from './Componentes/Consultas/gruposXmiembro';
-import ConsultaComposicionGrupo from './Componentes/Consultas/composicionGrupo';
+import ConsultaGruposRolesXMiembro from './Componentes/GrupoRolesXMiembro/GrupoRolesXMiembro';
+import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/ConsultarCompGrupo';
+import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
+import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
 
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
       <div>
         <Switch>    
           <Route exact path="/" component={Login}/>;
-          <Route path="/ventanaAsesor" component={AsesorVentanaGeneral}/> 
+          <Route path="/ventanaAsesor" component={VentanaAsesor}/> 
           <Route path="/login" component={Login}/> 
           <Route path="/registroMiembro" component={RegistroMiembro}/> 
           <Route path="/trasladoMiembro" component={TrasladarMiembro}/> 
@@ -51,6 +53,11 @@ function App() {
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
           <Route path="/consultaGruposPorMiembro" component={ConsultaGruposXMiembro}/> 
           <Route path="/consultaComposicionGrupo" component={ConsultaComposicionGrupo}/> 
+
+          {/*                        Creacion de estructuras */}
+          <Route path="/crearGrupo" component={CrearGrupo}/> 
+          <Route path="/crearZona" component={CrearZona}/> 
+          <Route path="/crearRama" component={CrearRama}/> 
         </Switch>
       </div>
     </Router>

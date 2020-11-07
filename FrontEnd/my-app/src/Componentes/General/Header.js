@@ -87,7 +87,17 @@ class Header extends Component {
                                             <NavDropdown.Divider />
                                             <NavDropdown.Item href="/consultaMiembrosPorElemento">Miembros por elemento</NavDropdown.Item>
                                             <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/consultarComposicionGrupoResult">GrupoRolResult</NavDropdown.Item>
+                                            <NavDropdown.Divider />
                                         </NavDropdown>   
+                                        <NavDropdown title="Crear estructuras" id="basic-nav-dropdown">
+                                            <NavDropdown.Item href="/crearZona">Crear zona</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/crearRama">Crear rama</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/crearGrupo">Crear grupo</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                        </NavDropdown>
                                         <Nav.Link className="link" to="/" onClick={() => this.logOut()}>Cerrar sesión</Nav.Link>                                 
                                     </> 
                                 }

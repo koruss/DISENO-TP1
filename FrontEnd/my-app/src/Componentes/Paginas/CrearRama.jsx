@@ -10,17 +10,18 @@ export default class CrearRama extends Component {
 
     state = {
         selectedZona: [],
-        rawZonas:[],
-        zonas: [{ value: "norte", label: "norte" }, { value: "sur", label: "Sur" }, { value: "Este", label: "Este" }, { value: "oeste", label: "oeste" }],
+        zonas: [],
+        nombreRama: ""
     }
+
     onChange = (e) => this.setState({
         [e.target.name]: e.target.value
     });
 
 
-    handleChange = selectedOption => {
+    handleChange = selectedZona => {
         this.setState(
-            { selectedOption },     
+            { selectedZona },     
         );
     };
 
@@ -42,12 +43,26 @@ export default class CrearRama extends Component {
         })
     }
 
-
+    //Funcion para manejar los eventos de un boton
+    onClick = (e) => {
+        axios.post("/guardarRama",{
+            nombreRama:this.state.nombreRama,
+            selectedZona:this.state.selectedZona
+        }).then(res =>{
+            if(!res.data.success){
+                alert(res.data.err);
+            }
+            else{
+                alert("Rama guardada correctamente")
+            }
+        })
+    }
 
     render() {
         return (
+            <div>
+            <Header></Header>
             <div id="center-section">
-                <Header></Header>
                 <div id="main-section">
                     <div class="border">
                         <div class="box-container">
@@ -59,11 +74,12 @@ export default class CrearRama extends Component {
                                 </div>
                                 <div className="spacing-base">
                                     <label>Zona a la que pertenece</label>
-                                    <Select components={makeAnimated} name="ramas" value={this.state.selectedRama} onChange={this.handleChange} options={this.state.zonas} className="basic-multi-select" classNamePrefix="select" />
+                                    <Select components={makeAnimated} name="selectedZona" value={this.state.selectedZona} 
+                                    onChange={this.handleChange} options={this.state.zonas} className="basic-multi-select" classNamePrefix="select" />
                                 </div>
                             </div>
                             <div>
-                                <Button variant="dark">Dark</Button>{' '}
+                                <button type="button" class="btn btn-dark" onClick={this.onClick} >Guardar rama</button>
                             </div>
                         </div>
                     </div>
@@ -73,6 +89,7 @@ export default class CrearRama extends Component {
                     </div>
                 </div>
             </div>
+        </div>
         )
     };
 }
