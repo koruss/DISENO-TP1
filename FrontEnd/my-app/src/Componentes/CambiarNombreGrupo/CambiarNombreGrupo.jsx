@@ -9,8 +9,12 @@ import axios from 'axios';
 class CambiarNombreGrupo extends Component{
     state = {
         zonas:[],
+        ramas:[],
+        grupos:[],
         nombreAnterior : 'NombreAnteriorEjemplo',
-        zona: []
+        zona:[],
+        rama:[],
+        grupo:[]
     }
 
     onChange = (e) => this.setState({[e.target.name]:
@@ -26,9 +30,23 @@ class CambiarNombreGrupo extends Component{
         );
     };
 
+    handleChangeRama = rama => {
+        this.setState(
+            { rama },     
+        );
+    };
+
+    handleChangeGrupo = grupo => {
+        this.setState(
+            { grupo },     
+        );
+    };
+
     componentWillMount() {
         var self = this;
         let arreglo =[];
+        let arrRama = [];
+        let arrGrup = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
             console.log(respuesta)
@@ -42,7 +60,37 @@ class CambiarNombreGrupo extends Component{
                 zonas:arreglo
             })
         })
+
+        axios.post("/allRama", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(rama=>{
+                arrRama.push({
+                    value:rama.nombreRama,
+                    label:rama.nombreRama
+                })
+            })   
+            this.setState({
+                ramas:arrRama
+            })
+        })
+
+        axios.post("/allGrupo", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(grupo=>{
+                arrGrup.push({
+                    value:grupo.nombreGrupo,
+                    label:grupo.nombreGrupo
+                })
+            })   
+            this.setState({
+                ramas:arrGrup
+            })
+        })
     }
+
+    
 
 render() {
     return (
@@ -58,13 +106,13 @@ render() {
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="rama">Seleccione la rama a la que pertenece el grupo:</label>
-                        <Select components={makeAnimated} name="rama" onChange={this.onChange} 
-                        options={this.state.options} classNamePrefix="select"/>
+                        <Select components={makeAnimated} name="rama" onChange={this.handleChangeRama} 
+                        value={this.state.rama} options={this.state.ramas} classNamePrefix="select"/>
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="grupo">Seleccione el grupo al que desea cambiarle el nombre:</label>
-                        <Select components={makeAnimated} name="grupo" onChange={this.onChange} 
-                        options={this.state.options} classNamePrefix="select"/>
+                        <Select components={makeAnimated} name="grupo" onChange={this.handleChangeGrupo} 
+                        value={this.state.grupo} options={this.state.grupos} classNamePrefix="select"/>
                     </div>
                 </div>
                 <div className="label-wrapper">

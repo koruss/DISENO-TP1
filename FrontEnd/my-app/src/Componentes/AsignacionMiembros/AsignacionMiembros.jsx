@@ -16,7 +16,6 @@ class AsignacionMiembros extends Component{
         zonas:[],
         ramas:[],
         grupo:[]
-
     }
 
     handleChangeNombre = nombre => {
@@ -43,15 +42,79 @@ class AsignacionMiembros extends Component{
         );
     };
 
+    componentWillMount() {
+        var self = this;
+        let arreglo = [];
+        let arrRama = [];
+        let arrGrup = [];
+        let arrPers = [];
+        axios.post("/allZonas", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(zonas=>{
+                arreglo.push({
+                    value:zonas.nombreZona,
+                    label:zonas.nombreZona
+                })
+            })   
+            this.setState({
+                selectedZona:arreglo
+            })
+        })
+
+        axios.post("/allRama", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(ramas=>{
+                arrRama.push({
+                    value:ramas.nombreRama,
+                    label:ramas.nombreRama
+                })
+            })   
+            this.setState({
+                selectedRoma:arrRama
+            })
+        })
+
+        axios.post("/allPersona", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(nombre=>{
+                arrPers.push({
+                    value:nombre.nombre,
+                    label:nombre.nombre
+                })
+            })   
+            this.setState({
+                selectedNombre:arrPers
+            })
+        })
+
+        axios.post("/allGrupo", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(grupo=>{
+                arrGrup.push({
+                    value:grupo.nombreGrupo,
+                    label:grupo.nombreGrupo
+                })
+            })   
+            this.setState({
+                selectedGrupo:arrGrup
+            })
+        })
+    }
+
+
 
     onChange = (e) => this.setState({[e.target.name]:e.target.value});
 
     onClick = (e) => {
         axios.post("/asignarMiembro",{
             nombre:this.state.nombre,
-            pais:this.state.pais,
-            provincia:this.state.provincia,
-            canton:this.state.canton
+            zona:this.state.zona,
+            rama:this.state.rama,
+            grupo:this.state.grupo
         }).then(res =>{
             if(!res.data.success){
                 alert(res.data.err);
@@ -70,7 +133,9 @@ class AsignacionMiembros extends Component{
             <main className = "container">
                     <div class="spacing-base"></div>
                     <div id="center-section">
-                        <h2>Nombre:</h2>
+                    <h2>Asignar miembros a grupos</h2>
+                    <div class="spacing-base"></div>
+                        <h3>Nombre:</h3>
                             <Select components={makeAnimated} name="nombre" value={this.state.nombre} className="basic-multi-select"
                             options={this.state.selectedNombre} classNamePrefix="select" onChange={this.handleChangeNombre}/> 
                         <div class="form-group" class="spacing-base">

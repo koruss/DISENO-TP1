@@ -9,14 +9,56 @@ import Header from '../General/Header';
 
 class TrasladarMiembro extends Component{
     state = {
-        gruposOpciones:[
-            { value: "grupo1", label: "grupo1" }
-        ],
-        miembrosOpciones:[
-            { value: "miembro1", label: "miembro1" }
-        ],
-        miembro: "",
-        grupo: ""
+        gruposOpciones:[],
+        miembrosOpciones:[],
+        miembro: [],
+        grupo: []
+    }
+
+    handleChangeNombre = nombre => {
+        this.setState(
+            { nombre },     
+        );
+    };
+
+    handleChangeGrupo = grupo => {
+        this.setState(
+            { grupo },     
+        );
+    };
+
+    componentWillMount() {
+        var self = this;
+        let arrGrup = [];
+        let arrPers = [];
+
+        axios.post("/allPersona", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(nombre=>{
+                arrPers.push({
+                    value:nombre.nombre,
+                    label:nombre.nombre
+                })
+            })   
+            this.setState({
+                miembrosOpciones:arrPers
+            })
+        })
+
+        axios.post("/allGrupo", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(grupo=>{
+                arrGrup.push({
+                    value:grupo.nombreGrupo,
+                    label:grupo.nombreGrupo
+                })
+            })   
+            this.setState({
+                gruposOpciones:arrGrup
+            })
+        })
     }
 
 
@@ -46,11 +88,13 @@ class TrasladarMiembro extends Component{
                         <p></p>
                         <div class="form-group" class="spacing-base">
                             <label for="miembro">Seleccione el miembro que desea trasladar de grupo:</label>
-                            <Select components={makeAnimated} name="miembro" onChange={this.handleChange} options={this.state.gruposOpciones} classNamePrefix="select"/>
+                            <Select components={makeAnimated} name="nombre" value={this.state.miembro} className="basic-multi-select"
+                            options={this.state.miembrosOpciones} classNamePrefix="select" onChange={this.handleChangeNombre}/> 
                         </div>
                         <div class="form-group" class="spacing-base">
                             <label for="grupo">Seleccione el grupo al que desea trasladarlo:</label>
-                            <Select components={makeAnimated} name="grupo" onChange={this.handleChange} options={this.state.miembrosOpciones} classNamePrefix="select"/>
+                            <Select components={makeAnimated} name="grupo" value={this.state.grupo} className="basic-multi-select"
+                            options={this.state.gruposOpciones} classNamePrefix="select" onChange={this.handleChangeGrupo}/> 
                         </div>
                         <button type="button" class="btn btn-dark" onClick={this.onClick}>Cambiar</button>
                     </div>
