@@ -7,7 +7,12 @@ const RamaSchema = new Schema(
         nombreRama:String,
         zona: String,
         monitores:Array,
-        jefesRama:Array
+        jefesRama:Array,
+        jefesGrupo: {
+            id: String,
+            nombre: String,
+            apellido: String
+        }   
     }
 );
 

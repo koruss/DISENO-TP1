@@ -7,8 +7,7 @@ module.exports = class Control{
     gestorMiembro = new GestorMiembro();
     gestorEstructura = new GestorEstructura();
     
-
-
+    
     constructor(){
     }
 
@@ -41,8 +40,6 @@ module.exports = class Control{
             console.log(res)
         )
     }
-
-
 
     async allZonas(req, res){
         await this.gestorEstructura.obtenerZonas(req, res);
