@@ -3,8 +3,6 @@ var LeafPersona = require('../Modelo/LeafPersona');
 var CompositePersona = require('../Modelo/CompositePersona');
 var ZonaDAO = require('../DAO/ZonaDAO');
 var RamaDAO = require('../DAO/RamaDAO');
-// var ZonaDAO = require('../DAO/ZonaDao');
-// var RamaDAO = require('../DAO/RamaDao');
 var GrupoDAO = require('../DAO/GrupoDAO')
 
 

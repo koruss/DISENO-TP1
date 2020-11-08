@@ -18,7 +18,7 @@ module.exports = class GestorMiembro{
     }
 
     async obtenerPersonas(req,res){
-        await this.PersonaDAO.getPersonas(req,res);
+        await this.personaDAO.getPersonas(req,res);
     }
 
     getMiembros(){

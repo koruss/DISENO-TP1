@@ -60,7 +60,7 @@ module.exports = class Control{
 
     async allPersona(req,res){
         // await this.gestorEstructura(req,res)
-        await this.gestorMiembro.obtenerPersona(req, res)
+        await this.gestorMiembro.obtenerPersonas(req, res)
     }
     
     registrarMiembro(){
