@@ -32,7 +32,7 @@ module.exports = class Control{
     }
 
     async asignarMiembro(data, res){
-        // terminar
+        let response = await this.gestorMiembro.agregarMiembro(data, res);
     }
 
     //HACER FUNCION EN GESTOR DE ESTRUCTURA DE CREAR ZONA

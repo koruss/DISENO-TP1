@@ -18,29 +18,6 @@ class AsignacionMiembros extends Component{
         grupo:[]
     }
 
-    handleChangeNombre = nombre => {
-        this.setState(
-            { nombre },     
-        );
-    };
-
-    handleChangeZonas = zonas => {
-        this.setState(
-            { zonas },     
-        );
-    };
-
-    handleChangeRamas = ramas => {
-        this.setState(
-            { ramas },     
-        );
-    };
-
-    handleChangeGrupo = grupo => {
-        this.setState(
-            { grupo },     
-        );
-    };
 
     componentWillMount() {
         var self = this;
@@ -125,6 +102,29 @@ class AsignacionMiembros extends Component{
         })
     }
 
+    handleChangeNombre = nombre => {
+        this.setState(
+            { nombre },     
+        );
+    };
+
+    handleChangeZonas = zonas => {
+        this.setState(
+            { zonas },     
+        );
+    };
+
+    handleChangeRamas = ramas => {
+        this.setState(
+            { ramas },     
+        );
+    };
+
+    handleChangeGrupo = grupo => {
+        this.setState(
+            { grupo },     
+        );
+    };
 
     render() {
         return (

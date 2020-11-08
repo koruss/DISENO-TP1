@@ -31,6 +31,7 @@ app.post('/guardarMiembro', (req, res) => {
 
 app.post('/asignarMiembro', (req, res) => {
   control.asignarMiembro(req.body,res);
+  // console.log("Aqui: "+req.body)
 })
 
 
