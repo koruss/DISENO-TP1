@@ -66,48 +66,7 @@ module.exports= class DAO {
         });
     }
 
-    async allZonas(req,res){
-        this.openConnection();
-        Zona.find({},(err,zonas)=>{
-            if(err) return console.log(err);
-            //console.log(zonas)
-            res.send(zonas);
-            res.end();
-        })
-    }
-
-    async allRamas(req,res){
-        this.openConnection();
-        Rama.find({},(err,ramas)=>{
-            if(err) return console.log(err);
-            // console.log(ramas)
-            res.send(ramas);
-            res.end();
-        })
-    }
-
-    async allGrupos(req,res){
-        this.openConnection();
-        Grupo.find({},(err,grupo)=>{
-            if(err) return console.log(err);
-            // console.log(ramas)
-            res.send(grupo);
-            res.end();
-        })
-    }
-
-    async allPersona(req,res){
-        this.openConnection();
-        Persona.find({},(err,personas)=>{
-            if(err) return console.log(err);
-            // console.log(ramas)
-            res.send(personas);
-            res.end();
-        })
-    }
-
-
-    
+  
 
 }
 
