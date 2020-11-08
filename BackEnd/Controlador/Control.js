@@ -59,6 +59,10 @@ module.exports = class Control{
         // await this.gestorEstructura(req,res)
         await this.gestorMiembro.obtenerPersonas(req, res)
     }
+
+    async guardarGrupo(req,res){
+        await this.gestorEstructura.crearGrupo(req,res)
+    }
     
     registrarMiembro(){
 
@@ -85,9 +89,7 @@ module.exports = class Control{
 
     }
 
-    crarGrupo(){
 
-    }
 
     consultarComposicionGrupo(){
 
