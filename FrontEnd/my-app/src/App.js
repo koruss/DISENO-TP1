@@ -27,7 +27,7 @@ import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
 function App() {
     return (
     <Router>
-      <div>
+      <div >
         <Switch>    
           <Route exact path="/" component={Login}/>;
           <Route path="/ventanaAsesor" component={VentanaAsesor}/> 
@@ -51,8 +51,8 @@ function App() {
 
           {/*                       Consultas             */}
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
-          <Route path="/consultaGruposPorMiembro" component={ConsultaGruposXMiembro}/> 
-          <Route path="/consultaComposicionGrupo" component={ConsultaComposicionGrupo}/> 
+          <Route path="/consultaGruposPorMiembro" component={ConsultaGruposRolesXMiembro}/> 
+          <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
 
           {/*                        Creacion de estructuras */}
           <Route path="/crearGrupo" component={CrearGrupo}/> 

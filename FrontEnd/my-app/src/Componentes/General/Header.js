@@ -89,6 +89,8 @@ class Header extends Component {
                                             <NavDropdown.Divider />
                                             <NavDropdown.Item href="/consultarComposicionGrupoResult">GrupoRolResult</NavDropdown.Item>
                                             <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/arbolEstructural">Arbol</NavDropdown.Item>
+                                            <NavDropdown.Divider />
                                         </NavDropdown>   
                                         <NavDropdown title="Crear estructuras" id="basic-nav-dropdown">
                                             <NavDropdown.Item href="/crearZona">Crear zona</NavDropdown.Item>
