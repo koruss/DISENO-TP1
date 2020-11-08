@@ -11,18 +11,56 @@ import { Link } from 'react-router-dom';
 
 class VentanaAsesor extends Component {
     state = {
-        selectedZona: [],
-        zonas: [{ value: "norte", label: "norte" }, { value: "sur", label: "Sur" }, { value: "Este", label: "Este" }, { value: "oeste", label: "oeste" }],
-        nombreRama: "",
+        zonas:[],
+        ramas:[],
+        grupos:[]
 
     }
 
-    componentDidMount() {
+    componentWillMount() {
         var self = this;
+        let arreglo =[];
+        let arrRama = [];
+        let arrGrup = [];
         axios.post("/allZonas", {}).then(res => {
-            console.log(res)
-            self.setState({
-                zonas: res.data
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(zona=>{
+                arreglo.push({
+                    value:zona.nombreZona,
+                    label:zona.nombreZona
+                })
+            })   
+            this.setState({
+                zonas:arreglo
+            })
+        })
+
+        axios.post("/allRama", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(rama=>{
+                arrRama.push({
+                    value:rama.nombreRama,
+                    label:rama.nombreRama
+                })
+            })   
+            this.setState({
+                ramas:arrRama
+            })
+        })
+
+        axios.post("/allGrupo", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(grupo=>{
+                arrGrup.push({
+                    value:grupo.nombreGrupo,
+                    label:grupo.nombreGrupo
+                })
+            })   
+            this.setState({
+                grupos:arrGrup
             })
         })
     }
@@ -46,15 +84,15 @@ class VentanaAsesor extends Component {
                         <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
                                 <label for="rama">Cantidad de zonas:</label>
-                                <label for="rama">{this.state.selectedZona.length}</label>
+                                <label for="rama">{this.state.zonas.length}</label>
                             </div>
                             <div class="form-group" class="spacing-base">
                                 <label for="grupo">Cantidad de ramas:</label>
-                                <label for="rama">X ramas</label>
+                                <label for="rama">{this.state.ramas.length}</label>
                             </div>
                             <div class="form-group" class="spacing-base">
                                 <label for="grupo">Cantidad de grupos:</label>
-                                <label for="rama">X grupos</label>
+                                <label for="rama">{this.state.grupos.length}</label>
                             </div>
                         </div>
                         {/* <div className="label-wrapper" >

@@ -17,10 +17,6 @@ module.exports = class PersonDao {
             canton: data.canton.value,
             distrito: data.distrito.value
         }
-
-        
-
-        //console.log("pais ---------->",data.pais.value);
         this.personaSchema.nombre=data.nombre;
         this.personaSchema.identificacion=data.identificacion;
         this.personaSchema.apellido1=data.apellido1;
@@ -29,12 +25,17 @@ module.exports = class PersonDao {
         this.personaSchema.telefono=data.celular;
         this.personaSchema.correo=data.correo;
         this.personaSchema.direccion=direccion;
-        await this.dao.camposUnicos(this.personaSchema.identificacion, res);
         await this.dao.postData(this.personaSchema, res);
     }
 
     updatePersona(data){
 
+    }
+
+    async getPersonas(req, res){
+        this.dao.getData(PersonaSchema, res);
+        const respuesta = res.data;
+        console.log(respuesta);
     }
 
  }

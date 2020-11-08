@@ -66,8 +66,19 @@ module.exports = class Control{
         await this.gestorEstructura.obtenerZonas(req, res);
     }
 
-    async ramasDeZona(req,res){
-        await this.gestorEstructura(req,res)
+    async allRama(req,res){
+        // await this.gestorEstructura(req,res)
+        await this.gestorEstructura.obtenerRamas(req, res)
+    }
+
+    async allGrupos(req,res){
+        // await this.gestorEstructura(req,res)
+        await this.gestorEstructura.obtenerGrupos(req, res)
+    }
+
+    async allPersona(req,res){
+        // await this.gestorEstructura(req,res)
+        await this.gestorMiembro.obtenerPersonas(req, res)
     }
     
     registrarMiembro(){

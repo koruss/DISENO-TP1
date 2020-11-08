@@ -50,17 +50,26 @@ app.post('/cambiarMiembroGrup', (req, res) => {
   control.cambiarMiembroGrupo(res);
   })
   
-app.post("/ramasDeZona",(req, res)=>{
-  control.ramasDeZona(req,res);
+app.post("/allRama",(req, res)=>{
+  control.allRama(req,res);
+})
+
+app.post("/allPersona",(req, res)=>{
+  control.allPersona(req,res);
 })
 
 app.post("/guardarRama",(req, res)=>{
   control.crearRama(req.body,res);
 })
 
+app.post("/allGrupos",(req, res)=>{
+  control.allGrupos(req,res);
+})
+
 app.get("/getSesion",(req, res)=>{
   res.send(req.session);
   res.end();
+})
 })
 
 app.post("/logIn",(req, res)=>{
