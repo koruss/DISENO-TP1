@@ -51,6 +51,10 @@ app.post("/allPersona",(req, res)=>{
   control.allPersona(req,res);
 })
 
+app.post("/allGrupos",(req, res)=>{
+  control.allGrupos(req,res);
+})
+
 
 
 

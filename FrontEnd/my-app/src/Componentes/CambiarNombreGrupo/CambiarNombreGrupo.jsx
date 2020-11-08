@@ -10,9 +10,11 @@ class CambiarNombreGrupo extends Component{
     state = {
         zonas:[],
         ramas:[],
+        grupos:[],
         nombreAnterior : 'NombreAnteriorEjemplo',
         zona:[],
-        rama:[]
+        rama:[],
+        grupo:[]
     }
 
     onChange = (e) => this.setState({[e.target.name]:
@@ -34,10 +36,17 @@ class CambiarNombreGrupo extends Component{
         );
     };
 
+    handleChangeGrupo = grupo => {
+        this.setState(
+            { grupo },     
+        );
+    };
+
     componentWillMount() {
         var self = this;
         let arreglo =[];
         let arrRama = [];
+        let arrGrup = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
             console.log(respuesta)
@@ -65,6 +74,20 @@ class CambiarNombreGrupo extends Component{
                 ramas:arrRama
             })
         })
+
+        axios.post("/allGrupo", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(grupo=>{
+                arrGrup.push({
+                    value:grupo.nombreGrupo,
+                    label:grupo.nombreGrupo
+                })
+            })   
+            this.setState({
+                ramas:arrGrup
+            })
+        })
     }
 
     
@@ -88,8 +111,8 @@ render() {
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="grupo">Seleccione el grupo al que desea cambiarle el nombre:</label>
-                        <Select components={makeAnimated} name="grupo" onChange={this.onChange} 
-                        options={this.state.options} classNamePrefix="select"/>
+                        <Select components={makeAnimated} name="grupo" onChange={this.handleChangeGrupo} 
+                        value={this.state.grupo} options={this.state.grupos} classNamePrefix="select"/>
                     </div>
                 </div>
                 <div className="label-wrapper">

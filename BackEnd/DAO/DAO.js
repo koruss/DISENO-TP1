@@ -1,5 +1,6 @@
 const Zona = require("./ZonaSchema");
 const Rama = require("./RamaSchema");
+const Grupo= require("./GrupoSchema");
 const Persona = require("../Schemas/PersonSchema");
 const DataSource= require('./DataSource');
 
@@ -70,6 +71,16 @@ module.exports= class DAO {
             if(err) return console.log(err);
             // console.log(ramas)
             res.send(ramas);
+            res.end();
+        })
+    }
+
+    async allGrupos(req,res){
+        this.openConnection();
+        Grupo.find({},(err,grupo)=>{
+            if(err) return console.log(err);
+            // console.log(ramas)
+            res.send(grupo);
             res.end();
         })
     }
