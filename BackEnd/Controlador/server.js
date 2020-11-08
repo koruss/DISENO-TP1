@@ -64,3 +64,7 @@ app.post("/cambiarNombreGrupo",(req, res)=>{
   control.cambiarNombreGrupo(req,res);
 })
 
+
+app.post("/guardarGrupo",(req,res)=>{
+  control.guardarGrupo(req,res);
+})

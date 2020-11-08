@@ -25,7 +25,8 @@ module.exports = class GestorEstructura{
         await this.ramaDAO.postRama(data,res);
     }
 
-    crearGrupo(){
+    async crearGrupo(data,res){
+        await this.grupoDAO.postGrupo(data,res);
         
     }
     

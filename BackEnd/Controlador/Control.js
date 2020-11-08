@@ -7,8 +7,7 @@ module.exports = class Control{
     gestorMiembro = new GestorMiembro();
     gestorEstructura = new GestorEstructura();
     
-
-
+    
     constructor(){
     }
 
@@ -42,8 +41,6 @@ module.exports = class Control{
         )
     }
 
-
-
     async allZonas(req, res){
         await this.gestorEstructura.obtenerZonas(req, res);
     }
@@ -66,6 +63,10 @@ module.exports = class Control{
     async cambiarNombreGrupo(req,res){
         // await this.gestorEstructura(req,res)
         await this.gestorEstructura.cambiarNombreGrupo(req, res)
+    }
+
+    async guardarGrupo(req,res){
+        await this.gestorEstructura.crearGrupo(req,res)
     }
     
     registrarMiembro(){
@@ -93,9 +94,7 @@ module.exports = class Control{
 
     }
 
-    crarGrupo(){
 
-    }
 
     consultarComposicionGrupo(){
 

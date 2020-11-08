@@ -7,7 +7,7 @@ const GrupoSchema = new Schema(
         nombreRama:String,
         monitores:Array,
         jefesGrupo:Array,
-        personas: Array
+        nombreGrupo:String
     }
 );
 
