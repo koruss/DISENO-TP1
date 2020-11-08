@@ -4,34 +4,89 @@ import makeAnimated from 'react-select/animated';
 import './miembrosXelemento.css'
 import Card from './Card1'
 import Header from '../General/Header';
+import axios from 'axios';
 
 
 export default class miembroXelemento extends Component {
     state = {
-        zonas: [{ value: "norte", label: "norte" }, { value: "sur", label: "Sur" }, { label: "Este" }, { label: "oeste" }],
-        ramas: [],
-        grupos: [],
-        selectedRama: [],
-        selectedGrupo: [],
-        selectedZona: [],
-        resultMembers: [{ _id: 1, nombre: "Kenth" }, { _id: 2, nombre: "Kenneth" }, { _id: 3, nombre: "Kh" }, { _id: 4, nombre: "Knth" }, { _id: 5, nombre: "eth" }],
+        resultMembers:[],
+        selectedZona:[],
+        selectedRoma:[],
+        selectedGrupo:[],
+        zonas:[],
+        ramas:[],
+        grupo:[]
+
     }
-
-
-    handleChange = selectedZona => {
+    onChange = (e) => this.setState({
+        [e.target.name]: e.target.value
+    });
+    handleChangeZona = zona => {
         this.setState(
-            { 
-                selectedZona 
-            },
-
-            () => console.log(`Option selected:`, this.state.selectedZona)
+            { zona },     
         );
     };
 
-    onChange = (e) => this.setState({
-        [e.target.name]:  //Connects state attribute with the input in the html
-            e.target.value
-    });
+    handleChangeRama = rama => {
+        this.setState(
+            { rama },     
+        );
+    };
+
+    handleChangeGrupo = grupo => {
+        this.setState(
+            { grupo },     
+        );
+    };
+
+    componentWillMount() {
+        var self = this;
+        let arreglo =[];
+        let arrRama = [];
+        let arrGrup = [];
+        axios.post("/allZonas", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(zona=>{
+                arreglo.push({
+                    value:zona.nombreZona,
+                    label:zona.nombreZona
+                })
+            })   
+            this.setState({
+                selectedZona:arreglo
+            })
+        })
+
+        axios.post("/allRama", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(rama=>{
+                arrRama.push({
+                    value:rama.nombreRama,
+                    label:rama.nombreRama
+                })
+            })   
+            this.setState({
+                selectedRama:arrRama
+            })
+        })
+
+        axios.post("/allGrupo", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(grupo=>{
+                arrGrup.push({
+                    value:grupo.nombreGrupo,
+                    label:grupo.nombreGrupo
+                })
+            })   
+            this.setState({
+                selectedGrupo:arrGrup
+            })
+        })
+    }
+
 
     render() {
         return (
@@ -42,21 +97,24 @@ export default class miembroXelemento extends Component {
                     <div id="main-section">
                         <div className="spacing-base">
                             <label>Zonas</label>
-                            <Select components={makeAnimated} name="zonas" value={this.state.selectedZona} onChange={this.handleChange} options={this.state.zonas} className="basic-multi-select" classNamePrefix="select" />
-                        </div>
+                        <Select components={makeAnimated} name="zona" onChange={this.handleChangeZona} 
+                        value={this.state.zona} options={this.state.selectedZona} classNamePrefix="select"/>
+                    </div>
                     </div>
 
                     <div id="main-section">
                         <div className="spacing-base">
                             <label> Ramas </label>
-                            <Select components={makeAnimated} name="ramas" value={this.state.selectedRama} onChange={this.handleChange} options={this.state.ramas} className="basic-multi-select" classNamePrefix="select" />
-                        </div>
+                        <Select components={makeAnimated} name="rama" onChange={this.handleChangeRama} 
+                        value={this.state.rama} options={this.state.selectedRama} classNamePrefix="select"/>
+                    </div>
                     </div>
                     <div id="main-section">
                         <div className="spacing-base">
                             <label> Grupo </label>
-                            <Select components={makeAnimated} name="grupos" value={this.state.selectedGrupo} onChange={this.handleChange} options={this.state.grupos} className="basic-multi-select" classNamePrefix="select" />
-                        </div>
+                        <Select components={makeAnimated} name="grupo" onChange={this.handleChangeGrupo} 
+                        value={this.state.grupo} options={this.state.selectedGrupo} classNamePrefix="select"/>
+                    </div>
                     </div>
                 </div >
                     </div>

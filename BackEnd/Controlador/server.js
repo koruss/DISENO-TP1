@@ -31,6 +31,7 @@ app.post('/guardarMiembro', (req, res) => {
 
 app.post('/asignarMiembro', (req, res) => {
   control.asignarMiembro(req.body,res);
+  // console.log("Aqui: "+req.body)
 })
 
 
@@ -43,11 +44,18 @@ app.post('/cambiarMiembroGrup', (req, res) => {
   control.cambiarMiembroGrupo(res);
   })
   
-app.post("/ramasDeZona",(req, res)=>{
-  control.ramasDeZona(req,res);
+app.post("/allRama",(req, res)=>{
+  control.allRama(req,res);
+})
+
+app.post("/allPersona",(req, res)=>{
+  control.allPersona(req,res);
 })
 
 app.post("/guardarRama",(req, res)=>{
   control.crearRama(req.body,res);
 })
 
+app.post("/allGrupos",(req, res)=>{
+  control.allGrupos(req,res);
+})
