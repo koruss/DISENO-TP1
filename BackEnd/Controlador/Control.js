@@ -50,17 +50,17 @@ module.exports = class Control{
 
     async allRama(req,res){
         // await this.gestorEstructura(req,res)
-        await this.dao.allRamas(req, res)
+        await this.gestorEstructura.obtenerRamas(req, res)
     }
 
     async allGrupos(req,res){
         // await this.gestorEstructura(req,res)
-        await this.dao.allGrupos(req, res)
+        await this.gestorEstructura.obtenerGrupos(req, res)
     }
 
     async allPersona(req,res){
         // await this.gestorEstructura(req,res)
-        await this.dao.allPersona(req, res)
+        await this.gestorMiembro.obtenerPersona(req, res)
     }
     
     registrarMiembro(){

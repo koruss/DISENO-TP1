@@ -1,10 +1,10 @@
 var DAO = require('./DAO');
-var PersonaSchema = require("../Schemas/GrupoSchema.js");
+var GrupoSchema = require("../Schemas/GrupoSchema.js");
 
 module.exports = class GrupoDao {
     List = [];
     dao = new DAO();
-    personaSchema = new PersonaSchema();
+    grupoSchema = new GrupoSchema();
 
     constructor(){
     }
@@ -28,6 +28,13 @@ module.exports = class GrupoDao {
 
     updatePersona(data){
 
+    }
+
+    //Funcion encargada de obtener todas las zonas de la base de datos
+    async getGrupos(req, res){
+        this.dao.getData(GrupoSchema, res);
+        const respuesta = res.data;
+        console.log(respuesta);
     }
 
  }

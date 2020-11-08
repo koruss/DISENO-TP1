@@ -1,4 +1,4 @@
-var PersonaDAO = require('../DAO/PersonaDAO.js');
+var PersonaDAO = require('../DAO/PersonaDAO');
 
 module.exports = class GestorMiembro{
     miembros=[];
@@ -15,6 +15,10 @@ module.exports = class GestorMiembro{
 
     cambiarMiembroGrupo(data){
         this.personaDAO.updatePersona(data);
+    }
+
+    async obtenerPersonas(req,res){
+        await this.PersonaDAO.getPersonas(req,res);
     }
 
     getMiembros(){

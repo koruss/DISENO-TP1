@@ -1,12 +1,18 @@
 var Direccion = require('../Modelo/Direccion');
 var LeafPersona = require('../Modelo/LeafPersona');
 var CompositePersona = require('../Modelo/CompositePersona');
-var ZonaDAO = require('../DAO/ZonaDao.js');
-var RamaDAO = require('../DAO/RamaDao.js');
+var ZonaDAO = require('../DAO/ZonaDAO');
+var RamaDAO = require('../DAO/RamaDAO');
+// var ZonaDAO = require('../DAO/ZonaDao');
+// var RamaDAO = require('../DAO/RamaDao');
+var GrupoDAO = require('../DAO/GrupoDAO')
+
+
 
 module.exports = class GestorEstructura{
     zonaDAO = new ZonaDAO();
     ramaDAO = new RamaDAO();
+    grupoDAO = new GrupoDAO();
     zonas = [];
 
     constructor(){
@@ -32,6 +38,16 @@ module.exports = class GestorEstructura{
     async obtenerZonas(req,res){
         await this.zonaDAO.getZonas(req,res);
     }
+
+    async obtenerRamas(req,res){
+        await this.ramaDAO.getRamas(req,res);
+    }
+
+    async obtenerGrupos(req,res){
+        await this.grupoDAO.getGrupos(req,res);
+    }
+
+  
 
     clientCode(component) {
         console.log(`RESULT: ${component.operation()}`);

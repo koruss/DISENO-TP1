@@ -1,8 +1,7 @@
-const Zona = require("./ZonaSchema");
-const Rama = require("./RamaSchema");
-const Grupo= require("./GrupoSchema");
-const Persona = require("../Schemas/PersonSchema");
 const Zona = require("../Schemas/ZonaSchema");
+const Rama = require("../Schemas/RamaSchema");
+const Grupo= require("../Schemas/GrupoSchema");
+const Persona = require("../Schemas/PersonSchema");
 const DataSource= require('./DataSource');
 
 

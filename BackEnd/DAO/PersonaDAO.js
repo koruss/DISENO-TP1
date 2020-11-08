@@ -32,4 +32,10 @@ module.exports = class PersonDao {
 
     }
 
+    async getPersonas(req, res){
+        this.dao.getData(PersonaSchema, res);
+        const respuesta = res.data;
+        console.log(respuesta);
+    }
+
  }
