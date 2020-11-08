@@ -9,44 +9,35 @@ class Login extends Component{
     state = {
         isAuth: false
     };
-
-    showSession = (e) => {
-        e.preventDefault();
-        axios.get('/showSession',{}).then(function(res){
-            //console.log("Sesion es de: "+res.data);
-            //console.log("Sesion 2 es de : "+res.data.userName);
-            alert("La sesión pertenece al usuario: "+res.data.userName+"\nEl correo es: "+res.data.email+
-            "\nSu nombre completo es: "+res.data.fullName+"\nUsuario"+res.data.userType);
-        });    
-      };
       
     logIn = (e) => {
         e.preventDefault();
         var self = this;
-        axios.post('UserLogIn',{ 
-                pName: this.state.userName,
-                pPassword: this.state.password
+        axios.post('logIn',{ 
+                pName: "admin",
+                pPassword:"1234"
+                //pName: this.state.userName,
+                //pPassword: this.state.password
         }).then(function(res){
             if(!res.data.success){
                 alert(res.data.error)
             }
             else{
+                //self.isAuth=true;
                 self.setState(
                     {
                         isAuth: true
                     }
                 )
+                
 
                 //header.update();
             }
         })
-        /*if(this.state.isAuth){
-            //this.props.history.push("/profile")
-            /*auth.logIn(() => {
-                this.props.history.push("/profile")
-            });            
+        if(this.state.isAuth){
+            this.props.history.push("/ventanaAsesor")       
         }
-        */
+        
         
         /*.catch(err => {
             console.log(e)
@@ -58,7 +49,7 @@ class Login extends Component{
         e.target.value}); 
 
     
-    onClick = (e) => {
+    /*onClick = (e) => {
         axios.post("/cargarComposite",{
         }).then(res =>{
             if(!res.data.success){
@@ -69,16 +60,10 @@ class Login extends Component{
             }
         })
     }
+    */
 
-    render(){
-        //const { isAuth } = this.state.isAuth;
-        //alert("Si se ha comprobado el estado: "+this.state.isAuth);
-        //if(isAuth) return <Redirect to={'/profile'}/>
-        console.log("Login, el estado del componente es: "+this.state.isAuth);
-        if(this.state.isAuth){
-            this.props.history.push("/")         
-        }        
-        
+    render(){    
+        if(!this.state.isAuth) {
         return(  
             <div>
                     <Header></Header>
@@ -114,6 +99,11 @@ class Login extends Component{
                         </div>
                     </form>
                 </div>
+        )
+        }else return (
+            <>
+            <Redirect to="/ventanaAsesor"></Redirect>
+            </>
         )
     };
 }

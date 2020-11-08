@@ -7,7 +7,25 @@ module.exports = class Control{
     gestorMiembro = new GestorMiembro();
     gestorEstructura = new GestorEstructura();
     
+    iniciarSesion(req,res){
+        var pName = req.body.pName;
+        var pPassword = req.body.pPassword;
+        console.log(pName)
+        if (pName && pPassword) {
+            req.session.loggedIn = true;
+            req.session.user=pName;
+            req.session.password=pPassword; 
+            return res.json({ success: true });
+        }
+        else return res.json({ success: false, error: "Please enter Username and/or Password!" });    
+    }
 
+    cerrarSesion(req,res){
+        req.session.destroy((err) => {
+            if (err) return console.log("Error al cerrar sesion");
+            else  return res.json({ success: true });
+        })
+    }
 
     constructor(){
     }
