@@ -53,7 +53,11 @@ function App() {
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
           <Route path="/consultaGruposPorMiembro" component={ConsultaGruposRolesXMiembro}/> 
           <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
-          <Route path="/consultarComposicionGrupoResult" component={ConsultarGrupoResult}/>
+
+          {/*                        Creacion de estructuras */}
+          <Route path="/crearGrupo" component={CrearGrupo}/> 
+          <Route path="/crearZona" component={CrearZona}/> 
+          <Route path="/crearRama" component={CrearRama}/> 
         </Switch>
       </div>
     </Router>

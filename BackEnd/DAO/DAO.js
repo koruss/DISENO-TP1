@@ -2,6 +2,7 @@ const Zona = require("./ZonaSchema");
 const Rama = require("./RamaSchema");
 const Grupo= require("./GrupoSchema");
 const Persona = require("../Schemas/PersonSchema");
+const Zona = require("../Schemas/ZonaSchema");
 const DataSource= require('./DataSource');
 
 
@@ -36,8 +37,19 @@ module.exports= class DAO {
         });
     }
 
+    //Funcion que recibe un esquema para obtener los datos
+    async getData(schema, res){
+        this.openConnection();
+        schema.find({},(err,data)=>{
+            if(err) return console.log(err);
+            res.send(data);
+            res.end();
+        })
+    }
+
+
+    //LISTA PARA SER BORRADA? - cambiar a usar postData
     async guardar(data,res){
-        //console.log(data);
         const connection = this.dataSource.Connect;
         let state = connection.connection;
         state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));

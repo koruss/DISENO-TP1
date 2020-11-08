@@ -48,14 +48,12 @@ class CrearZona extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <Button variant="dark" onClick={this.onClick}>Dark</Button>
+                                    <Button variant="dark" onClick={this.onClick}>Crear zona</Button>
                                 </div>
-
                             </div>
                         </div>
                         <div class="border">
                             <div class="box-container">
-
                             </div>
 
                         </div>

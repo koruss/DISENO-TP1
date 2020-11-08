@@ -51,10 +51,10 @@ app.post("/allPersona",(req, res)=>{
   control.allPersona(req,res);
 })
 
+app.post("/guardarRama",(req, res)=>{
+  control.crearRama(req.body,res);
+})
+
 app.post("/allGrupos",(req, res)=>{
   control.allGrupos(req,res);
 })
-
-
-
-

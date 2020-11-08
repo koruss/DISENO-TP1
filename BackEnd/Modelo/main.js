@@ -1,7 +1,6 @@
-import { LeafPersona } from './LeafPersona.js';
-import { CompositePersona } from './CompositePersona.js';
-import { Direccion } from './Direccion.js';
-
+var Direccion = require('./Direccion');
+var LeafPersona = require('./LeafPersona');
+var CompositePersona = require('./CompositePersona');
 
 function clientCode(component) {
     // ...
@@ -26,7 +25,6 @@ console.log('-----------');
 console.log('Composicion');
 clientCode(zona);
 console.log('-----------');
-
 
 
 
