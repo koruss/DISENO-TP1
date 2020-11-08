@@ -11,10 +11,6 @@ module.exports = class GrupoDao {
 
     //Funcion encargada de guardar un nuevo usuario en la base de datos
     async postPersona(data, res){
-        //const direccion = {
-        //    pais: data.pais
-        //}
-        //console.log("pais ---------->",data.pais.value);
         this.personaSchema.nombre=data.nombre;
         this.personaSchema.identificacion=data.identificacion;
         this.personaSchema.apellido1=data.apellido1;
@@ -35,6 +31,14 @@ module.exports = class GrupoDao {
         this.dao.getData(GrupoSchema, res);
         const respuesta = res.data;
         console.log(respuesta);
+    }
+
+    async updateProduct(data, res){
+        this.dao.updateProduct(GrupoSchema, data);
+    }
+
+    async cambiarNombreGrupo(data, res){
+        this.dao.cambiarNombreGrupo(data, GrupoSchema, res);
     }
 
  }

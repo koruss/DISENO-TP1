@@ -66,7 +66,30 @@ module.exports= class DAO {
         });
     }
 
-  
+    async updateProduct(schema, data){
+        this.openConnection();
+        schema.findByIdAndUpdate({_id:data.Grupo._id}, )
+    }
+
+    async cambiarNombreGrupo(req, schema, res){
+        this.openConnection();
+        schema.updateOne({nombreRama:req.body.rama.value}, {$set:{ nombreRama: req.body.nombre}}, 
+            function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar el cliente',
+                    err
+                });
+                console.log("error: ",error)
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        })
+    }
 
 }
 
