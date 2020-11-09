@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 import '../../Componentes/General/Utils.css'
 import Header from '../General/Header';
 import Tree from 'react-hierarchy-tree-graph';
+import axios from 'axios';
 
 class TreeContainer extends React.PureComponent{
     state = {
+        zonas:[],
+        ramas:[],
+        grupos:[],
         treeData: [
             {
               name: 'Top Level',
@@ -72,21 +76,66 @@ class TreeContainer extends React.PureComponent{
             }
         });
     }
-    crearArbol() {
+
+    armarArbol(){
+        const arreglo=[];
+        let json={
+            name:"Coordinacion",
+            id:1,
+            chilren:[]
+        }
+        let zonas= this.state.zonas;
+        zonas.forEach(zona=>{
+            let jsonZona={
+                name:zona.nombreZona,
+                id:zona._id,
+                children:[]
+            }
+            json.chilren.push(jsonZona)
+        })
+
+        arreglo.push(json);
+        this.setState({
+            treeData:arreglo
+        })
 
     }
 
-    componentDidMount() {
+
+
+
+    componentWillMount() {
+        axios.post("/allZonas", {}).then(res => {
+            const respuesta1 = res.data;   
+            this.setState({
+                zonas:respuesta1
+            })
+        })
+        axios.post("/allRama", {}).then(res => {
+            const respuesta2 = res.data;
+            this.setState({
+                ramas:respuesta2
+            })
+        })
+        axios.post("/allGrupos", {}).then(res => {
+            const respuesta3 = res.data;
+            this.setState({
+                grupos:respuesta3
+            })
+        })
+
+        this.armarArbol();
+
+    }
+
+    componentDidMount(){
         this.translate();
-    }
 
+    }
 
 
     render() {
-        return (
-
-
-            
+        return (      
             <div style ={this.state.style} ref={tc => (this.treeContainer = tc)}>
                 <Tree data={this.state.treeData} nodeSvgShape={this.state.svgSquare} orientation={"vertical"} collapsible={false} translate={this.state.translate} onClick={this.onClick} />
             </div>
