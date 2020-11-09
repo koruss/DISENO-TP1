@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button'
 import "./Estructura.css"
-import Header from '../General/Header';
+import Header from '../General/Header.jsx';
 
 
 

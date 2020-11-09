@@ -58,6 +58,10 @@ module.exports = class GestorEstructura{
         await this.grupoDAO.cambiarNombreGrupo(req, res);
     }
 
+    async modificarRama(req, res){
+        await this.ramaDAO.updateRama(req, res);
+    }
+
     clientCode(component) {
         console.log(`RESULT: ${component.operation()}`);
     }
