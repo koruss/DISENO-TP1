@@ -102,7 +102,7 @@ class AsignacionMiembros extends Component{
             const respuesta=res.data;
             const ramaNombre = this.state.selectedRama.value;
             respuesta.forEach(grupo=>{
-                if(grupo.rama == ramaNombre){
+                if(grupo.nombreRama == ramaNombre){
                     arreglo.push({
                         value:grupo.nombreGrupo,
                         label:grupo.nombreGrupo
@@ -110,7 +110,7 @@ class AsignacionMiembros extends Component{
                 }
             })   
             this.setState({
-                grupo:arreglo
+                selectedGrupo:arreglo
             })
         })
     }
@@ -158,12 +158,6 @@ class AsignacionMiembros extends Component{
     handleChangeGrupo = grupo => {
         this.setState(
             { grupo },     
-        );
-    };
-
-    handleChangeMonitor = monitor => {
-        this.setState(
-            { monitor },     
         );
     };
 
