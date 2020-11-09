@@ -7,7 +7,6 @@ module.exports = class Control{
     gestorMiembro = new GestorMiembro();
     gestorEstructura = new GestorEstructura();
     
-    
     async allAsesores(req,res){
         await this.gestorMiembro.obtenerAsesores(req,res);
     }
@@ -51,8 +50,6 @@ module.exports = class Control{
         let response = await this.gestorMiembro.agregarMiembro(data, res);
     }
 
-    async asignarMiembro(req, res){
-        await this.gestorEstructura.asignarMiembro(req, res);
     async guardarAsesor(data, res){
         let response = await this.gestorMiembro.agregarAsesor(data, res);
     }
@@ -67,6 +64,8 @@ module.exports = class Control{
             console.log(res)
         )
     }
+
+
 
     async allZonas(req, res){
         await this.gestorEstructura.obtenerZonas(req, res);
@@ -85,20 +84,6 @@ module.exports = class Control{
     async allPersona(req,res){
         // await this.gestorEstructura(req,res)
         await this.gestorMiembro.obtenerPersonas(req, res)
-    }
-
-    async cambiarNombreGrupo(req,res){
-        // await this.gestorEstructura(req,res)
-        await this.gestorEstructura.cambiarNombreGrupo(req, res)
-    }
-
-    async guardarGrupo(req,res){
-        await this.gestorEstructura.modificarRama(req,res);
-        await this.gestorEstructura.crearGrupo(req,res)
-    }
-    
-    async trasladarMiembro(req,res){
-        await this.gestorEstructura.trasladarMiembro(req,res)
     }
     
     registrarMiembro(){
@@ -126,7 +111,9 @@ module.exports = class Control{
 
     }
 
+    crarGrupo(){
 
+    }
 
     consultarComposicionGrupo(){
 

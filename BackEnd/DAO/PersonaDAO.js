@@ -19,8 +19,6 @@ module.exports = class PersonDao {
             canton: data.canton.value,
             distrito: data.distrito.value
         }
-        console.log(data);
-        console.log(direccion);
         this.personaSchema.nombre=data.nombre;
         this.personaSchema.identificacion=data.identificacion;
         this.personaSchema.apellido1=data.apellido1;
