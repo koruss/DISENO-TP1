@@ -69,21 +69,6 @@ class AsignacionMiembros extends Component{
             })
         })
 
-        axios.post("/allGrupos", {}).then(res => {
-            const respuesta = res.data;
-            console.log(respuesta)
-            respuesta.forEach(grupo=>{
-                arrGrup.push({
-                    value:grupo.nombreGrupo,
-                    label:grupo.nombreGrupo,
-                    identificacion:grupo._id
-                })
-            })   
-            this.setState({
-                selectedGrupo:arrGrup
-            })
-        })
-
 
     }
 
@@ -126,9 +111,6 @@ class AsignacionMiembros extends Component{
             })   
             this.setState({
                 grupo:arreglo
-            })
-            this.setState({
-                gruposCompletos:respuesta
             })
         })
     }
