@@ -59,3 +59,7 @@ app.post("/guardarRama",(req, res)=>{
 app.post("/allGrupos",(req, res)=>{
   control.allGrupos(req,res);
 })
+
+app.post("/guardarGrupo",(req,res)=>{
+  control.guardarGrupo(req,res);
+})
