@@ -42,16 +42,6 @@ export default class CrearGrupo extends Component {
         this.obtenerMonitores(selectedRama);
     }
 
-    // async handleChangeRama (e) {
-    //     var self = this;
-    //     console.log(e);
-    //     self.setState({
-    //         selectedRama:e 
-    //     })
-    //     this.limpiarMonitorSeleccionado()
-    //     this.obtenerMonitores(e)
-    // }
-
     handleChangeMonitor = selectedMonitor => {
         this.setState(
             { selectedMonitor }
@@ -135,6 +125,7 @@ export default class CrearGrupo extends Component {
     }
 
     onClick = (e) => {
+        if(this.state.nombreGrupo != ""){
         axios.post("/guardarGrupo",{
             nombreGrupo:this.state.nombreGrupo,
             selectedZona:this.state.selectedZona,
@@ -147,6 +138,10 @@ export default class CrearGrupo extends Component {
                 alert("Grupo guardada correctamente")
             }
         })
+        } 
+        else{
+            alert("Por favor ingresar el nombre del grupo")
+        }
     }
 
     render() {

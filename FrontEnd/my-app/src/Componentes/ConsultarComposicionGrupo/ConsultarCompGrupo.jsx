@@ -13,23 +13,80 @@ class ConsultarComposicionGrupo extends Component{
         selectedGrupo:[],
         zonas:[],
         ramas:[],
-        grupo:[]
+        grupo:[],
+        ramasCompletas: []
 
     }
+
     onChange = (e) => this.setState({
         [e.target.name]: e.target.value
     });
+
     handleChangeZona = zona => {
         this.setState(
             { zona },     
         );
+        this.limpiarRamas();
+        this.obtenerRamas();
     };
+
+    limpiarRamas(){
+        this.state.selectedRama = []
+    }
+
+    obtenerRamas(){
+        var self = this;
+        let arreglo =[];
+        axios.post("/allRama", {}).then(res => {
+            const respuesta=res.data;
+            const zonaNombre = this.state.selectedZona.value;
+            respuesta.forEach(rama=>{
+                if(rama.zona == zonaNombre){
+                    arreglo.push({
+                        value:rama.nombreRama,
+                        label:rama.nombreRama
+                    })
+                }
+            })   
+            this.setState({
+                ramas:arreglo
+            })
+            this.setState({
+                ramasCompletas:respuesta
+            })
+        })
+    }
 
     handleChangeRama = rama => {
         this.setState(
             { rama },     
         );
+        this.limpiarGrupo();
+        this.obtenerGrupos(selectedRama);
     };
+
+    limpiarRamas(){
+        this.state.selectedGrupo = []
+    }
+
+    obtenerGrupos(selectedRama){
+        /*const ramasCrudo =this.state.ramasCompletas;
+        let arreglo =[];
+        ramasCrudo.forEach(rama=>{
+            if(rama.nombreRama == selectedRama.value){
+                var grupos = rama.jefesGrupo;
+                miembros.forEach(miembro=>{
+                    arreglo.push({
+                       value:miembro.id,
+                       label:miembro.nombre + miembro.apellido
+                    })
+                })
+            }
+        }) 
+        this.setState({
+            monitores:arreglo
+        })*/
+    }
 
     handleChangeGrupo = grupo => {
         this.setState(

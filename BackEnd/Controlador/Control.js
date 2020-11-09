@@ -66,6 +66,7 @@ module.exports = class Control{
     }
 
     async guardarGrupo(req,res){
+        await this.gestorRama.updateRama(req,res);
         await this.gestorEstructura.crearGrupo(req,res)
     }
     

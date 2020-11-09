@@ -32,4 +32,9 @@ module.exports = class RamaDao {
     }
 
 
+    //Funcion encargada de modificar una rama
+    async updateRama(req, res){
+        //
+    }
+
  }
