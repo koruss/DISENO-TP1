@@ -7,19 +7,20 @@ module.exports = class Control{
     gestorMiembro = new GestorMiembro();
     gestorEstructura = new GestorEstructura();
     
-    iniciarSesion(req,res){
-        var pName = req.body.pName;
-        var pPassword = req.body.pPassword;
-        console.log(pName)
-        if (pName && pPassword) {
-            req.session.loggedIn = true;
-            req.session.user=pName;
-            req.session.password=pPassword; 
-            return res.json({ success: true });
-        }
-        else return res.json({ success: false, error: "Please enter Username and/or Password!" });    
+    async allAsesores(req,res){
+        await this.gestorMiembro.obtenerAsesores(req,res);
     }
 
+    async logIn(req,res){
+        var pName = req.body.pName;
+        var pPassword = req.body.pPassword;
+        console.log(pName);
+        req.session.loggedIn = true;
+        req.session.user=pName;
+        req.session.password=pPassword; 
+        return res.json({ success: true });  
+    }
+    
     cerrarSesion(req,res){
         req.session.destroy((err) => {
             if (err) return console.log("Error al cerrar sesion");
@@ -47,6 +48,10 @@ module.exports = class Control{
 
     async guardarMiembro(data, res){
         let response = await this.gestorMiembro.agregarMiembro(data, res);
+    }
+
+    async guardarAsesor(data, res){
+        let response = await this.gestorMiembro.agregarAsesor(data, res);
     }
 
     async asignarMiembro(data, res){

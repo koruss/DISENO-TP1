@@ -36,6 +36,11 @@ app.post('/guardarMiembro', (req, res) => {
   control.guardarMiembro(req.body,res);
 })
 
+//Funcion para guardar un miembro en la base de datos
+app.post('/guardarAsesor', (req, res) => {
+  control.guardarAsesor(req.body,res);
+})
+
 app.post('/asignarMiembro', (req, res) => {
   control.asignarMiembro(req.body,res);
 })
@@ -70,10 +75,13 @@ app.get("/getSesion",(req, res)=>{
   res.send(req.session);
   res.end();
 })
+
+app.post("/allAsesores",(req, res)=>{
+  control.allAsesores(req,res);
 })
 
 app.post("/logIn",(req, res)=>{
-  control.iniciarSesion(req,res);
+  control.logIn(req,res);
 })
 
 app.get('/cerrarSesion', function (req, res) {

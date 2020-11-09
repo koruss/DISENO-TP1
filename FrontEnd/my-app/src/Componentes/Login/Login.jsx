@@ -6,6 +6,13 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Header from '../General/Header';
 
 class Login extends Component{
+
+    constructor(props){
+        super(props);
+        this.userNameRef=React.createRef();
+        this.passwordRef=React.createRef();
+    }
+
     state = {
         isAuth: false
     };
@@ -13,55 +20,47 @@ class Login extends Component{
     logIn = (e) => {
         e.preventDefault();
         var self = this;
-        axios.post('logIn',{ 
-                pName: "admin",
-                pPassword:"1234"
-                //pName: this.state.userName,
-                //pPassword: this.state.password
-        }).then(function(res){
-            if(!res.data.success){
-                alert(res.data.error)
-            }
-            else{
-                //self.isAuth=true;
-                self.setState(
-                    {
-                        isAuth: true
-                    }
-                )
-                
-
-                //header.update();
-            }
-        })
-        if(this.state.isAuth){
-            this.props.history.push("/ventanaAsesor")       
+        if(this.state.userName != null && this.state.password!=null){
+        axios.post('/allAsesores',{usuario:this.state.userName,password:this.state.password}).then(res=>{
+            const respuesta=res.data;
+            console.log("La respuesta es: ");
+            console.log(respuesta);
+                if(respuesta.contrasena == this.state.password){
+                    axios.post('logIn',{pName:this.state.userName,pPassword:this.state.password}).then(res=>{});
+                    self.setState(
+                        {
+                            isAuth: true
+                        }
+                    )
+                }  else {
+                    alert("Nombre de usuario o contraseña incorrecto!!");
+                    this.userNameRef.current.value="";
+                    this.passwordRef.current.value="";
+                }
+        }) 
+        }else {
+            alert("Nombre de usuario o contraseña incorrecto!!");
+            this.userNameRef.current.value="";
+            this.passwordRef.current.value="";
         }
+
         
-        
-        /*.catch(err => {
-            console.log(e)
-        }); 
-        */         
+
+       /*console.log("el username es: "+this.state.userName);
+       console.log("el password es: "+this.state.password) 
+       axios.post('logIn',{pName:this.state.userName,pPassword:this.state.password}).then(res=>{});
+       self.setState(
+        {
+            isAuth: true
+        }
+        )
+        */
     }
 
     onChange = (e) => this.setState({[e.target.name]:
         e.target.value}); 
 
     
-    /*onClick = (e) => {
-        axios.post("/cargarComposite",{
-        }).then(res =>{
-            if(!res.data.success){
-                alert(res.data.err);
-            }
-            else{
-                alert("Miembro Guardado correctamente")
-            }
-        })
-    }
-    */
-
     render(){    
         if(!this.state.isAuth) {
         return(  
@@ -76,11 +75,11 @@ class Login extends Component{
                                         <h1>Log In</h1>
                                         <div class="spacig-base">
                                             <label for="email">Username or Email</label>
-                                            <input type="text" name="userName" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
+                                            <input ref={this.userNameRef} type="text" name="userName" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
                                         </div>    
                                         <div class="spacig-base">
                                             <label for="password">Password</label>
-                                            <input type="password" name="password" onChange={this.onChange} tabIndex="2"/>       
+                                            <input ref={this.passwordRef} type="password" name="password" onChange={this.onChange} tabIndex="2"/>       
                                         </div>  
                                         <div class="spacing-base">
                                             <span class="button buttonInside">

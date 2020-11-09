@@ -6,6 +6,12 @@ import makeAnimated from 'react-select/animated';
 import Header from '../General/Header';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import imagenAsesor from './perfil.png';
+import imagenAsignacion from './asignacion.png';
+import imagenDefinicion from './definicion.png';
+import imagenMapa from './mapa.png';
+import imagenJefes from './jefes.png';
+
 
 // import Card from './CardGrupoResult'
 
@@ -73,8 +79,9 @@ class VentanaAsesor extends Component {
                     <div className="label-wrapper">
                         <div className="label-wrapper" >
                             <label for="imagen">imagen : </label>
+                            <img src={imagenAsesor} alt={"imagenAsesor"} width="100" height="100"/>
                         </div>
-                        <div className="label-wrapper">
+                        <div className="label-wrapper" align="right">
                             <h2>Ventana Asesor</h2>
                         </div>
                         <div class="form-group" class="spacing-base-hard">
@@ -115,21 +122,21 @@ class VentanaAsesor extends Component {
                     <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
                                 {/* <label for="rama">Asignar miembros a los grupos</label> */}
-                                <Link class="btn btn-dark" to='./asignacionMiembros'>Asignar miembros a los grupos</Link>                                
+                                <Link class="btn btn-dark" to='./asignacionMiembros'><img src={imagenAsignacion} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />Asignar miembros a grupos</Link>                                
                             </div>
                             <div class="form-group" class="spacing-base">
                                 {/* <label for="grupo">Asignar jefes a los grupos</label> */}
-                                <Link class="btn btn-dark" to='./registroMiembro'>Registrar nuevo miembro</Link>    
+                                <Link class="btn btn-dark" to='./registroMiembro'><img src={imagenJefes} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />  Registrar nuevo miembro</Link>    
                             </div>
                         </div>
                         <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
                                 {/* <label for="rama">Definir estructura organizacional</label> */}
-                                <Link class="btn btn-dark" to='./estructura'>Definir estructura organizacional</Link>    
+                                <Link class="btn btn-dark" to='./estructura'><img src={imagenDefinicion} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />  Definir estructura organizacional</Link>    
                             </div>
                             <div class="form-group" class="spacing-base">
                                 {/* <label for="grupo">Ver mapa organizacional</label> */}
-                                <Link class="btn btn-dark" to='./arbolEstuctural'>Ver mapa organizacional</Link>    
+                                <Link class="btn btn-dark" to='./arbolEstuctural'><img src={imagenMapa} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />  Ver mapa organizacional</Link>    
                             </div>
                         </div>
                     </div>
