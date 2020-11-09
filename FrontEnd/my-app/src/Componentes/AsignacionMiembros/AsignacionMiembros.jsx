@@ -8,6 +8,8 @@ import axios from 'axios';
 
 class AsignacionMiembros extends Component{
     state = {
+        ramasCompletas: [],
+        gruposCompletos: [],
         selectedNombre:[],
         selectedZona:[],
         selectedRoma:[],
@@ -25,8 +27,6 @@ class AsignacionMiembros extends Component{
     componentWillMount() {
         var self = this;
         let arreglo = [];
-        let arrRama = [];
-        let arrGrup = [];
         let arrPers = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
@@ -42,19 +42,6 @@ class AsignacionMiembros extends Component{
             })
         })
 
-        axios.post("/allRama", {}).then(res => {
-            const respuesta = res.data;
-            console.log(respuesta)
-            respuesta.forEach(ramas=>{
-                arrRama.push({
-                    value:ramas.nombreRama,
-                    label:ramas.nombreRama
-                })
-            })   
-            this.setState({
-                selectedRoma:arrRama
-            })
-        })
 
         axios.post("/allPersona", {}).then(res => {
             const respuesta = res.data;
@@ -79,23 +66,54 @@ class AsignacionMiembros extends Component{
             })
         })
 
-        axios.post("/allGrupos", {}).then(res => {
-            const respuesta = res.data;
-            console.log(respuesta)
-            respuesta.forEach(grupo=>{
-                arrGrup.push({
-                    value:grupo.nombreGrupo,
-                    label:grupo.nombreGrupo,
-                    identificacion:grupo._id
-                })
+
+    }
+
+    obtenerRamas(){
+        var self = this;
+        let arreglo =[];
+        axios.post("/allRama", {}).then(res => {
+            const respuesta=res.data;
+            const zonaNombre = this.state.selectedZona.value;
+            respuesta.forEach(rama=>{
+                if(rama.zona == zonaNombre){
+                    arreglo.push({
+                        value:rama.nombreRama,
+                        label:rama.nombreRama
+                    })
+                }
             })   
             this.setState({
-                selectedGrupo:arrGrup
+                ramas:arreglo
+            })
+            this.setState({
+                ramasCompletas:respuesta
             })
         })
     }
 
-
+    obtenerGrupos(){
+        var self = this;
+        let arreglo =[];
+        axios.post("/allGrupos", {}).then(res => {
+            const respuesta=res.data;
+            const ramaNombre = this.state.selectedRama.value;
+            respuesta.forEach(grupo=>{
+                if(grupo.rama == ramaNombre){
+                    arreglo.push({
+                        value:grupo.nombreGrupo,
+                        label:grupo.nombreGrupo
+                    })
+                }
+            })   
+            this.setState({
+                grupo:arreglo
+            })
+            this.setState({
+                gruposCompletos:respuesta
+            })
+        })
+    }
 
 
     onClick = (e) => {
@@ -120,23 +138,35 @@ class AsignacionMiembros extends Component{
         );
     };
 
-    handleChangeZonas = zonas => {
+    handleChangeZonas = selectedZona => {
         this.setState(
-            { zonas },     
+            { selectedZona }
         );
-    };
+        this.limpiarRamas();
+        this.obtenerRamas();
+    }
 
-    handleChangeRamas = ramas => {
+    handleChangeRamas = selectedRama => {
         this.setState(
-            { ramas },     
+            {selectedRama}
         );
-    };
+        this.limpiarGrupos();
+        this.obtenerGrupos();
+    }
 
     handleChangeGrupo = grupo => {
         this.setState(
             { grupo },     
         );
     };
+
+    limpiarRamas(){
+        this.state.selectedRama = []
+    }
+
+    limpiarGrupos(){
+        this.state.selectedGrupo = []
+    }
 
     render() {
         return (
@@ -166,7 +196,7 @@ class AsignacionMiembros extends Component{
                             options={this.state.selectedGrupo} classNamePrefix="select" onChange={this.handleChangeGrupo}/>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-dark" onClick={this.onClick} >Asignar</button>
+                    <button type="button" class="btn btn-dark" onClick={this.onClick} >Asignar</button> 
             </main>
         </div>    
         )

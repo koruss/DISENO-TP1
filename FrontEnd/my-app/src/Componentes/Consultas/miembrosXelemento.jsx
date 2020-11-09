@@ -9,7 +9,7 @@ import axios from 'axios';
 
 export default class miembroXelemento extends Component {
     state = {
-        resultMembers:[],
+        resultMembers:[{name:"hola"}],
         selectedZona:[],
         selectedRoma:[],
         selectedGrupo:[],
