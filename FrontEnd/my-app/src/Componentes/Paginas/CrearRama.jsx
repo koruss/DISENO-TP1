@@ -4,7 +4,7 @@ import makeAnimated from 'react-select/animated';
 import Button from 'react-bootstrap/Button'
 import axios from 'axios';
 import "./Estructura.css"
-import Header from '../General/Header';
+import Header from '../General/Header.jsx';
 
 export default class CrearRama extends Component {
 

@@ -131,6 +131,26 @@ module.exports= class DAO {
  
     }
 
+    async modificarRama(req, schema, res){
+        this.openConnection();
+        schema.updateOne({_id:req.body.selectedRama.identificacion}, {$push:{ grupos: {nombre: req.body.nombreGrupo}}}, 
+            function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar las ramas',
+                    error
+                });
+                console.log("error: ",error)
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        })
+    }
+
 }
 
 

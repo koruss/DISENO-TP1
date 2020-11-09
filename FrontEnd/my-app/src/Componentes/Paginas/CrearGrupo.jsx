@@ -3,7 +3,7 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Button from 'react-bootstrap/Button'
 import "./Estructura.css"
-import Header from '../General/Header';
+import Header from '../General/Header.jsx';
 import axios from 'axios';
 
 
@@ -42,16 +42,6 @@ export default class CrearGrupo extends Component {
         this.obtenerMonitores(selectedRama);
     }
 
-    // async handleChangeRama (e) {
-    //     var self = this;
-    //     console.log(e);
-    //     self.setState({
-    //         selectedRama:e 
-    //     })
-    //     this.limpiarMonitorSeleccionado()
-    //     this.obtenerMonitores(e)
-    // }
-
     handleChangeMonitor = selectedMonitor => {
         this.setState(
             { selectedMonitor }
@@ -87,7 +77,8 @@ export default class CrearGrupo extends Component {
                 if(rama.zona == zonaNombre){
                     arreglo.push({
                         value:rama.nombreRama,
-                        label:rama.nombreRama
+                        label:rama.nombreRama,
+                        identificacion:rama._id
                     })
                 }
             })   
@@ -109,12 +100,17 @@ export default class CrearGrupo extends Component {
         ramasCrudo.forEach(rama=>{
             if(rama.nombreRama == selectedRama.value){
                 var miembros = rama.jefesGrupo;
+                if(miembros != undefined){
                 miembros.forEach(miembro=>{
                     arreglo.push({
                        value:miembro.id,
                        label:miembro.nombre + miembro.apellido
                     })
                 })
+                }
+                else{
+                    alert("Esta rama no tiene monitores")
+                }
             }
         }) 
         this.setState({
@@ -135,9 +131,11 @@ export default class CrearGrupo extends Component {
     }
 
     onClick = (e) => {
+        if(this.state.nombreGrupo != ""){
         axios.post("/guardarGrupo",{
             nombreGrupo:this.state.nombreGrupo,
             selectedZona:this.state.selectedZona,
+            selectedRama:this.state.selectedRama,
             monitores:this.state.monitores
         }).then(res =>{
             if(!res.data.success){
@@ -147,6 +145,10 @@ export default class CrearGrupo extends Component {
                 alert("Grupo guardada correctamente")
             }
         })
+        } 
+        else{
+            alert("Por favor ingresar el nombre del grupo")
+        }
     }
 
     render() {

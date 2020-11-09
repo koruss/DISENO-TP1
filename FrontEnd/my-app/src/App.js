@@ -23,7 +23,6 @@ import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/Consultar
 import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
 import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
 
-
 function App() {
     return (
     <Router>
@@ -53,6 +52,7 @@ function App() {
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
           <Route path="/consultaGruposPorMiembro" component={ConsultaGruposRolesXMiembro}/> 
           <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
+          <Route path="/consultarGrupoResult" component={ConsultarGrupoResult}/> 
 
           {/*                        Creacion de estructuras */}
           <Route path="/crearGrupo" component={CrearGrupo}/> 

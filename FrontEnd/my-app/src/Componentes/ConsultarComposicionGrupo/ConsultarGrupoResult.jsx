@@ -32,6 +32,11 @@ class ConsultarGrupoResult extends Component {
 
 
     render() {
+       // const info =(props) => { const {zona,rama,grupo} = props.location.data }
+        this.state.grupo = this.props.location.data.grupo
+        this.state.rama = this.props.location.data.rama
+        this.state.zona = this.props.location.data.zona
+
         return (
             <div>
                 <Header></Header>
@@ -64,8 +69,6 @@ class ConsultarGrupoResult extends Component {
                             {this.state.monitores.map((nombre) => <li>{(nombre)}</li>)}
                         </div>
                     </div>
-                    {/* <button type="button" class="btn btn-dark">Atrás</button> */}
-
 
                     <div className="label-wrapper">
                         <div class="spacing-base-hard">

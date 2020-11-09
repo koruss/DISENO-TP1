@@ -48,6 +48,7 @@ module.exports = class GrupoDao {
     async postGrupo(req,res){
         console.log(req.body);
         // this.grupoSchema.idCoordinacion=req.idCoordinacion;
+        thi
         this.grupoSchema.nombreRama=req.body.selectedZona.value;
         this.grupoSchema.monitores=req.body.monitores.value;
         this.grupoSchema.jefesGrupo=[];
