@@ -47,7 +47,7 @@ module.exports = class GestorEstructura{
     }
 
     async asignarMiembro(req, res){
-        await this.grupoDAO.updateProduct(data, res);
+        await this.grupoDAO.updateMiembroEnGrupo(req, res);
     }
   
     // async asignarMiembro(req, res){

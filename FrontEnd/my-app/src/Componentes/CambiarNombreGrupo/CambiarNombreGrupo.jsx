@@ -10,7 +10,7 @@ class CambiarNombreGrupo extends Component{
     state = {
         zonas:[],
         ramas:[],
-        grupos:[{nombre: "as"}],
+        grupos:[],
         nombreAnterior : 'NombreAnteriorEjemplo',
         nuevoNombre:"",
         zona:"",
@@ -60,17 +60,18 @@ class CambiarNombreGrupo extends Component{
             })
         })
 
-        axios.post("/allGrupo", {}).then(res => {
+        axios.post("/allGrupos", {}).then(res => {
             const respuesta = res.data;
             console.log(respuesta)
             respuesta.forEach(grupo=>{
                 arrGrup.push({
                     value:grupo.nombreGrupo,
-                    label:grupo.nombreGrupo
+                    label:grupo.nombreGrupo,
+                    identificacion:grupo._id
                 })
             })   
             this.setState({
-                ramas:arrGrup
+                grupos:arrGrup
             })
         })
     }

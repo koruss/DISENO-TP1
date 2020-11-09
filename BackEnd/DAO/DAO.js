@@ -66,20 +66,38 @@ module.exports= class DAO {
         });
     }
 
-    async updateProduct(schema, data){
+    async updateMiembroEnGrupo(data, schema, res){
         this.openConnection();
-        schema.findByIdAndUpdate({_id:data.Grupo._id}, )
-    }
-
-    async cambiarNombreGrupo(req, schema, res){
-        this.openConnection();
-        schema.updateOne({nombreRama:req.body.rama.value}, {$set:{ nombreRama: req.body.nombre}}, 
+        // console.log("aqui entro")
+        // console.log(data.body)
+        // console.log(data.body.nombre.datosPersona)
+        schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ jefesGrupo: data.body.nombre.datosPersona}}, 
             function(error, info) {
             if (error) {
                 res.json({
                     resultado: false,
                     msg: 'No se pudo modificar el cliente',
-                    err
+                    error
+                });
+                console.log("error: ",error)
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        })
+    }
+
+    async cambiarNombreGrupo(req, schema, res){
+        this.openConnection();
+        schema.updateOne({_id:req.body.grupo.identificacion}, {$set:{ nombreGrupo: req.body.nombre}}, 
+            function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar el cliente',
+                    error
                 });
                 console.log("error: ",error)
             } else {

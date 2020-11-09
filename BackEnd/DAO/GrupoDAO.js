@@ -33,8 +33,8 @@ module.exports = class GrupoDao {
         //console.log(respuesta);
     }
 
-    async updateProduct(data, res){
-        this.dao.updateProduct(GrupoSchema, data);
+    async updateMiembroEnGrupo(data, res){
+        this.dao.updateMiembroEnGrupo(data, GrupoSchema, res);
     }
 
     async cambiarNombreGrupo(data, res){
