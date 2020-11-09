@@ -75,7 +75,7 @@ class TrasladarMiembro extends Component {
                 arrPers.push({
                     value:nombre.nombre,
                     label:nombre.nombre,
-                    datosPersona:[{ _id:nombre._id,
+                    datosPersona:{ _id:nombre._id,
                         direccion: nombre.direccion,
                         nombre:nombre.nombre,
                         identificacion:nombre.identificacion,
@@ -83,7 +83,7 @@ class TrasladarMiembro extends Component {
                         apellido2:nombre.apellido2,
                         correo:nombre.correo,
                         telefono:nombre.telefono,
-                        estado:nombre.estado}]
+                        estado:nombre.estado}
                 })
             })   
             this.setState({

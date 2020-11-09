@@ -112,8 +112,10 @@ module.exports= class DAO {
     }
 
     async trasladarMiembro(data, schema, res){
+        const schema2= schema;
         this.openConnection();
-        console.log(data) 
+        console.log(data);
+        console.log(data.nombre.datosPersona._id);
         
         schema.updateOne({_id:data.grupoTo.identificacion}, {$push:{ jefesGrupo: data.nombre.datosPersona}}, 
             function(error, info) {
@@ -131,9 +133,9 @@ module.exports= class DAO {
                 })
             }
         })
-        schema.updateOne({_id:data.grupoFrom.identificacion},{$pull:{jefesGrupo:{Object:{_id:data.nombre.datosPersona._id}}}},
-            {multi:true})
- 
+        schema2.update({_id:data.grupoFrom.identificacion}, {$pull:{ "miembros":{"_id":data.nombre.datosPersona._id}} }).then(res=>{
+            console.log(res);
+        })
     }
 
     async modificarRama(req, schema, res){
