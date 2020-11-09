@@ -69,6 +69,10 @@ module.exports = class Control{
         await this.gestorEstructura.crearGrupo(req,res)
     }
     
+    async trasladarMiembro(req,res){
+        await this.gestorEstructura.trasladarMiembro(req,res)
+    }
+    
     registrarMiembro(){
 
     }

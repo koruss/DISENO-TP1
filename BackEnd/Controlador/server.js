@@ -68,3 +68,7 @@ app.post("/cambiarNombreGrupo",(req, res)=>{
 app.post("/guardarGrupo",(req,res)=>{
   control.guardarGrupo(req,res);
 })
+
+app.post("/trasladarMiembro",(req,res)=>{
+  control.trasladarMiembro(req,res);
+})

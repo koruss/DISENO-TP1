@@ -41,6 +41,10 @@ module.exports = class GrupoDao {
         this.dao.cambiarNombreGrupo(data, GrupoSchema, res);
     }
 
+    async trasladarMiembro(data, res){
+        this.dao.trasladarMiembro(data.body, GrupoSchema, res);
+    }
+
     async postGrupo(req,res){
         console.log(req.body);
         // this.grupoSchema.idCoordinacion=req.idCoordinacion;

@@ -68,9 +68,6 @@ module.exports= class DAO {
 
     async updateMiembroEnGrupo(data, schema, res){
         this.openConnection();
-        // console.log("aqui entro")
-        // console.log(data.body)
-        // console.log(data.body.nombre.datosPersona)
         schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ jefesGrupo: data.body.nombre.datosPersona}}, 
             function(error, info) {
             if (error) {
@@ -107,6 +104,31 @@ module.exports= class DAO {
                 })
             }
         })
+    }
+
+    async trasladarMiembro(data, schema, res){
+        this.openConnection();
+        console.log(data) 
+        
+        schema.updateOne({_id:data.grupoTo.identificacion}, {$push:{ jefesGrupo: data.nombre.datosPersona}}, 
+            function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar el cliente',
+                    error
+                });
+                console.log("error: ",error)
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        })
+        schema.updateOne({_id:data.grupoFrom.identificacion},{$pull:{jefesGrupo:{Object:{_id:data.nombre.datosPersona._id}}}},
+            {multi:true})
+ 
     }
 
 }
