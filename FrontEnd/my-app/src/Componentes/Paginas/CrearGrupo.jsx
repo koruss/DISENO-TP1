@@ -12,7 +12,6 @@ export default class CrearGrupo extends Component {
     state = {
         ramasCompletas: [],
         selectedZona: [],
-        selectedRama: [],
         selectedMonitor: [],
         zonas: [],
         ramas: [],
@@ -34,21 +33,24 @@ export default class CrearGrupo extends Component {
         this.limpiarMonitor();
     }
 
-    /*handleChangeRama = selectedRama => {
+    handleChangeRama = selectedRama => {
         this.setState(
-            { selectedRama }
-        )
-    }*/
+            {selectedRama}
+        
+        );
+        this.limpiarMonitorSeleccionado();
+        this.obtenerMonitores(selectedRama);
+    }
 
-    /*async handleChangeRama (e) {
-        var self = this;
-        console.log(e)
-        self.setState(
-            { selectedRama : e}
-        )
-        this.limpiarMonitorSeleccionado()
-        this.obtenerMonitores(e)
-    }*/
+    // async handleChangeRama (e) {
+    //     var self = this;
+    //     console.log(e);
+    //     self.setState({
+    //         selectedRama:e 
+    //     })
+    //     this.limpiarMonitorSeleccionado()
+    //     this.obtenerMonitores(e)
+    // }
 
     handleChangeMonitor = selectedMonitor => {
         this.setState(
@@ -98,21 +100,20 @@ export default class CrearGrupo extends Component {
         })
     }
 
-    async obtenerMonitores(){
-        var self = this;
+    obtenerMonitores(selectedRama){
+        //console.log(ramasCrudo);
         const ramasCrudo =this.state.ramasCompletas;
-        const ramaNombre = this.state.selectedRama;
-        console.log(ramaNombre);
+        //const ramaNombre = this.state.selectedRama;
+        //console.log(ramaNombre);
         let arreglo =[];
         ramasCrudo.forEach(rama=>{
-            if(rama.nombreRama == ramaNombre){
+            if(rama.nombreRama == selectedRama.value){
                 var miembros = rama.jefesGrupo;
-                console.log("caca",miembros);
                 miembros.forEach(miembro=>{
-                    //arreglo.push({
-                   //     value:miembro.id,
-                   //     label:miembro.nombre + miembro.apellido
-                    //})
+                    arreglo.push({
+                       value:miembro.id,
+                       label:miembro.nombre + miembro.apellido
+                    })
                 })
             }
         }) 
@@ -121,7 +122,7 @@ export default class CrearGrupo extends Component {
         })
     }
 
-    async limpiarMonitor(){
+    limpiarMonitor(){
         this.state.monitores = []
     }
 
@@ -129,8 +130,23 @@ export default class CrearGrupo extends Component {
         this.state.selectedRama = []
     }
 
-    async limpiarMonitorSeleccionado(){
+    limpiarMonitorSeleccionado(){
         this.state.selectedMonitor = []
+    }
+
+    onClick = (e) => {
+        axios.post("/guardarGrupo",{
+            nombreGrupo:this.state.nombreGrupo,
+            selectedZona:this.state.selectedZona,
+            monitores:this.state.monitores
+        }).then(res =>{
+            if(!res.data.success){
+                alert(res.data.err);
+            }
+            else{
+                alert("Grupo guardada correctamente")
+            }
+        })
     }
 
     render() {
