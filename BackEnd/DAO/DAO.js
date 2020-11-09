@@ -68,23 +68,28 @@ module.exports= class DAO {
 
     async updateMiembroEnGrupo(data, schema, res){
         this.openConnection();
-        schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ jefesGrupo: data.body.nombre.datosPersona}}, 
-            function(error, info) {
-            if (error) {
-                res.json({
-                    resultado: false,
-                    msg: 'No se pudo modificar el cliente',
-                    error
-                });
-                console.log("error: ",error)
-            } else {
-                res.json({
-                    resultado: true,
-                    info: info
-                })
-            }
-        })
+        console.log(data.body)
+        var tipo="Monitor";
+        if (data.body.monitor.value=="Monitor"){
+            schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ monitores: data.body.nombre.datosPersona}}, 
+                function(error, info) {if (error) {res.json({resultado: false, msg: 'No se pudo modificar el cliente',error});
+                    console.log("error: ",error)
+                } else {res.json({resultado: true, info: info })}})
+        }else if (data.body.monitor.value=="Miembro"){
+            schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ miembros: data.body.nombre.datosPersona}}, 
+                function(error, info) {if (error) {res.json({resultado: false, msg: 'No se pudo modificar el cliente',error});
+                    console.log("error: ",error)
+                } else {res.json({resultado: true, info: info })}})
+        }else{
+            schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ jefesGrupo: data.body.nombre.datosPersona}}, 
+                function(error, info) {if (error) {res.json({resultado: false, msg: 'No se pudo modificar el cliente',error});
+                    console.log("error: ",error)
+                } else {res.json({resultado: true, info: info })}})
+        }
+       
+
     }
+
 
     async cambiarNombreGrupo(req, schema, res){
         this.openConnection();

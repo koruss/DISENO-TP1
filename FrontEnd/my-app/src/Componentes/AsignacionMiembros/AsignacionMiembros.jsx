@@ -14,10 +14,12 @@ class AsignacionMiembros extends Component{
         selectedZona:[],
         selectedRoma:[],
         selectedGrupo:[],
+        selectedMonitor:[{value:"Miembro", label:"Miembro"}, {value:"Monitor", label:"Monitor"}, {value:"Jefe Grupo", label:"Jefe Grupo"}],
         nombre:[],
         zonas:[],
         ramas:[],
-        grupo:[]
+        grupo:[],
+        monitor:""
     }
 
 
@@ -27,6 +29,7 @@ class AsignacionMiembros extends Component{
     componentWillMount() {
         var self = this;
         let arreglo = [];
+        let arrGrup = [];
         let arrPers = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
@@ -63,6 +66,21 @@ class AsignacionMiembros extends Component{
             })   
             this.setState({
                 selectedNombre:arrPers
+            })
+        })
+
+        axios.post("/allGrupos", {}).then(res => {
+            const respuesta = res.data;
+            console.log(respuesta)
+            respuesta.forEach(grupo=>{
+                arrGrup.push({
+                    value:grupo.nombreGrupo,
+                    label:grupo.nombreGrupo,
+                    identificacion:grupo._id
+                })
+            })   
+            this.setState({
+                selectedGrupo:arrGrup
             })
         })
 
@@ -121,7 +139,8 @@ class AsignacionMiembros extends Component{
             nombre:this.state.nombre,
             zona:this.state.zona,
             rama:this.state.rama,
-            grupo:this.state.grupo
+            grupo:this.state.grupo,
+            monitor:this.state.monitor
         }).then(res =>{
             if(!res.data.success){
                 alert(res.data.err);
@@ -160,6 +179,12 @@ class AsignacionMiembros extends Component{
         );
     };
 
+    handleChangeMonitor = monitor => {
+        this.setState(
+            { monitor },     
+        );
+    };
+
     limpiarRamas(){
         this.state.selectedRama = []
     }
@@ -194,6 +219,11 @@ class AsignacionMiembros extends Component{
                             <label for="grupo">Seleccione el grupo al que pertenecerá la persona:</label>
                             <Select components={makeAnimated} name="grupo" value={this.state.grupo} className="basic-multi-select"
                             options={this.state.selectedGrupo} classNamePrefix="select" onChange={this.handleChangeGrupo}/>
+                        </div>
+                        <div class="form-group" class="spacing-base">
+                            <label for="monitor">Seleccione el tipo de persona:</label>
+                            <Select components={makeAnimated} name="monitor" value={this.state.monitor} className="basic-multi-select"
+                            options={this.state.selectedMonitor} classNamePrefix="select" onChange={this.handleChangeMonitor}/>
                         </div>
                     </div>
                     <button type="button" class="btn btn-dark" onClick={this.onClick} >Asignar</button> 
