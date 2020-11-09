@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const GrupoSchema = new Schema(
     {
         idCoordinacion:String,
+        idRama:String,
         nombreRama:String,
         monitores:Array,
         jefesGrupo:Array,

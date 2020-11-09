@@ -26,7 +26,7 @@ import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
 function App() {
     return (
     <Router>
-      <div>
+      <div >
         <Switch>    
           <Route exact path="/" component={Login}/>;
           <Route path="/ventanaAsesor" component={VentanaAsesor}/> 
