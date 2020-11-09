@@ -27,4 +27,9 @@ module.exports = class RamaDao {
         console.log(respuesta);
     }
 
+    async cambiarNombreGrupo(req, res){
+        this.dao.cambiarNombreGrupo(req, RamaSchema, res);
+    }
+
+
  }

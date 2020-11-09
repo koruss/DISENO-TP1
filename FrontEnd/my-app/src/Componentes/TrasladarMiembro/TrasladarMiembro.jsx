@@ -63,7 +63,6 @@ class TrasladarMiembro extends Component{
 
 
     onClick = (e) => {
-        console.log("CAMBIO GRUPO");
         axios.post("/cambiarMiembroGrup",{
             miembro:this.state.miembro,
             grupo:this.state.grupo

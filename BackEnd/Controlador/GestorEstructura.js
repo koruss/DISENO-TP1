@@ -46,7 +46,17 @@ module.exports = class GestorEstructura{
         await this.grupoDAO.getGrupos(req,res);
     }
 
+    async asignarMiembro(req, res){
+        await this.grupoDAO.updateMiembroEnGrupo(req, res);
+    }
   
+    // async asignarMiembro(req, res){
+    //     await this.grupoDAO.cambiarNombreGrupo(data, res);
+    // }
+
+    async cambiarNombreGrupo(req, res){
+        await this.grupoDAO.cambiarNombreGrupo(req, res);
+    }
 
     clientCode(component) {
         console.log(`RESULT: ${component.operation()}`);
