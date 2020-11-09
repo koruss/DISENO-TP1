@@ -6,79 +6,63 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Header from '../General/Header';
 
 class Login extends Component{
+
+    constructor(props){
+        super(props);
+        this.userNameRef=React.createRef();
+        this.passwordRef=React.createRef();
+    }
+
     state = {
         isAuth: false
     };
-
-    showSession = (e) => {
-        e.preventDefault();
-        axios.get('/showSession',{}).then(function(res){
-            //console.log("Sesion es de: "+res.data);
-            //console.log("Sesion 2 es de : "+res.data.userName);
-            alert("La sesión pertenece al usuario: "+res.data.userName+"\nEl correo es: "+res.data.email+
-            "\nSu nombre completo es: "+res.data.fullName+"\nUsuario"+res.data.userType);
-        });    
-      };
       
     logIn = (e) => {
         e.preventDefault();
         var self = this;
-        axios.post('UserLogIn',{ 
-                pName: this.state.userName,
-                pPassword: this.state.password
-        }).then(function(res){
-            if(!res.data.success){
-                alert(res.data.error)
-            }
-            else{
-                self.setState(
-                    {
-                        isAuth: true
-                    }
-                )
-
-                //header.update();
-            }
-        })
-        /*if(this.state.isAuth){
-            //this.props.history.push("/profile")
-            /*auth.logIn(() => {
-                this.props.history.push("/profile")
-            });            
+        if(this.state.userName != null && this.state.password!=null){
+        axios.post('/allAsesores',{usuario:this.state.userName,password:this.state.password}).then(res=>{
+            const respuesta=res.data;
+            console.log("La respuesta es: ");
+            console.log(respuesta);
+                if(respuesta.contrasena == this.state.password){
+                    axios.post('logIn',{pName:this.state.userName,pPassword:this.state.password}).then(res=>{});
+                    self.setState(
+                        {
+                            isAuth: true
+                        }
+                    )
+                }  else {
+                    alert("Nombre de usuario o contraseña incorrecto!!");
+                    this.userNameRef.current.value="";
+                    this.passwordRef.current.value="";
+                }
+        }) 
+        }else {
+            alert("Nombre de usuario o contraseña incorrecto!!");
+            this.userNameRef.current.value="";
+            this.passwordRef.current.value="";
         }
-        */
+
         
-        /*.catch(err => {
-            console.log(e)
-        }); 
-        */         
+
+       /*console.log("el username es: "+this.state.userName);
+       console.log("el password es: "+this.state.password) 
+       axios.post('logIn',{pName:this.state.userName,pPassword:this.state.password}).then(res=>{});
+       self.setState(
+        {
+            isAuth: true
+        }
+        )
+        */
     }
 
     onChange = (e) => this.setState({[e.target.name]:
         e.target.value}); 
 
     
-    onClick = (e) => {
-        axios.post("/cargarComposite",{
-        }).then(res =>{
-            if(!res.data.success){
-                alert(res.data.err);
-            }
-            else{
-                alert("Miembro Guardado correctamente")
-            }
-        })
-    }
-
-    render(){
-        //const { isAuth } = this.state.isAuth;
-        //alert("Si se ha comprobado el estado: "+this.state.isAuth);
-        //if(isAuth) return <Redirect to={'/profile'}/>
-        console.log("Login, el estado del componente es: "+this.state.isAuth);
-        if(this.state.isAuth){
-            this.props.history.push("/")         
-        }        
-        
+    render(){    
+        if(!this.state.isAuth) {
         return(  
             <div>
                     <Header></Header>
@@ -91,11 +75,11 @@ class Login extends Component{
                                         <h1>Log In</h1>
                                         <div class="spacig-base">
                                             <label for="email">Username or Email</label>
-                                            <input type="text" name="userName" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
+                                            <input ref={this.userNameRef} type="text" name="userName" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
                                         </div>    
                                         <div class="spacig-base">
                                             <label for="password">Password</label>
-                                            <input type="password" name="password" onChange={this.onChange} tabIndex="2"/>       
+                                            <input ref={this.passwordRef} type="password" name="password" onChange={this.onChange} tabIndex="2"/>       
                                         </div>  
                                         <div class="spacing-base">
                                             <span class="button buttonInside">
@@ -114,6 +98,11 @@ class Login extends Component{
                         </div>
                     </form>
                 </div>
+        )
+        }else return (
+            <>
+            <Redirect to="/ventanaAsesor"></Redirect>
+            </>
         )
     };
 }

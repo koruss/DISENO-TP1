@@ -8,6 +8,27 @@ module.exports = class Control{
     gestorEstructura = new GestorEstructura();
     
     
+    async allAsesores(req,res){
+        await this.gestorMiembro.obtenerAsesores(req,res);
+    }
+
+    async logIn(req,res){
+        var pName = req.body.pName;
+        var pPassword = req.body.pPassword;
+        console.log(pName);
+        req.session.loggedIn = true;
+        req.session.user=pName;
+        req.session.password=pPassword; 
+        return res.json({ success: true });  
+    }
+    
+    cerrarSesion(req,res){
+        req.session.destroy((err) => {
+            if (err) return console.log("Error al cerrar sesion");
+            else  return res.json({ success: true });
+        })
+    }
+
     constructor(){
     }
 
@@ -32,6 +53,12 @@ module.exports = class Control{
 
     async asignarMiembro(req, res){
         await this.gestorEstructura.asignarMiembro(req, res);
+    async guardarAsesor(data, res){
+        let response = await this.gestorMiembro.agregarAsesor(data, res);
+    }
+
+    async asignarMiembro(data, res){
+        // terminar
     }
 
     //HACER FUNCION EN GESTOR DE ESTRUCTURA DE CREAR ZONA

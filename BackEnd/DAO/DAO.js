@@ -2,6 +2,7 @@ const Zona = require("../Schemas/ZonaSchema");
 const Rama = require("../Schemas/RamaSchema");
 const Grupo= require("../Schemas/GrupoSchema");
 const Persona = require("../Schemas/PersonSchema");
+const Asesor = require("../Schemas/AsesorSchema");
 const DataSource= require('./DataSource');
 
 
@@ -40,6 +41,16 @@ module.exports= class DAO {
     async getData(schema, res){
         this.openConnection();
         schema.find({},(err,data)=>{
+            if(err) return console.log(err);
+            res.send(data);
+            res.end();
+        })
+    }
+
+    //Funcion que recibe un esquema para obtener los datos
+    async getOneData(schema, param, req,res){
+        this.openConnection();
+        schema.findOne({usuario:req.body.usuario},(err,data)=>{
             if(err) return console.log(err);
             res.send(data);
             res.end();
