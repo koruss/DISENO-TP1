@@ -18,29 +18,9 @@ class AsignacionMiembros extends Component{
         grupo:[]
     }
 
-    handleChangeNombre = nombre => {
-        this.setState(
-            { nombre },     
-        );
-    };
 
-    handleChangeZonas = zonas => {
-        this.setState(
-            { zonas },     
-        );
-    };
+    onChange = (e) => this.setState({[e.target.name]:e.target.value});
 
-    handleChangeRamas = ramas => {
-        this.setState(
-            { ramas },     
-        );
-    };
-
-    handleChangeGrupo = grupo => {
-        this.setState(
-            { grupo },     
-        );
-    };
 
     componentWillMount() {
         var self = this;
@@ -82,7 +62,16 @@ class AsignacionMiembros extends Component{
             respuesta.forEach(nombre=>{
                 arrPers.push({
                     value:nombre.nombre,
-                    label:nombre.nombre
+                    label:nombre.nombre,
+                    datosPersona:[{ _id:nombre._id,
+                        direccion: nombre.direccion,
+                        nombre:nombre.nombre,
+                        identificacion:nombre.identificacion,
+                        apellido1:nombre.apellido1,
+                        apellido2:nombre.apellido2,
+                        correo:nombre.correo,
+                        telefono:nombre.telefono,
+                        estado:nombre.estado}]
                 })
             })   
             this.setState({
@@ -90,13 +79,14 @@ class AsignacionMiembros extends Component{
             })
         })
 
-        axios.post("/allGrupo", {}).then(res => {
+        axios.post("/allGrupos", {}).then(res => {
             const respuesta = res.data;
             console.log(respuesta)
             respuesta.forEach(grupo=>{
                 arrGrup.push({
                     value:grupo.nombreGrupo,
-                    label:grupo.nombreGrupo
+                    label:grupo.nombreGrupo,
+                    identificacion:grupo._id
                 })
             })   
             this.setState({
@@ -107,7 +97,6 @@ class AsignacionMiembros extends Component{
 
 
 
-    onChange = (e) => this.setState({[e.target.name]:e.target.value});
 
     onClick = (e) => {
         axios.post("/asignarMiembro",{
@@ -125,6 +114,29 @@ class AsignacionMiembros extends Component{
         })
     }
 
+    handleChangeNombre = nombre => {
+        this.setState(
+            { nombre },     
+        );
+    };
+
+    handleChangeZonas = zonas => {
+        this.setState(
+            { zonas },     
+        );
+    };
+
+    handleChangeRamas = ramas => {
+        this.setState(
+            { ramas },     
+        );
+    };
+
+    handleChangeGrupo = grupo => {
+        this.setState(
+            { grupo },     
+        );
+    };
 
     render() {
         return (
@@ -154,7 +166,7 @@ class AsignacionMiembros extends Component{
                             options={this.state.selectedGrupo} classNamePrefix="select" onChange={this.handleChangeGrupo}/>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-dark">Asignar</button>
+                    <button type="button" class="btn btn-dark" onClick={this.onClick} >Asignar</button>
             </main>
         </div>    
         )

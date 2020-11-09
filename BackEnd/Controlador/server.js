@@ -30,7 +30,8 @@ app.post('/guardarMiembro', (req, res) => {
 })
 
 app.post('/asignarMiembro', (req, res) => {
-  control.asignarMiembro(req.body,res);
+  control.asignarMiembro(req,res);
+  // console.log("Aqui: "+req.body)
 })
 
 
@@ -58,6 +59,11 @@ app.post("/guardarRama",(req, res)=>{
 app.post("/allGrupos",(req, res)=>{
   control.allGrupos(req,res);
 })
+
+app.post("/cambiarNombreGrupo",(req, res)=>{
+  control.cambiarNombreGrupo(req,res);
+})
+
 
 app.post("/guardarGrupo",(req,res)=>{
   control.guardarGrupo(req,res);
