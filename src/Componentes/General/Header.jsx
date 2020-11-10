@@ -4,45 +4,43 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import FormControl from 'react-bootstrap/FormControl'
 import Image from 'react-bootstrap/Image'
-import { Link,Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Route } from 'react-router';
 import axios from 'axios';
 import {Nav,NavDropdown} from 'react-bootstrap';
-import idea from './idea.png';
 
 import './Header.css'
 
 
 class Header extends Component {
     state = {
-        isAuth: false,
-        reloadMainPage:false,
+        isAuth: true,
     }
 
-    componentWillMount(){
+    componentDidMount(){
+        {/*if(this.props.isStore) this.state.isStore=true;          
          var self=this;
-         axios.post('/getSesion',{}).then(function(res){
+         axios.get('/showSession').then(function(res){
              if(res.data.loggedIn == true) self.setState({isAuth:true})
              else self.setState({isAuth:false});
          })
+        */}
     }
 
     logOut(){
         try {this.props.reload()} catch(error){}
-        axios.post("/cerrarSesion",{})
+        axios.get("logOut",{})
         .then(function (res) {
           })
           .catch(function (err) {
           });        
         this.setState({
-            isAuth:false,
-            reloadMainPage:true,
+            isAuth:false
         })
     }
 
     render() {
         var session = this.state.isAuth;
-        if(!this.state.reloadMainPage) {
         return (<>
             <head>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
@@ -50,9 +48,9 @@ class Header extends Component {
             <header className="header">
             <div className="topContainer" display="inline">
                     {/* Home logo */}
-                    <Navbar  variant="dark"  expand="lg">
-                        <Navbar.Brand href="/VentanaAsesor"><img href="/VentanaAsesor" src={idea} alt={"logo"} width="40" height="50"/> Movilize!!</Navbar.Brand>
-                    </Navbar>
+                    <h1 display="inline-block">
+                        <Link className="link" to="/VentanaAsesor">Movilize!!</Link>
+                    </h1>
                     <Navbar  variant="dark"  expand="lg">
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
@@ -113,11 +111,7 @@ class Header extends Component {
             </header>
             </>
         )
-        } else return (
-            <>
-            <Redirect to="/logIn"></Redirect>
-            </>
-        )
+
     }
 
 }

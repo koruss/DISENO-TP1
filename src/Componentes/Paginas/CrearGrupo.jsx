@@ -3,15 +3,15 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Button from 'react-bootstrap/Button'
 import "./Estructura.css"
-import Header from '../General/Header';
+import Header from '../General/Header.jsx';
 import axios from 'axios';
 
 
 export default class CrearGrupo extends Component {
 
     state = {
+        ramasCompletas: [],
         selectedZona: [],
-        selectedRama: [],
         selectedMonitor: [],
         zonas: [],
         ramas: [],
@@ -28,26 +28,25 @@ export default class CrearGrupo extends Component {
         this.setState(
             { selectedZona }
         );
-        this.limpiarMonitor();
+        this.limpiarRamas();
         this.obtenerRamas();
+        this.limpiarMonitor();
     }
 
-    cargarRamas() {
-        var self = this;
-        let arreglo =[];
-        axios.post("/allRamas", {}).then(res => {
-            const respuesta=res.data;
-            console.log(respuesta)
-            respuesta.forEach(rama=>{
-                arreglo.push({
-                    value:rama.nombreZona,
-                    label:rama.nombreZona
-                })
-            })   
-            this.setState({
-                ramas:arreglo
-            })
-        })
+    handleChangeRama = selectedRama => {
+        this.setState(
+            {selectedRama}
+        
+        );
+        this.limpiarMonitorSeleccionado();
+        this.obtenerMonitores(selectedRama);
+    }
+
+    handleChangeMonitor = selectedMonitor => {
+        this.setState(
+            { selectedMonitor }
+        );
+
     }
 
     componentWillMount() {
@@ -69,19 +68,94 @@ export default class CrearGrupo extends Component {
     }
 
     obtenerRamas(){
-        
+        var self = this;
+        let arreglo =[];
+        axios.post("/allRama", {}).then(res => {
+            const respuesta=res.data;
+            const zonaNombre = this.state.selectedZona.value;
+            respuesta.forEach(rama=>{
+                if(rama.zona == zonaNombre){
+                    arreglo.push({
+                        value:rama.nombreRama,
+                        label:rama.nombreRama,
+                        identificacion:rama._id
+                    })
+                }
+            })   
+            this.setState({
+                ramas:arreglo
+            })
+            this.setState({
+                ramasCompletas:respuesta
+            })
+        })
+    }
+
+    obtenerMonitores(selectedRama){
+        //console.log(ramasCrudo);
+        const ramasCrudo =this.state.ramasCompletas;
+        //const ramaNombre = this.state.selectedRama;
+        //console.log(ramaNombre);
+        let arreglo =[];
+        ramasCrudo.forEach(rama=>{
+            if(rama.nombreRama == selectedRama.value){
+                var miembros = rama.jefesGrupo;
+                if(miembros != undefined){
+                miembros.forEach(miembro=>{
+                    arreglo.push({
+                       value:miembro.id,
+                       label:miembro.nombre + miembro.apellido
+                    })
+                })
+                }
+                else{
+                    alert("Esta rama no tiene monitores")
+                }
+            }
+        }) 
+        this.setState({
+            monitores:arreglo
+        })
     }
 
     limpiarMonitor(){
-        console.log("alllo");
         this.state.monitores = []
     }
 
+    limpiarRamas(){
+        this.state.selectedRama = []
+    }
+
+    limpiarMonitorSeleccionado(){
+        this.state.selectedMonitor = []
+    }
+
+    onClick = (e) => {
+        if(this.state.nombreGrupo != ""){
+        axios.post("/guardarGrupo",{
+            nombreGrupo:this.state.nombreGrupo,
+            selectedZona:this.state.selectedZona,
+            selectedRama:this.state.selectedRama,
+            monitores:this.state.monitores
+        }).then(res =>{
+            if(!res.data.success){
+                alert(res.data.err);
+            }
+            else{
+                alert("Grupo guardada correctamente")
+            }
+        })
+        } 
+        else{
+            alert("Por favor ingresar el nombre del grupo")
+        }
+    }
 
     render() {
         return (
+           <div>
+            <Header></Header>
             <div id="center-section">
-                <Header></Header>
                 <div id="main-section">
                     <div class="border">
                         <div class="box-container">
@@ -97,12 +171,12 @@ export default class CrearGrupo extends Component {
                                     options={this.state.zonas} className="basic-multi-select" classNamePrefix="select"/>
                                 <div className="spacing-base">
                                     <label>Rama a la que pertenece</label>
-                                    <Select components={makeAnimated} name="ramas" value={this.state.selectedRama} onChange={this.handleChange} 
+                                    <Select components={makeAnimated} name="ramas" value={this.state.selectedRama} onChange={this.handleChangeRama} 
                                     options={this.state.ramas} className="basic-multi-select" classNamePrefix="select" />
                                 </div>
                                 <div className="spacing-base">
                                     <label>Seleccione el Monitor del Grupo</label>
-                                    <Select components={makeAnimated} name="monitores" value={this.state.selectedMonitor} onChange={this.handleChange} 
+                                    <Select components={makeAnimated} name="monitores" value={this.state.selectedMonitor} onChange={this.handleChangeMonitor} 
                                     options={this.state.monitores} className="basic-multi-select" classNamePrefix="select" />
                                 </div>
                                 <div>
@@ -117,6 +191,7 @@ export default class CrearGrupo extends Component {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         )
     };

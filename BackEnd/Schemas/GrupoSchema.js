@@ -6,7 +6,9 @@ const GrupoSchema = new Schema(
         idCoordinacion:String,
         nombreRama:String,
         monitores:Array,
-        jefesGrupo:Array
+        jefesGrupo:Array,
+        nombreGrupo:String,
+        miembros:Array
     }
 );
 
