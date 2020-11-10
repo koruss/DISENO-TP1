@@ -30,12 +30,23 @@ module.exports = class RamaDao {
         console.log(req)
         this.dao.modificarRama(req, RamaSchema, res);
     }
-    
+ 
     //Funcion encargada de obtener todas las ramas de la base de datos
     async getRamas(req, res){
         this.dao.getData(RamaSchema, res);
         const respuesta = res.data;
         console.log(respuesta);
+    }
+
+    async cambiarNombreGrupo(req, res){
+        this.dao.cambiarNombreGrupo(req, RamaSchema, res);
+    }
+
+
+    //Funcion encargada de modificar una rama
+    async updateRama(req, res){
+        console.log(req)
+        this.dao.modificarRama(req, RamaSchema, res);
     }
 
  }

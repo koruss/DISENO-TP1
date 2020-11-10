@@ -25,7 +25,8 @@ module.exports = class GestorEstructura{
         await this.ramaDAO.postRama(data,res);
     }
 
-    crearGrupo(){
+    async crearGrupo(data,res){
+        await this.grupoDAO.postGrupo(data,res);
         
     }
     
@@ -43,6 +44,22 @@ module.exports = class GestorEstructura{
 
     async obtenerGrupos(req,res){
         await this.grupoDAO.getGrupos(req,res);
+    }
+
+    async asignarMiembro(req, res){
+        await this.grupoDAO.updateMiembroEnGrupo(req, res);
+    }
+  
+    // async asignarMiembro(req, res){
+    //     await this.grupoDAO.cambiarNombreGrupo(data, res);
+    // }
+
+    async cambiarNombreGrupo(req, res){
+        await this.grupoDAO.cambiarNombreGrupo(req, res);
+    }
+
+    async trasladarMiembro(req, res){
+        await this.grupoDAO.trasladarMiembro(req, res);
     }
 
     async modificarRama(req, res){

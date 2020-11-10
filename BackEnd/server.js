@@ -15,21 +15,21 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-const buildPath = path.join(__dirname, '..', 'build');
-// add middlewares
-app.use(express.static(path.join(buildPath)));
+// const buildPath = path.join(__dirname, '..', 'build');
+// // add middlewares
+// app.use(express.static(path.join(buildPath)));
 
-app.use((req, res, next) => {
-  res.sendFile(path.join(buildPath));
-});
+// app.use((req, res, next) => {
+//   res.sendFile(path.join(buildPath));
+// });
 
-app.get('*', (req, res) => {    
-  res.sendFile(path.join(buildPath, 'index.html')), function(err) {             
-  if (err) {                 
-       res.status(500).send(err) 
-       }        
-  };
-});
+// app.get('*', (req, res) => {    
+//   res.sendFile(path.join(buildPath, 'index.html')), function(err) {             
+//   if (err) {                 
+//        res.status(500).send(err) 
+//        }        
+//   };
+// });
 //app.use(cors());
 /*app.get('/', function (req, res) {
     res.send('Saludos desde express');

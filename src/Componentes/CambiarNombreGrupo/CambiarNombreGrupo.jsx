@@ -12,39 +12,24 @@ class CambiarNombreGrupo extends Component{
         ramas:[],
         grupos:[],
         nombreAnterior : 'NombreAnteriorEjemplo',
-        zona:[],
-        rama:[],
-        grupo:[]
+        nuevoNombre:"",
+        zona:"",
+        rama:"",
+        grupo:""
     }
 
-    onChange = (e) => this.setState({[e.target.name]:
-        e.target.value}); 
+    
+    onChange = (e) => this.setState({[e.target.name]:e.target.value});
 
     _handleChangeNombreAnterior(val) {
         return val;
     }
 
-    handleChangeZona = zona => {
-        this.setState(
-            { zona },     
-        );
-    };
 
-    handleChangeRama = rama => {
-        this.setState(
-            { rama },     
-        );
-    };
-
-    handleChangeGrupo = grupo => {
-        this.setState(
-            { grupo },     
-        );
-    };
 
     componentWillMount() {
         var self = this;
-        let arreglo =[];
+        let arreglo = [];
         let arrRama = [];
         let arrGrup = [];
         axios.post("/allZonas", {}).then(res => {
@@ -75,22 +60,56 @@ class CambiarNombreGrupo extends Component{
             })
         })
 
-        axios.post("/allGrupo", {}).then(res => {
+        axios.post("/allGrupos", {}).then(res => {
             const respuesta = res.data;
             console.log(respuesta)
             respuesta.forEach(grupo=>{
                 arrGrup.push({
                     value:grupo.nombreGrupo,
-                    label:grupo.nombreGrupo
+                    label:grupo.nombreGrupo,
+                    identificacion:grupo._id
                 })
             })   
             this.setState({
-                ramas:arrGrup
+                grupos:arrGrup
             })
         })
     }
 
-    
+    //Funcion para manejar los eventos de un boton
+    onClick = (e) => {
+        axios.post("/cambiarNombreGrupo",{
+            zona:this.state.zona,
+            rama:this.state.rama,
+            grupo:this.state.grupo,
+            nombre:this.state.nombreNuevo
+        }).then(res =>{
+            if(!res.data.success){
+                alert(res.data.err);
+            }
+            else{
+                alert("Miembro Guardado correctamente")
+            }
+        })
+    }
+
+    handleChangeZona = zona => {
+        this.setState(
+            { zona },     
+        );
+    };
+
+    handleChangeRama = rama => {
+        this.setState(
+            { rama },     
+        );
+    };
+
+    handleChangeGrupo = grupo => {
+        this.setState(
+            { grupo },     
+        );
+    };
 
 render() {
     return (
@@ -122,9 +141,9 @@ render() {
                 </div>
                 <div className="label-wrapper">
                     <label for="nombreNuevo">Nuevo nombre:</label>
-                    <input type="text" name="nombreNuevo" onChange={this.onChange} tabIndex="1" className="input-standar"/>
+                    <input type="text" name="nombreNuevo" onChange={this.onChange}  className="input-standar"/>
                 </div>
-                <button type="button" class="btn btn-dark">Cambiar</button>
+                <button type="button" class="btn btn-dark"  onClick={this.onClick}>Cambiar</button>
         </main>
     </div>    
     )
