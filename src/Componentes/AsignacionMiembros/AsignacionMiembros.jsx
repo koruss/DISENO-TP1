@@ -115,20 +115,28 @@ class AsignacionMiembros extends Component{
 
 
     onClick = (e) => {
-        axios.post("/asignarMiembro",{
-            nombre:this.state.nombre,
-            zona:this.state.zona,
-            rama:this.state.rama,
-            grupo:this.state.grupo,
-            monitor:this.state.monitor
-        }).then(res =>{
-            if(!res.data.success){
-                alert(res.data.err);
-            }
-            else{
-                alert("Miembro Guardado correctamente")
-            }
-        })
+        if(this.state.nombre.length != 0 && this.state.zona.length != 0 &&
+           this.state.rama.length != 0 && this.state.grupo.length != 0 &&
+           this.state.monitor.length != 0){
+            axios.post("/asignarMiembro",{
+                nombre:this.state.nombre,
+                zona:this.state.zona,
+                rama:this.state.rama,
+                grupo:this.state.grupo,
+                monitor:this.state.monitor
+            }).then(res =>{
+                if(!res.data.success){
+                    alert(res.data.err);
+                }
+                else{
+                    alert("Miembro Guardado correctamente")
+
+                }
+            })
+        }
+        else{
+            alert("Ingrese todos los datos")
+        }
     }
 
     handleChangeNombre = nombre => {
