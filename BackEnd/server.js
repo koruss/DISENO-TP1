@@ -67,7 +67,7 @@ app.post('/guardarAsesor', (req, res) => {
 })
 
 app.post('/asignarMiembro', (req, res) => {
-  control.asignarMiembro(req.body,res);
+  control.asignarMiembro(req,res);
 })
 
 
@@ -77,7 +77,7 @@ app.post("/allZonas",(req,res)=>{
 })
 
 app.post('/cambiarMiembroGrup', (req, res) => {
-  control.cambiarMiembroGrupo(res);
+  control.cambiarMiembroGrupo(req, res);
   })
   
 app.post("/allRama",(req, res)=>{

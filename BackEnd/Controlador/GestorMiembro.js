@@ -17,8 +17,8 @@ module.exports = class GestorMiembro{
         let response = await this.personaDAO.postAsesor(data, res)
     }
 
-    cambiarMiembroGrupo(data){
-        this.personaDAO.updatePersona(data);
+    cambiarMiembroGrupo(data, res){
+        this.personaDAO.updatePersona(data, res);
     }
 
     async obtenerPersonas(req,res){

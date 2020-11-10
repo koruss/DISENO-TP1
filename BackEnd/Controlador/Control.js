@@ -110,9 +110,8 @@ module.exports = class Control{
 
     }
 
-    cambiarMiembroGrupo(data){
-        console.log("cambiar");
-        this.gestorMiembro.cambiarMiembroGrupo(data);
+    cambiarMiembroGrupo(data, res){
+        this.gestorEstructura.trasladarMiembro(data, res);
     }
 
     definirMonitor(){
