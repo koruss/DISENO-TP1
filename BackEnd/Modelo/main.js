@@ -1,7 +1,6 @@
-import { LeafPersona } from './LeafPersona.js';
-import { CompositePersona } from './CompositePersona.js';
-import { Direccion } from './Direccion.js';
-
+var Direccion = require('./Direccion');
+var LeafPersona = require('./LeafPersona');
+var CompositePersona = require('./CompositePersona');
 
 function clientCode(component) {
     // ...
@@ -26,44 +25,3 @@ console.log('-----------');
 console.log('Composicion');
 clientCode(zona);
 console.log('-----------');
-
-
-
-
-//------------- TODO
-//TODO: BORRAR ESTO CUANDO SE DEJE DE NECESITAR 
-/*
-function clientCode(component) {
-    // ...
-
-    console.log(`RESULT: ${component.operation()}`);
-
-    // ...
-}
-
-const simple = new LeafPersona();
-console.log('Client: I\'ve got a simple component:');
-clientCode(simple);
-console.log('-----------');
-
-var tree = new CompositePersona();
-const branch1 = new CompositePersona();
-branch1.anadirHijo(new LeafPersona());
-branch1.anadirHijo(new LeafPersona());
-const branch2 = new CompositePersona();
-branch2.anadirHijo(new LeafPersona());
-tree.anadirHijo(branch1);
-tree.anadirHijo(branch2);
-clientCode(tree);
-console.log('-------------');
-
-
-function clientCode2(component1, component2) {
-    if (component1.isComposite()) {
-        component1.anadirHijo(component2);
-    }
-    console.log(`RESULT: ${component1.operation()}`);
-}
-
-
-clientCode2(tree, simple);*/
