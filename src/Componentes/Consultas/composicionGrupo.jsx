@@ -11,7 +11,7 @@ export default class composicionGrupo extends Component {
             <div >
                 <Header></Header>
                 <h1> ## Consulta composicion de grupos ##</h1>
-                <h2>Debemos implementarlo o nos va a cargar la verga :/</h2>
+                <h2>404 Ventana Not Found :) </h2>
             </div>
         )
     };
