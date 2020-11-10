@@ -12,7 +12,7 @@ class AsignacionMiembros extends Component{
         gruposCompletos: [],
         selectedNombre:[],
         selectedZona:[],
-        selectedRoma:[],
+        selectedRama:[],
         selectedGrupo:[],
         selectedMonitor:[{value:"Miembro", label:"Miembro"}, {value:"Monitor", label:"Monitor"}, {value:"Jefe Grupo", label:"Jefe Grupo"}],
         nombre:[],
@@ -87,10 +87,7 @@ class AsignacionMiembros extends Component{
                 }
             })   
             this.setState({
-                ramas:arreglo
-            })
-            this.setState({
-                ramasCompletas:respuesta
+                selectedRama:arreglo
             })
         })
     }
@@ -105,7 +102,8 @@ class AsignacionMiembros extends Component{
                 if(grupo.nombreRama == ramaNombre){
                     arreglo.push({
                         value:grupo.nombreGrupo,
-                        label:grupo.nombreGrupo
+                        label:grupo.nombreGrupo,
+                        identificacion:grupo._id
                     })
                 }
             })   
@@ -161,6 +159,12 @@ class AsignacionMiembros extends Component{
         );
     };
 
+    handleChangeMonitor = monitor => {
+        this.setState(
+            { monitor },     
+        );
+    };
+
     limpiarRamas(){
         this.state.selectedRama = []
     }
@@ -189,7 +193,7 @@ class AsignacionMiembros extends Component{
                         <div class="form-group" class="spacing-base">
                             <label for="rama">Seleccione la rama a la que pertenecerá la persona:</label>
                             <Select components={makeAnimated} name="rama" value={this.state.ramas} className="basic-multi-select"
-                            options={this.state.selectedRoma} classNamePrefix="select" onChange={this.handleChangeRamas}/>
+                            options={this.state.selectedRama} classNamePrefix="select" onChange={this.handleChangeRamas}/>
                         </div>
                         <div class="form-group" class="spacing-base">
                             <label for="grupo">Seleccione el grupo al que pertenecerá la persona:</label>

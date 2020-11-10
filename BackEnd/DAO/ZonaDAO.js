@@ -14,6 +14,10 @@ module.exports = class ZonaDAO {
 
     }
 
+    async updateZona(req, res){
+        this.dao.modificarZona(req, ZonaSchema, res);
+    }
+
     //Funcion encargada de obtener todas las zonas de la base de datos
     async getZonas(req, res){
         this.dao.getData(ZonaSchema, res);

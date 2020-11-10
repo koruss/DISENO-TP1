@@ -79,8 +79,7 @@ module.exports= class DAO {
 
     async updateMiembroEnGrupo(data, schema, res){
         this.openConnection();
-        console.log(data.body)
-        var tipo="Monitor";
+        // console.log(data.body)
         if (data.body.monitor.value=="Monitor"){
             schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ monitores: data.body.nombre.datosPersona}}, 
                 function(error, info) {if (error) {res.json({resultado: false, msg: 'No se pudo modificar el cliente',error});
@@ -125,10 +124,10 @@ module.exports= class DAO {
     async trasladarMiembro(data, schema, res){
         const schema2= schema;
         this.openConnection();
-        console.log(data);
-        console.log(data.nombre.datosPersona._id);
+        // console.log(data);
+        // console.log(data.nombre.datosPersona._id);
         
-        schema.updateOne({_id:data.grupoTo.identificacion}, {$push:{ jefesGrupo: data.nombre.datosPersona}}, 
+        schema.updateOne({_id:data.grupoTo.identificacion}, {$push:{ miembros: data.nombre.datosPersona}}, 
             function(error, info) {
             if (error) {
                 res.json({
@@ -145,7 +144,7 @@ module.exports= class DAO {
             }
         })
         schema2.update({_id:data.grupoFrom.identificacion}, {$pull:{ "miembros":{"_id":data.nombre.datosPersona._id}} }).then(res=>{
-            console.log(res);
+            // console.log(res);
         })
     }
 
@@ -159,6 +158,27 @@ module.exports= class DAO {
                 } 
             }
         )
+    }
+
+    async modificarZona(req, schema, res){
+        console.log(req)
+        this.openConnection();
+        schema.updateOne({_id:req.selectedZona.identificacion}, {$push:{ ramas: {nombre: req.nombreRama}}}, 
+            function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar las ramas',
+                    error
+                });
+                console.log("error: ",error)
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        })
     }
 
 }

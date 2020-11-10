@@ -38,7 +38,7 @@ app.post('/guardarAsesor', (req, res) => {
 })
 
 app.post('/asignarMiembro', (req, res) => {
-  control.asignarMiembro(req.body,res);
+  control.asignarMiembro(req,res);
 })
 
 
@@ -48,7 +48,7 @@ app.post("/allZonas",(req,res)=>{
 })
 
 app.post('/cambiarMiembroGrup', (req, res) => {
-  control.cambiarMiembroGrupo(res);
+  control.cambiarMiembroGrupo(req, res);
   })
   
 app.post("/allRama",(req, res)=>{
@@ -61,6 +61,14 @@ app.post("/allPersona",(req, res)=>{
 
 app.post("/guardarRama",(req, res)=>{
   control.crearRama(req.body,res);
+})
+
+app.post("/guardarGrupo",(req, res)=>{
+  control.guardarGrupo(req.body,res);
+})
+
+app.post("/cambiarNombreGrupo",(req, res)=>{
+  control.cambiarNombreGrupo(req,res);
 })
 
 app.post("/allGrupos",(req, res)=>{
