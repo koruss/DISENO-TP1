@@ -20,6 +20,7 @@ import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/Consultar
 import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
 import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
 import arbolEstructural from './Componentes/Tree/TreeContainer';
+import contacto from './Componentes/Contacto/Contacto'
 
 function App() {
     return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/creacionGrupo" component={CrearGrupo}/> 
           <Route path="/cambiarNombreGrupo" component={CambiarNombreGrupo}/> 
           <Route path="/arbolEstructural" component={TreeContainer}/> 
+          <Route path="/contacto" component={contacto}/> 
           {/*                       PENDIENTES          */}            
           {/*
           <Route path="/contacto" component={Contacto}/>

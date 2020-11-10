@@ -8,6 +8,7 @@ import '../../Componentes/General/Utils.css'
 import Header from '../General/Header';
 
 class TrasladarMiembro extends Component {
+    
     state = {
         selectedNombre:[],
         selectedZona:[],
@@ -135,20 +136,42 @@ class TrasladarMiembro extends Component {
 
 
     onClick = (e) => {
-        axios.post("/cambiarMiembroGrup",{
-            nombre:this.state.nombre,
-            zona:this.state.zona,
-            rama:this.state.rama,
-            grupoFrom:this.state.grupoFrom,
-            grupoTo: this.state.grupoTo
-        }).then(res =>{
-            if(!res.data.success){
-                alert(res.data.err);
-            }
-            else{
-                alert("Miembro Guardado correctamente")
-            }
-        })
+        if(this.state.nombre.length != 0 && this.state.selectedZona.length != 0 &&
+            this.state.selectedRama.length != 0 && this.state.grupoFrom.length != 0 &&
+            this.state.grupoTo.length != 0){
+            axios.post("/cambiarMiembroGrup",{
+                nombre:this.state.nombre,
+                zona:this.state.zona,
+                rama:this.state.rama,
+                grupoFrom:this.state.grupoFrom,
+                grupoTo: this.state.grupoTo
+            }).then(res =>{
+                if(!res.data.success){
+                    alert(res.data.err);
+                }
+                else{
+                    alert("Miembro Guardado correctamente")
+                    this.setState({
+                        nombre:[]
+                    })
+                    this.setState({
+                        selectedZona:[]
+                    })
+                    this.setState({
+                        selectedRama:[]
+                    })
+                    this.setState({
+                        grupoFrom:[]
+                    })
+                    this.setState({
+                        grupoTo:[]
+                    })
+                }
+            })
+        }
+        else{
+            alert("Ingrese todos los datos")
+        }
     }
 
     handleChangeNombre = nombre => {

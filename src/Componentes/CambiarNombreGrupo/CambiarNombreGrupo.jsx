@@ -7,6 +7,12 @@ import Header from '../General/Header';
 import axios from 'axios';
 
 class CambiarNombreGrupo extends Component{
+
+    constructor(props){
+        super(props);
+        this.nombreRef=React.createRef();
+    }
+
     state = {
         selectedZona:[],
         selectedRama:[],
@@ -87,19 +93,35 @@ class CambiarNombreGrupo extends Component{
 
     //Funcion para manejar los eventos de un boton
     onClick = (e) => {
-        axios.post("/cambiarNombreGrupo",{
-            zona:this.state.zona,
-            rama:this.state.rama,
-            grupo:this.state.grupo,
-            nombre:this.state.nombreNuevo
-        }).then(res =>{
-            if(!res.data.success){
-                alert(res.data.err);
-            }
-            else{
-                alert("Miembro Guardado correctamente")
-            }
-        })
+        if(this.state.nombre != "" && this.state.selectedRama.length != 0 &&
+        this.state.selectedZona.length != 0 && this.state.selectedGrupo.length != 0){
+            axios.post("/cambiarNombreGrupo",{
+                zona:this.state.zona,
+                rama:this.state.rama,
+                grupo:this.state.grupo,
+                nombre:this.state.nombreNuevo
+            }).then(res =>{
+                if(!res.data.success){
+                    alert(res.data.err);
+                }
+                else{
+                    alert("Nombre de grupo modificado correctamente")
+                    this.nombreRef.current.value="";
+                    this.setState({
+                        selectedRama:[]
+                    })
+                    this.setState({
+                        selectedZona:[]
+                    })
+                    this.setState({
+                        selectedGrupo:[]
+                    })
+                }
+            })
+        }
+        else{
+            alert("Ingrese todos los datos")
+        }
     }
 
     handleChangeNombre = nombre => {
@@ -163,7 +185,7 @@ render() {
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="nombreNuevo">Nuevo nombre:</label>
-                        <input type="text" name="nombreNuevo" onChange={this.onChange}  className="input-standar"/>
+                        <input ref={this.nombreRef} type="text" name="nombreNuevo" onChange={this.onChange}  className="input-standar"/>
                     </div>
                 </div>
                 
