@@ -19,6 +19,7 @@ import ConsultaGruposRolesXMiembro from './Componentes/GrupoRolesXMiembro/GrupoR
 import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/ConsultarCompGrupo';
 import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
 import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
+import arbolEstructural from './Componentes/Tree/TreeContainer';
 
 function App() {
     return (
@@ -46,7 +47,10 @@ function App() {
           {/*                       Consultas             */}
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
           <Route path="/consultaGruposPorMiembro" component={ConsultaGruposRolesXMiembro}/> 
-          <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
+          <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/>
+          <Route path="/arbolEstructural" component={arbolEstructural}/>
+           
+
           {/*                        Creacion de estructuras */}
           <Route path="/crearGrupo" component={CrearGrupo}/> 
           <Route path="/crearZona" component={CrearZona}/> 

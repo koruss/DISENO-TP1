@@ -14,7 +14,7 @@ module.exports = class Control{
     async logIn(req,res){
         var pName = req.body.pName;
         var pPassword = req.body.pPassword;
-        console.log(pName);
+        //console.log(pName);
         req.session.loggedIn = true;
         req.session.user=pName;
         req.session.password=pPassword; 
