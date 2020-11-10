@@ -8,12 +8,16 @@ module.exports = class GrupoDAO {
     constructor(){
     }
 
+<<<<<<<<< Temporary merge branch 1
+    async postGrupo(req,res){
+        this.grupoSchema.nombreRama=req.body.selectedRama.value;
+        this.grupoSchema.monitores=req.body.monitores;
+        this.grupoSchema.nombreGrupo=req.body.nombreGrupo;
+        await this.dao.postData(this.grupoSchema,res);
+    }
+=========
     //Funcion encargada de guardar un nuevo usuario en la base de datos
     async postPersona(data, res){
-        //const direccion = {
-        //    pais: data.pais
-        //}
-        //console.log("pais ---------->",data.pais.value);
         this.personaSchema.nombre=data.nombre;
         this.personaSchema.identificacion=data.identificacion;
         this.personaSchema.apellido1=data.apellido1;

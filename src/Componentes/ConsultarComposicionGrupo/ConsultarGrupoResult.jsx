@@ -31,12 +31,12 @@ class ConsultarGrupoResult extends Component {
 
 
     render() {
-        this.state.grupo = this.props.location.data.grupo
-        this.state.rama = this.props.location.data.rama
-        this.state.zona = this.props.location.data.zona
-        this.state.miembros = [{nombre: "Juan"},{nombre: "Maria"}]//this.props.location.data.miembros
-        this.state.jefe = [{nombre: "JuanJ",apellido: "mora"},{nombre: "MariaJ"}]
-        this.state.monitores = [{nombre: "JuanM",apellido: "mora"},{nombre: "MariaM"}]
+        // this.state.grupo = this.props.location.data.grupo
+        // this.state.rama = this.props.location.data.rama
+        // this.state.zona = this.props.location.data.zona
+        // this.state.miembros = [{nombre: "Juan"},{nombre: "Maria"}]//this.props.location.data.miembros
+        // this.state.jefe = [{nombre: "JuanJ",apellido: "mora"},{nombre: "MariaJ"}]
+        // this.state.monitores = [{nombre: "JuanM",apellido: "mora"},{nombre: "MariaM"}]
         return (
             <div>
                 <Header></Header>
