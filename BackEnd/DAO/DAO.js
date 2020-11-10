@@ -17,13 +17,11 @@ module.exports= class DAO {
         //////////////////////////////
         ///   MONGODB CONNECTION
         //////////////////////////////
-
         this.connection = this.dataSource.Connect;
-
         this.state = this.connection.connection;
+        this.state.setMaxListeners(0);
         this.state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
         this.state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
-
     }
 
     //Funcion que recibe un esquema para guardarlo en la base de datos
