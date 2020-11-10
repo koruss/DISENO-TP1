@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Componentes/General/Header';
 import AsesorVentanaGeneral from './Componentes/General/AsesorVentanaPrincipal';
 import Login from './Componentes/Login/Login';
-import Contacto from './Componentes/Contacto/Contacto';
 import CrearGrupo from './Componentes/Paginas/CrearGrupo';
 import CrearRama from './Componentes/Paginas/CrearRama';
 import CrearZona from './Componentes/Paginas/CrearZona';
@@ -21,9 +20,8 @@ import AfiliacionPersonal from './Componentes/AfiliacionPersonal/AfiliacionPerso
 import AsignacionMiembros from './Componentes/AsignacionMiembros/AsignacionMiembros';
 import ConsultaGruposRolesXMiembro from './Componentes/GrupoRolesXMiembro/GrupoRolesXMiembro';
 import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/ConsultarCompGrupo';
-//import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
+import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
 import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
-
 
 function App() {
     return (
@@ -33,7 +31,6 @@ function App() {
           <Route exact path="/" component={Login}/>;
           <Route path="/ventanaAsesor" component={VentanaAsesor}/> 
           <Route path="/login" component={Login}/> 
-          <Route path="/contacto" component={Contacto}/> 
           <Route path="/registroMiembro" component={RegistroMiembro}/> 
           <Route path="/trasladoMiembro" component={TrasladarMiembro}/> 
           <Route path="/creacionZona" component={CrearZona}/> 
@@ -55,6 +52,7 @@ function App() {
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
           <Route path="/consultaGruposPorMiembro" component={ConsultaGruposRolesXMiembro}/> 
           <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
+          <Route path="/consultarGrupoResult" component={ConsultarGrupoResult}/> 
 
           {/*                        Creacion de estructuras */}
           <Route path="/crearGrupo" component={CrearGrupo}/> 
