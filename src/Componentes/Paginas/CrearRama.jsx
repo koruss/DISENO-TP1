@@ -34,7 +34,8 @@ export default class CrearRama extends Component {
             respuesta.forEach(zona=>{
                 arreglo.push({
                     value:zona.nombreZona,
-                    label:zona.nombreZona
+                    label:zona.nombreZona,
+                    identificacion:zona._id
                 })
             })   
             this.setState({

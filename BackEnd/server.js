@@ -92,6 +92,14 @@ app.post("/guardarRama",(req, res)=>{
   control.crearRama(req.body,res);
 })
 
+app.post("/guardarGrupo",(req, res)=>{
+  control.guardarGrupo(req.body,res);
+})
+
+app.post("/cambiarNombreGrupo",(req, res)=>{
+  control.cambiarNombreGrupo(req,res);
+})
+
 app.post("/allGrupos",(req, res)=>{
   control.allGrupos(req,res);
 })

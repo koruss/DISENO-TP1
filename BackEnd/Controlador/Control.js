@@ -38,9 +38,15 @@ module.exports = class Control{
 
     }
 
-    async crearRama(data, res){
-        await this.gestorEstructura.crearRama(data,res);
+    async crearRama(req, res){
+        // await this.gestorEstructura.modificarZona(req,res);
+        await this.gestorEstructura.crearRama(req,res);
     } 
+
+    async guardarGrupo(req,res){
+        await this.gestorEstructura.modificarRama(req,res);
+        await this.gestorEstructura.crearGrupo(req,res)
+    }
 
     async definirEstructura(info){
         console.log( this.dao.guardarZona(info));
@@ -65,10 +71,7 @@ module.exports = class Control{
         )
     }
 
-    async guardarGrupo(req,res){
-        await this.gestorEstructura.modificarRama(req,res);
-        await this.gestorEstructura.crearGrupo(req,res)
-    }
+
 
     async allZonas(req, res){
         await this.gestorEstructura.obtenerZonas(req, res);

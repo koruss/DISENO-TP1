@@ -27,7 +27,6 @@ module.exports = class RamaDao {
     }
 
     async updateRama(req, res){
-        console.log(req)
         this.dao.modificarRama(req, RamaSchema, res);
     }
  

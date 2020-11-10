@@ -8,14 +8,13 @@ import axios from 'axios';
 
 class CambiarNombreGrupo extends Component{
     state = {
+        selectedZona:[],
+        selectedRama:[],
+        selectedGrupo:[],
+        nombre:[],
         zonas:[],
         ramas:[],
-        grupos:[],
-        nombreAnterior : 'NombreAnteriorEjemplo',
-        nuevoNombre:"",
-        zona:"",
-        rama:"",
-        grupo:""
+        grupo:[]
     }
 
     
@@ -30,8 +29,6 @@ class CambiarNombreGrupo extends Component{
     componentWillMount() {
         var self = this;
         let arreglo = [];
-        let arrRama = [];
-        let arrGrup = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
             console.log(respuesta)
@@ -42,36 +39,48 @@ class CambiarNombreGrupo extends Component{
                 })
             })   
             this.setState({
-                zonas:arreglo
+                selectedZona:arreglo
             })
         })
+    }
 
+    obtenerRamas(){
+        var self = this;
+        let arreglo =[];
         axios.post("/allRama", {}).then(res => {
-            const respuesta = res.data;
-            console.log(respuesta)
+            const respuesta=res.data;
+            const zonaNombre = this.state.selectedZona.value;
             respuesta.forEach(rama=>{
-                arrRama.push({
-                    value:rama.nombreRama,
-                    label:rama.nombreRama
-                })
+                if(rama.zona == zonaNombre){
+                    arreglo.push({
+                        value:rama.nombreRama,
+                        label:rama.nombreRama
+                    })
+                }
             })   
             this.setState({
-                ramas:arrRama
+                selectedRama:arreglo
             })
         })
+    }
 
+    obtenerGrupos(){
+        var self = this;
+        let arreglo =[];
         axios.post("/allGrupos", {}).then(res => {
-            const respuesta = res.data;
-            console.log(respuesta)
+            const respuesta=res.data;
+            const ramaNombre = this.state.selectedRama.value;
             respuesta.forEach(grupo=>{
-                arrGrup.push({
-                    value:grupo.nombreGrupo,
-                    label:grupo.nombreGrupo,
-                    identificacion:grupo._id
-                })
+                if(grupo.nombreRama == ramaNombre){
+                    arreglo.push({
+                        value:grupo.nombreGrupo,
+                        label:grupo.nombreGrupo,
+                        identificacion:grupo._id
+                    })
+                }
             })   
             this.setState({
-                grupos:arrGrup
+                selectedGrupo:arreglo
             })
         })
     }
@@ -93,23 +102,42 @@ class CambiarNombreGrupo extends Component{
         })
     }
 
-    handleChangeZona = zona => {
+    handleChangeNombre = nombre => {
         this.setState(
-            { zona },     
+            { nombre },     
         );
     };
 
-    handleChangeRama = rama => {
+    handleChangeZonas = selectedZona => {
         this.setState(
-            { rama },     
+            { selectedZona }
         );
-    };
+        this.limpiarRamas();
+        this.obtenerRamas();
+    }
+
+    handleChangeRamas = selectedRama => {
+        this.setState(
+            {selectedRama}
+        );
+        this.limpiarGrupos();
+        this.obtenerGrupos();
+    }
 
     handleChangeGrupo = grupo => {
         this.setState(
             { grupo },     
         );
     };
+
+    limpiarRamas(){
+        this.state.selectedRama = []
+    }
+
+    limpiarGrupos(){
+        this.state.selectedGrupo = []
+    }
+
 
 render() {
     return (
@@ -120,29 +148,25 @@ render() {
                     <h2>Cambiar nombre grupo</h2>
                     <div class="form-group">
                         <label for="zona">Seleccione la zona a la que pertenece el grupo:</label>
-                        <Select components={makeAnimated} name="zona" onChange={this.handleChangeZona} 
-                        value={this.state.zona} options={this.state.zonas} classNamePrefix="select"/>
+                        <Select components={makeAnimated} name="zona" onChange={this.handleChangeZonas} 
+                        value={this.state.zonas} options={this.state.selectedZona} classNamePrefix="select"/>
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="rama">Seleccione la rama a la que pertenece el grupo:</label>
-                        <Select components={makeAnimated} name="rama" onChange={this.handleChangeRama} 
-                        value={this.state.rama} options={this.state.ramas} classNamePrefix="select"/>
+                        <Select components={makeAnimated} name="rama" onChange={this.handleChangeRamas} 
+                        value={this.state.ramas} options={this.state.selectedRama} classNamePrefix="select"/>
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="grupo">Seleccione el grupo al que desea cambiarle el nombre:</label>
                         <Select components={makeAnimated} name="grupo" onChange={this.handleChangeGrupo} 
-                        value={this.state.grupo} options={this.state.grupos} classNamePrefix="select"/>
+                        value={this.state.grupos} options={this.state.selectedGrupo} classNamePrefix="select"/>
+                    </div>
+                    <div class="form-group" class="spacing-base">
+                        <label for="nombreNuevo">Nuevo nombre:</label>
+                        <input type="text" name="nombreNuevo" onChange={this.onChange}  className="input-standar"/>
                     </div>
                 </div>
-                <div className="label-wrapper">
-                    <label for="nombreAnterior">Nombre anterior:</label>
-                    <input type="text" name="nombreAnterior" onChange={()=>{this._handleChangeNombreAnterior(this.state.nombreAnterior);}} 
-                                defaultValue={this.state.nombreAnterior}  readOnly = {true}/>
-                </div>
-                <div className="label-wrapper">
-                    <label for="nombreNuevo">Nuevo nombre:</label>
-                    <input type="text" name="nombreNuevo" onChange={this.onChange}  className="input-standar"/>
-                </div>
+                
                 <button type="button" class="btn btn-dark"  onClick={this.onClick}>Cambiar</button>
         </main>
     </div>    
