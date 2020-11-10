@@ -152,14 +152,14 @@ module.exports= class DAO {
         })
     }
 
-    async modificarRama(req, schema, res){
+    async modificarRama(req, schema){
         this.openConnection();
         schema.updateOne({_id:req.body.selectedRama.identificacion}, {$push:{ grupos: {nombre: req.body.nombreGrupo}}}, 
             function(error, info) {
-                if(error)return res.json({success:false, error:"Se ha producido un error guardando"+error}) ;
+                /*if(error)return res.json({success:false, error:"Se ha producido un error guardando"+error}) ;
                 else{
                     return res.json({success: true});
-                } 
+                }*/
             }
         )
     }

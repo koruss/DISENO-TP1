@@ -7,6 +7,7 @@ import makeAnimated from 'react-select/animated';
 import axios from 'axios';
 
 class AsignacionMiembros extends Component{
+    
     state = {
         ramasCompletas: [],
         gruposCompletos: [],

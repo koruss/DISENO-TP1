@@ -42,8 +42,8 @@ module.exports = class Control{
     } 
 
     async guardarGrupo(req,res){
-        await this.gestorEstructura.modificarRama(req,res);
-        await this.gestorEstructura.crearGrupo(req,res)
+        await this.gestorEstructura.modificarRama(req);
+        await this.gestorEstructura.crearGrupo(req,res);
     }
 
     async definirEstructura(info){
@@ -68,12 +68,6 @@ module.exports = class Control{
             console.log(res)
         )
     }
-
-    async guardarGrupo(req,res){
-        await this.gestorEstructura.modificarRama(req,res);
-        await this.gestorEstructura.crearGrupo(req,res);
-    }
-
 
     async allZonas(req, res){
         await this.gestorEstructura.obtenerZonas(req, res);

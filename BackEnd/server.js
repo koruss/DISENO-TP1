@@ -60,11 +60,11 @@ app.post("/allPersona",(req, res)=>{
 })
 
 app.post("/guardarRama",(req, res)=>{
-  control.crearRama(req.body,res);
+  control.crearRama(req,res);
 })
 
 app.post("/guardarGrupo",(req, res)=>{
-  control.guardarGrupo(req.body,res);
+  control.guardarGrupo(req,res);
 })
 
 app.post("/cambiarNombreGrupo",(req, res)=>{
