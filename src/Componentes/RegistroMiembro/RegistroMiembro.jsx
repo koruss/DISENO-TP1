@@ -6,6 +6,19 @@ import './RegistroMiembro.css';
 import axios from 'axios';
 
 class RegistroMiembro extends Component{
+
+    constructor(props){
+        super(props);
+        this.identificacionRef=React.createRef();
+        this.correoRef=React.createRef();
+        this.nombreRef=React.createRef();
+        this.celularRef=React.createRef();
+        this.apellido1Ref=React.createRef();
+        this.apellido2Ref=React.createRef();
+    }
+
+
+
     state = {
         paisOpc:[
             { value: "Costa Rica", label: "Costa Rica" }
@@ -41,25 +54,52 @@ class RegistroMiembro extends Component{
 
     //Funcion para manejar los eventos de un boton
     onClick = (e) => {
-        axios.post("/guardarMiembro",{
-            pais:this.state.pais,
-            provincia:this.state.provincia,
-            canton:this.state.canton,
-            distrito:this.state.distrito,
-            identificacion:this.state.identificacion,
-            correo:this.state.correo,
-            nombre:this.state.nombre,
-            celular:this.state.celular,
-            apellido1:this.state.apellido1,
-            apellido2:this.state.apellido2
-        }).then(res =>{
-            if(!res.data.success){
-                alert(res.data.err);
-            }
-            else{
-                alert("Miembro Guardado correctamente")
-            }
-        })
+        if(this.state.identificacion != "" && this.state.correo != "" &&
+            this.state.nombre != "" && this.state.celular != "" &&
+            this.state.apellido1 != "" && this.state.apellido2 != "" &&
+            this.state.pais.length != 0 && this.state.provincia.length != 0 &&
+            this.state.canton.length != 0 && this.state.distrito.length != 0){
+            axios.post("/guardarMiembro",{
+                pais:this.state.pais,
+                provincia:this.state.provincia,
+                canton:this.state.canton,
+                distrito:this.state.distrito,
+                identificacion:this.state.identificacion,
+                correo:this.state.correo,
+                nombre:this.state.nombre,
+                celular:this.state.celular,
+                apellido1:this.state.apellido1,
+                apellido2:this.state.apellido2
+            }).then(res =>{
+                if(!res.data.success){
+                    alert(res.data.err);
+                }
+                else{
+                    alert("Miembro Guardado correctamente")
+                    this.identificacionRef.current.value="";
+                    this.correoRef.current.value="";
+                    this.nombreRef.current.value="";
+                    this.celularRef.current.value="";
+                    this.apellido1Ref.current.value="";
+                    this.apellido2Ref.current.value="";
+                    this.setState({
+                        pais:[]
+                    })
+                    this.setState({
+                        canton:[]
+                    })
+                    this.setState({
+                        provincia:[]
+                    })
+                    this.setState({
+                        distrito:[]
+                    })
+                }
+            })
+        }
+        else{
+            alert("Ingrese todos los datos")
+        }
     }
 
     handleChangePais = pais => {
@@ -95,27 +135,27 @@ class RegistroMiembro extends Component{
                         <div class="label-container">
                             <div className="label-wrapper">
                                 <label for="identificacion">Identificacion : </label>
-                                <input type="text" name="identificacion" onChange={this.onChange} className="input-standar"/>
+                                <input ref={this.identificacionRef} type="text" name="identificacion" onChange={this.onChange} className="input-standar"/>
                             </div>
                             <div className="label-wrapper">
                                 <label for="correo">Correo Electronico: </label>
-                                <input type="text" name="correo" onChange={this.onChange} className="input-standar"/>
+                                <input ref={this.correoRef}  type="text" name="correo" onChange={this.onChange} className="input-standar"/>
                             </div>
                             <div className="label-wrapper">
                                 <label for="nombre">Nombre: </label>
-                                <input type="text" name="nombre" onChange={this.onChange} className="input-standar"/>
+                                <input ref={this.nombreRef} type="text" name="nombre" onChange={this.onChange} className="input-standar"/>
                             </div>
                             <div className="label-wrapper">
                                 <label for="celular">Celular Personal: </label>
-                                <input type="text" name="celular" onChange={this.onChange} className="input-standar"/>
+                                <input ref={this.celularRef} type="text" name="celular" onChange={this.onChange} className="input-standar"/>
                             </div>
                             <div className="label-wrapper">
                                 <label for="apellido1">Apellido1: </label>
-                                <input type="text" name="apellido1" onChange={this.onChange} className="input-standar"/>
+                                <input ref={this.apellido1Ref} type="text" name="apellido1" onChange={this.onChange} className="input-standar"/>
                             </div>
                             <div className="label-wrapper">
                                 <label for="apellido2">Apellido2: </label>
-                                <input type="text" name="apellido2" onChange={this.onChange} className="input-standar"/>
+                                <input ref={this.apellido2Ref} type="text" name="apellido2" onChange={this.onChange} className="input-standar"/>
                             </div>
                         </div>
                         
