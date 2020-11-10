@@ -29,7 +29,7 @@ module.exports = class RamaDao {
     async updateRama(req, res){
         this.dao.modificarRama(req, RamaSchema, res);
     }
-    
+
     //Funcion encargada de obtener todas las ramas de la base de datos
     async getRamas(req, res){
         this.dao.getData(RamaSchema, res);
