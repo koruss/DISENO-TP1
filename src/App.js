@@ -45,6 +45,7 @@ function App() {
 
 
           {/*                       Consultas             */}
+          <Route path="/consultarGrupoResult" component={ConsultarGrupoResult}/>
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
           <Route path="/consultaGruposPorMiembro" component={ConsultaGruposRolesXMiembro}/> 
           <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/>
