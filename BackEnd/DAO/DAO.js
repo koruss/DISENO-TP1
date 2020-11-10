@@ -136,20 +136,21 @@ module.exports= class DAO {
                 })
             }
         })
-        schema2.update({_id:data.grupoFrom.identificacion}, {$pull:{ "miembros":{"_id":data.nombre.datosPersona._id}} }).then((info,error)=>{
-            if (error) {
-                res.json({
-                    success2: false,
-                    error2: 'No se pudo borrar el miembro del grupo anterior',
-                    error
-                });
-            } else {
-                res.json({
-                    success2: true,
-                    info2: info
-                })
-            }
+        schema2.update({_id:data.grupoFrom.identificacion}, {$pull:{ "miembros":{"_id":data.nombre.datosPersona._id}} }).then(res=>{
+            // console.log(res);
         })
+    }
+
+    async modificarRama(req, schema, res){
+        this.openConnection();
+        schema.updateOne({_id:req.body.selectedRama.identificacion}, {$push:{ grupos: {nombre: req.body.nombreGrupo}}}, 
+            function(error, info) {
+                if(error)return res.json({success:false, error:"Se ha producido un error guardando"+error}) ;
+                else{
+                    return res.json({success: true});
+                } 
+            }
+        )
     }
 
     async modificarRama(req, schema){

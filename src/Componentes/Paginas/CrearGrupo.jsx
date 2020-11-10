@@ -16,6 +16,7 @@ export default class CrearGrupo extends Component {
     state = {
         ramasCompletas: [],
         selectedZona: [],
+        selectedMonitor: [],
         selectedRama:[],
         zonas: [],
         ramas: [],
@@ -78,28 +79,58 @@ export default class CrearGrupo extends Component {
         })
     }
 
+    obtenerMonitores(selectedRama){
+        const ramasCrudo =this.state.ramasCompletas;
+        let arreglo =[];
+        ramasCrudo.forEach(rama=>{
+            if(rama.nombreRama == selectedRama.value){
+                var miembros = rama.jefesGrupo;
+                if(miembros != undefined){
+                miembros.forEach(miembro=>{
+                    arreglo.push({
+                       value:miembro.id,
+                       label:miembro.nombre +" "+ miembro.apellido
+                    })
+                })
+                }
+                else{
+                    alert("Esta rama no tiene monitores")
+                }
+            }
+        }) 
+        this.setState({
+            monitores:arreglo
+        })
+    }
+
+    limpiarMonitor(){
+        this.state.monitores = []
+    }
+
     limpiarRamas(){
         this.state.selectedRama = []
     }
 
     onClick = (e) => {
         if(this.state.nombreGrupo != "" && this.state.selectedRama.length != 0 &&
-        this.state.selectedZona.length != 0){
+        this.state.selectedMonitor.length != 0 && this.state.selectedZona.length != 0){
             axios.post("/guardarGrupo",{
                 nombreGrupo:this.state.nombreGrupo,
                 selectedZona:this.state.selectedZona,
-                selectedRama:this.state.selectedRama
+                selectedRama:this.state.selectedRama,
+                monitores:this.state.monitores
             }).then (res =>{
                 if(!res.data.success){
-                    alert(res.data.err);
+                    alert("error");
                 }
                 else{
                     alert("Grupo guardado correctamente");
                     this.nombreRef.current.value="";
                     this.setState({
-                        selectedRama:[],
-                        selectedZona:[],
-                        ramas:[]
+                        selectedRama:[]
+                    })
+                    this.setState({
+                        selectedMonitor:[]
                     })
                 }
             })

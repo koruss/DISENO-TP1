@@ -14,6 +14,7 @@ module.exports = class Control{
     async logIn(req,res){
         var pName = req.body.pName;
         var pPassword = req.body.pPassword;
+        //console.log(pName);
         req.session.loggedIn = true;
         req.session.user=pName;
         req.session.password=pPassword; 
@@ -68,6 +69,12 @@ module.exports = class Control{
             console.log(res)
         )
     }
+
+    async guardarGrupo(req,res){
+        await this.gestorEstructura.modificarRama(req,res);
+        await this.gestorEstructura.crearGrupo(req,res);
+    }
+
 
     async allZonas(req, res){
         await this.gestorEstructura.obtenerZonas(req, res);

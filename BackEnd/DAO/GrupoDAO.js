@@ -8,12 +8,24 @@ module.exports = class GrupoDAO {
     constructor(){
     }
 
-    
     async postGrupo(req,res){
-        this.grupoSchema = new GrupoSchema();
-        this.grupoSchema.nombreRama= req.body.selectedRama.value;
-        this.grupoSchema.nombreGrupo= req.body.nombreGrupo;
+        this.grupoSchema.nombreRama=req.body.selectedRama.value;
+        this.grupoSchema.monitores=req.body.monitores;
+        this.grupoSchema.nombreGrupo=req.body.nombreGrupo;
         await this.dao.postData(this.grupoSchema,res);
+    }
+    
+    //Funcion encargada de guardar un nuevo usuario en la base de datos
+    async postPersona(data, res){
+        this.personaSchema.nombre=data.nombre;
+        this.personaSchema.identificacion=data.identificacion;
+        this.personaSchema.apellido1=data.apellido1;
+        this.personaSchema.apellido2=data.apellido2;
+        this.personaSchema.estado=false;
+        this.personaSchema.telefono=data.celular;
+        this.personaSchema.correo=data.correo;
+        this.personaSchema.direccion.pais=data.pais.value;
+        await this.dao.postData(this.personaSchema, res);
     }
 
     updatePersona(data){

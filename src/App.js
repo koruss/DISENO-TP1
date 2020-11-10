@@ -20,7 +20,6 @@ import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/Consultar
 import ConsultarGrupoResult from './Componentes/ConsultarComposicionGrupo/ConsultarGrupoResult';
 import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
 import arbolEstructural from './Componentes/Tree/TreeContainer';
-import contacto from './Componentes/Contacto/Contacto'
 
 function App() {
     return (
