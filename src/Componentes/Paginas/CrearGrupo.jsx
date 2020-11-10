@@ -9,10 +9,16 @@ import axios from 'axios';
 
 export default class CrearGrupo extends Component {
 
+    constructor(props){
+        super(props);
+        this.nombreRef=React.createRef();
+    }
+
     state = {
         ramasCompletas: [],
         selectedZona: [],
         selectedMonitor: [],
+        selectedRama:[],
         zonas: [],
         ramas: [],
         monitores: [],
@@ -128,23 +134,31 @@ export default class CrearGrupo extends Component {
     }
 
     onClick = (e) => {
-        if(this.state.nombreGrupo != ""){
-        axios.post("/guardarGrupo",{
-            nombreGrupo:this.state.nombreGrupo,
-            selectedZona:this.state.selectedZona,
-            selectedRama:this.state.selectedRama,
-            monitores:this.state.monitores
-        }).then (res =>{
-            if(!res.data.success){
-                alert("error");
-            }
-            else{
-                alert("Grupo guardado correctamente");
-            }
-        })
+        if(this.state.nombreGrupo != "" && this.state.selectedRama.length != 0 &&
+        this.state.selectedMonitor.length != 0 && this.state.selectedZona.length != 0){
+            axios.post("/guardarGrupo",{
+                nombreGrupo:this.state.nombreGrupo,
+                selectedZona:this.state.selectedZona,
+                selectedRama:this.state.selectedRama,
+                monitores:this.state.monitores
+            }).then (res =>{
+                if(!res.data.success){
+                    alert("error");
+                }
+                else{
+                    alert("Grupo guardado correctamente");
+                    this.nombreRef.current.value="";
+                    this.setState({
+                        selectedRama:[]
+                    })
+                    this.setState({
+                        selectedMonitor:[]
+                    })
+                }
+            })
         } 
         else{
-            alert("Por favor ingresar el nombre del grupo");
+            alert("Por favor ingresar todos los datos");
         }
     }
 
@@ -160,7 +174,7 @@ export default class CrearGrupo extends Component {
                                 <h1 class="h1">Crear Grupo</h1>
                                 <div class="spacing-base">
                                     <label> Nombre del Nuevo Grupo</label>
-                                    <input type="text" name="nombreGrupo" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
+                                    <input ref={this.nombreRef} type="text" name="nombreGrupo" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
                                 </div>
                                 <div className="spacing-base">
                                     <label>Zona a la que pertenece</label>
