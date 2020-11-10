@@ -5,8 +5,10 @@ const GrupoSchema = new Schema(
     {
         idCoordinacion:String,
         nombreRama:String,
+        nombreGrupo:String,
         monitores:Array,
-        jefesGrupo:Array
+        jefesGrupo:Array,
+        miembros: Array
     }
 );
 

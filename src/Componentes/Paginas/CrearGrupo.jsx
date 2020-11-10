@@ -92,10 +92,7 @@ export default class CrearGrupo extends Component {
     }
 
     obtenerMonitores(selectedRama){
-        //console.log(ramasCrudo);
         const ramasCrudo =this.state.ramasCompletas;
-        //const ramaNombre = this.state.selectedRama;
-        //console.log(ramaNombre);
         let arreglo =[];
         ramasCrudo.forEach(rama=>{
             if(rama.nombreRama == selectedRama.value){
@@ -104,7 +101,7 @@ export default class CrearGrupo extends Component {
                 miembros.forEach(miembro=>{
                     arreglo.push({
                        value:miembro.id,
-                       label:miembro.nombre + miembro.apellido
+                       label:miembro.nombre +" "+ miembro.apellido
                     })
                 })
                 }
@@ -137,17 +134,17 @@ export default class CrearGrupo extends Component {
             selectedZona:this.state.selectedZona,
             selectedRama:this.state.selectedRama,
             monitores:this.state.monitores
-        }).then(res =>{
+        }).then (res =>{
             if(!res.data.success){
-                alert(res.data.err);
+                alert("error");
             }
             else{
-                alert("Grupo guardada correctamente")
+                alert("Grupo guardado correctamente");
             }
         })
         } 
         else{
-            alert("Por favor ingresar el nombre del grupo")
+            alert("Por favor ingresar el nombre del grupo");
         }
     }
 
