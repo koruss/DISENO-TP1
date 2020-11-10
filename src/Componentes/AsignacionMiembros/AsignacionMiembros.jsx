@@ -14,12 +14,12 @@ class AsignacionMiembros extends Component{
         selectedZona:[],
         selectedRama:[],
         selectedGrupo:[],
-        selectedMonitor:[{value:"Miembro", label:"Miembro"}, {value:"Monitor", label:"Monitor"}, {value:"Jefe Grupo", label:"Jefe Grupo"}],
-        nombre:[],
+        tipoMonitores:[{value:"Miembro", label:"Miembro"}, {value:"Monitor", label:"Monitor"}, {value:"Jefe Grupo", label:"Jefe Grupo"}],
+        nombres:[],
         zonas:[],
         ramas:[],
-        grupo:[],
-        monitor:""
+        grupos:[],
+        selectedMonitor:[]
     }
 
 
@@ -33,15 +33,14 @@ class AsignacionMiembros extends Component{
         let arrPers = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
-            respuesta.forEach(zonas=>{
+            respuesta.forEach(zona=>{
                 arreglo.push({
-                    value:zonas.nombreZona,
-                    label:zonas.nombreZona
+                    value:zona.nombreZona,
+                    label:zona.nombreZona
                 })
             })   
             this.setState({
-                selectedZona:arreglo
+                zonas:arreglo
             })
         })
 
@@ -65,7 +64,7 @@ class AsignacionMiembros extends Component{
                 })
             })   
             this.setState({
-                selectedNombre:arrPers
+                nombres:arrPers
             })
         })
 
@@ -87,7 +86,7 @@ class AsignacionMiembros extends Component{
                 }
             })   
             this.setState({
-                selectedRama:arreglo
+                ramas:arreglo
             })
         })
     }
@@ -108,29 +107,35 @@ class AsignacionMiembros extends Component{
                 }
             })   
             this.setState({
-                selectedGrupo:arreglo
+                grupos:arreglo
             })
         })
     }
 
 
     onClick = (e) => {
-        if(this.state.nombre.length != 0 && this.state.zona.length != 0 &&
-           this.state.rama.length != 0 && this.state.grupo.length != 0 &&
-           this.state.monitor.length != 0){
+        if(this.state.selectedNombre.length != 0 && this.state.selectedZona.length != 0 &&
+           this.state.selectedRama.length != 0 && this.state.selectedGrupo.length != 0 &&
+           this.state.selectedMonitor.length != 0){
             axios.post("/asignarMiembro",{
-                nombre:this.state.nombre,
-                zona:this.state.zona,
-                rama:this.state.rama,
-                grupo:this.state.grupo,
-                monitor:this.state.monitor
+                nombre:this.state.selectedNombre,
+                zona:this.state.selectedZona,
+                rama:this.state.selectedRama,
+                grupo:this.state.selectedGrupo,
+                monitor:this.state.selectedMonitor
             }).then(res =>{
                 if(!res.data.success){
                     alert(res.data.err);
                 }
                 else{
-                    alert("Miembro Guardado correctamente")
-
+                    alert("Miembro asignado correctamente")
+                    this.setState({
+                        selectedMonitor:[],
+                        selectedGrupo:[],
+                        selectedRama:[],
+                        selectedZona:[],
+                        selectedNombre:[]
+                    })
                 }
             })
         }
@@ -139,9 +144,9 @@ class AsignacionMiembros extends Component{
         }
     }
 
-    handleChangeNombre = nombre => {
+    handleChangeNombre = selectedNombre => {
         this.setState(
-            { nombre },     
+            { selectedNombre },     
         );
     };
 
@@ -161,15 +166,15 @@ class AsignacionMiembros extends Component{
         this.obtenerGrupos();
     }
 
-    handleChangeGrupo = grupo => {
+    handleChangeGrupo = selectedGrupo => {
         this.setState(
-            { grupo },     
+            { selectedGrupo },     
         );
     };
 
-    handleChangeMonitor = monitor => {
+    handleChangeMonitor = selectedMonitor => {
         this.setState(
-            { monitor },     
+            { selectedMonitor },     
         );
     };
 
@@ -191,27 +196,27 @@ class AsignacionMiembros extends Component{
                     <h2>Asignar miembros a grupos</h2>
                     <div class="spacing-base"></div>
                         <h3>Nombre:</h3>
-                            <Select components={makeAnimated} name="nombre" value={this.state.nombre} className="basic-multi-select"
-                            options={this.state.selectedNombre} classNamePrefix="select" onChange={this.handleChangeNombre}/> 
+                            <Select components={makeAnimated} name="nombre" value={this.state.selectedNombre} className="basic-multi-select"
+                            options={this.state.nombres} classNamePrefix="select" onChange={this.handleChangeNombre}/> 
                         <div class="form-group" class="spacing-base">
                             <label for="zona">Seleccione la zona a la que pertenecerá la persona:</label>
-                            <Select components={makeAnimated} name="zona" value={this.state.zonas} className="basic-multi-select"
-                            options={this.state.selectedZona} classNamePrefix="select" onChange={this.handleChangeZonas}/>
+                            <Select components={makeAnimated} name="zona" value={this.state.selectedZona} className="basic-multi-select"
+                            options={this.state.zonas} classNamePrefix="select" onChange={this.handleChangeZonas}/>
                         </div>
                         <div class="form-group" class="spacing-base">
                             <label for="rama">Seleccione la rama a la que pertenecerá la persona:</label>
-                            <Select components={makeAnimated} name="rama" value={this.state.ramas} className="basic-multi-select"
-                            options={this.state.selectedRama} classNamePrefix="select" onChange={this.handleChangeRamas}/>
+                            <Select components={makeAnimated} name="rama" value={this.state.selectedRama} className="basic-multi-select"
+                            options={this.state.ramas} classNamePrefix="select" onChange={this.handleChangeRamas}/>
                         </div>
                         <div class="form-group" class="spacing-base">
                             <label for="grupo">Seleccione el grupo al que pertenecerá la persona:</label>
-                            <Select components={makeAnimated} name="grupo" value={this.state.grupo} className="basic-multi-select"
-                            options={this.state.selectedGrupo} classNamePrefix="select" onChange={this.handleChangeGrupo}/>
+                            <Select components={makeAnimated} name="grupo" value={this.state.selectedGrupo} className="basic-multi-select"
+                            options={this.state.grupos} classNamePrefix="select" onChange={this.handleChangeGrupo}/>
                         </div>
                         <div class="form-group" class="spacing-base">
                             <label for="monitor">Seleccione el tipo de persona:</label>
-                            <Select components={makeAnimated} name="monitor" value={this.state.monitor} className="basic-multi-select"
-                            options={this.state.selectedMonitor} classNamePrefix="select" onChange={this.handleChangeMonitor}/>
+                            <Select components={makeAnimated} name="monitor" value={this.state.selectedMonitor} className="basic-multi-select"
+                            options={this.state.tipoMonitores} classNamePrefix="select" onChange={this.handleChangeMonitor}/>
                         </div>
                     </div>
                     <button type="button" class="btn btn-dark" onClick={this.onClick} >Asignar</button> 

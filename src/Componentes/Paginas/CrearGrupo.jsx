@@ -60,7 +60,6 @@ export default class CrearGrupo extends Component {
         let arreglo =[];
         axios.post("/allZonas", {}).then(res => {
             const respuesta=res.data;
-            console.log(respuesta)
             respuesta.forEach(zona=>{
                 arreglo.push({
                     value:zona.nombreZona,
@@ -143,7 +142,7 @@ export default class CrearGrupo extends Component {
                 monitores:this.state.monitores
             }).then (res =>{
                 if(!res.data.success){
-                    alert("error");
+                    alert(res.data.err);
                 }
                 else{
                     alert("Grupo guardado correctamente");

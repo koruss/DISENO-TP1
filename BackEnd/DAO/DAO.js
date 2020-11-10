@@ -82,19 +82,16 @@ module.exports= class DAO {
         // console.log(data.body)
         if (data.body.monitor.value=="Monitor"){
             schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ monitores: data.body.nombre.datosPersona}}, 
-                function(error, info) {if (error) {res.json({resultado: false, msg: 'No se pudo modificar el cliente',error});
-                    console.log("error: ",error)
-                } else {res.json({resultado: true, info: info })}})
+                function(error, info) {if (error) {res.json({success: false, error: 'No se pudo modificar el cliente',error});
+                } else {res.json({success: true, info: info })}})
         }else if (data.body.monitor.value=="Miembro"){
             schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ miembros: data.body.nombre.datosPersona}}, 
-                function(error, info) {if (error) {res.json({resultado: false, msg: 'No se pudo modificar el cliente',error});
-                    console.log("error: ",error)
-                } else {res.json({resultado: true, info: info })}})
+                function(error, info) {if (error) {res.json({success: false, error: 'No se pudo modificar el cliente',error});
+                } else {res.json({success: true, info: info })}})
         }else{
             schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ jefesGrupo: data.body.nombre.datosPersona}}, 
-                function(error, info) {if (error) {res.json({resultado: false, msg: 'No se pudo modificar el cliente',error});
-                    console.log("error: ",error)
-                } else {res.json({resultado: true, info: info })}})
+                function(error, info) {if (error) {res.json({success: false, error: 'No se pudo modificar el cliente',error});
+                } else {res.json({success: true, info: info })}})
         }
        
 
@@ -111,7 +108,6 @@ module.exports= class DAO {
                     msg: 'No se pudo modificar el cliente',
                     error
                 });
-                console.log("error: ",error)
             } else {
                 res.json({
                     resultado: true,
@@ -135,7 +131,6 @@ module.exports= class DAO {
                     msg: 'No se pudo modificar el cliente',
                     error
                 });
-                console.log("error: ",error)
             } else {
                 res.json({
                     resultado: true,
