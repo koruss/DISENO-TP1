@@ -56,7 +56,7 @@ class VentanaAsesor extends Component {
             })
         })
 
-        axios.post("/allGrupo", {}).then(res => {
+        axios.post("/allGrupos", {}).then(res => {
             const respuesta = res.data;
             console.log(respuesta)
             respuesta.forEach(grupo=>{

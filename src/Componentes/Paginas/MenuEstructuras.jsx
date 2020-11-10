@@ -9,7 +9,7 @@ export default class MenuEstructuras extends Component {
             <div>
             <Header></Header>
             <h1> ##Estructura##</h1>
-            <h2>Debemos implementarlo o nos va a cargar la verga :/</h2>
+            <h2>404 Ventana Not Found :) </h2>
             {/*
             <Button variant="dark">Agregar Zona</Button>
             <Button variant="dark">Agregar Rama</Button>

@@ -38,6 +38,16 @@ module.exports= class DAO {
     }
 
     //Funcion que recibe un esquema para obtener los datos
+    async getOneData(schema, param, req,res){
+        this.openConnection();
+        schema.findOne({usuario:req.body.usuario},(err,data)=>{
+            if(err) return console.log(err);
+            res.send(data);
+            res.end();
+        })
+    }
+
+    //Funcion que recibe un esquema para obtener los datos
     async getData(schema, res){
         this.openConnection();
         schema.find({},(err,data)=>{
@@ -72,19 +82,16 @@ module.exports= class DAO {
         // console.log(data.body)
         if (data.body.monitor.value=="Monitor"){
             schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ monitores: data.body.nombre.datosPersona}}, 
-                function(error, info) {if (error) {res.json({resultado: false, msg: 'No se pudo modificar el cliente',error});
-                    console.log("error: ",error)
-                } else {res.json({resultado: true, info: info })}})
+                function(error, info) {if (error) {res.json({success: false, error: 'No se pudo modificar el cliente',error});
+                } else {res.json({success: true, info: info })}})
         }else if (data.body.monitor.value=="Miembro"){
             schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ miembros: data.body.nombre.datosPersona}}, 
-                function(error, info) {if (error) {res.json({resultado: false, msg: 'No se pudo modificar el cliente',error});
-                    console.log("error: ",error)
-                } else {res.json({resultado: true, info: info })}})
+                function(error, info) {if (error) {res.json({success: false, error: 'No se pudo modificar el cliente',error});
+                } else {res.json({success: true, info: info })}})
         }else{
             schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ jefesGrupo: data.body.nombre.datosPersona}}, 
-                function(error, info) {if (error) {res.json({resultado: false, msg: 'No se pudo modificar el cliente',error});
-                    console.log("error: ",error)
-                } else {res.json({resultado: true, info: info })}})
+                function(error, info) {if (error) {res.json({success: false, error: 'No se pudo modificar el cliente',error});
+                } else {res.json({success: true, info: info })}})
         }
        
 
@@ -97,14 +104,13 @@ module.exports= class DAO {
             function(error, info) {
             if (error) {
                 res.json({
-                    resultado: false,
-                    msg: 'No se pudo modificar el cliente',
+                    success: false,
+                    error: 'No se pudo modificar el cliente',
                     error
                 });
-                console.log("error: ",error)
             } else {
                 res.json({
-                    resultado: true,
+                    success: true,
                     info: info
                 })
             }
@@ -114,48 +120,48 @@ module.exports= class DAO {
     async trasladarMiembro(data, schema, res){
         const schema2= schema;
         this.openConnection();
-        // console.log(data);
-        // console.log(data.nombre.datosPersona._id);
         
         schema.updateOne({_id:data.grupoTo.identificacion}, {$push:{ miembros: data.nombre.datosPersona}}, 
             function(error, info) {
             if (error) {
                 res.json({
-                    resultado: false,
-                    msg: 'No se pudo modificar el cliente',
+                    success1: false,
+                    error1: 'No se pudo ingresar el miembro en el nuevo grupo',
                     error
                 });
-                console.log("error: ",error)
             } else {
                 res.json({
-                    resultado: true,
-                    info: info
+                    success1: true,
+                    info1: info
                 })
             }
         })
-        schema2.update({_id:data.grupoFrom.identificacion}, {$pull:{ "miembros":{"_id":data.nombre.datosPersona._id}} }).then(res=>{
-            // console.log(res);
+        schema2.update({_id:data.grupoFrom.identificacion}, {$pull:{ "miembros":{"_id":data.nombre.datosPersona._id}} }).then((info,error)=>{
+            if (error) {
+                res.json({
+                    success2: false,
+                    error2: 'No se pudo borrar el miembro del grupo anterior',
+                    error
+                });
+            } else {
+                res.json({
+                    success2: true,
+                    info2: info
+                })
+            }
         })
     }
 
-    async modificarRama(req, schema, res){
+    async modificarRama(req, schema){
         this.openConnection();
         schema.updateOne({_id:req.body.selectedRama.identificacion}, {$push:{ grupos: {nombre: req.body.nombreGrupo}}}, 
             function(error, info) {
-            if (error) {
-                res.json({
-                    resultado: false,
-                    msg: 'No se pudo modificar las ramas',
-                    error
-                });
-                console.log("error: ",error)
-            } else {
-                res.json({
-                    resultado: true,
-                    info: info
-                })
+                /*if(error)return res.json({success:false, error:"Se ha producido un error guardando"+error}) ;
+                else{
+                    return res.json({success: true});
+                }*/
             }
-        })
+        )
     }
 
     async modificarZona(req, schema, res){

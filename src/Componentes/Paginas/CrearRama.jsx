@@ -8,6 +8,11 @@ import Header from '../General/Header.jsx';
 
 export default class CrearRama extends Component {
 
+    constructor(props){
+        super(props);
+        this.nombreRef=React.createRef();
+    }
+
     state = {
         selectedZona: [],
         zonas: [],
@@ -46,17 +51,26 @@ export default class CrearRama extends Component {
 
     //Funcion para manejar los eventos de un boton
     onClick = (e) => {
-        axios.post("/guardarRama",{
-            nombreRama:this.state.nombreRama,
-            selectedZona:this.state.selectedZona
-        }).then(res =>{
-            if(!res.data.success){
-                alert(res.data.err);
-            }
-            else{
-                alert("Rama guardada correctamente")
-            }
-        })
+        if(this.state.selectedZona.length != 0 && this.state.nombreRama != ""){
+            axios.post("/guardarRama",{
+                nombreRama:this.state.nombreRama,
+                selectedZona:this.state.selectedZona
+            }).then(res =>{
+                if(!res.data.success){
+                    alert(res.data.err);
+                }
+                else{
+                    alert("Rama guardada correctamente")
+                    this.nombreRef.current.value="";
+                    this.setState({
+                        selectedZona:[]
+                    })
+                }
+            })
+        }
+        else{
+            alert("Ingrese todos los datos")
+        }
     }
 
     render() {
@@ -71,7 +85,7 @@ export default class CrearRama extends Component {
                                 <h1 class="h1">Crear Rama</h1>
                                 <div class="spacing-base">
                                     <label> Nombre de la nueva Rama</label>
-                                    <input type="text" name="nombreRama" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
+                                    <input ref={this.nombreRef} type="text" name="nombreRama" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
                                 </div>
                                 <div className="spacing-base">
                                     <label>Zona a la que pertenece</label>

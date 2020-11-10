@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import Button from 'react-bootstrap/Button'
 import "./Estructura.css"
 import Header from '../General/Header.jsx';
 import axios from 'axios';
@@ -9,13 +8,17 @@ import axios from 'axios';
 
 export default class CrearGrupo extends Component {
 
+    constructor(props){
+        super(props);
+        this.nombreRef=React.createRef();
+    }
+
     state = {
         ramasCompletas: [],
         selectedZona: [],
-        selectedMonitor: [],
+        selectedRama:[],
         zonas: [],
         ramas: [],
-        monitores: [],
         nombreGrupo: "",
         nombreRama: ""
     }
@@ -30,31 +33,19 @@ export default class CrearGrupo extends Component {
         );
         this.limpiarRamas();
         this.obtenerRamas();
-        this.limpiarMonitor();
     }
 
     handleChangeRama = selectedRama => {
         this.setState(
             {selectedRama}
-        
         );
-        this.limpiarMonitorSeleccionado();
-        this.obtenerMonitores(selectedRama);
     }
 
-    handleChangeMonitor = selectedMonitor => {
-        this.setState(
-            { selectedMonitor }
-        );
-
-    }
 
     componentWillMount() {
-        var self = this;
         let arreglo =[];
         axios.post("/allZonas", {}).then(res => {
             const respuesta=res.data;
-            console.log(respuesta)
             respuesta.forEach(zona=>{
                 arreglo.push({
                     value:zona.nombreZona,
@@ -68,7 +59,6 @@ export default class CrearGrupo extends Component {
     }
 
     obtenerRamas(){
-        var self = this;
         let arreglo =[];
         axios.post("/allRama", {}).then(res => {
             const respuesta=res.data;
@@ -85,69 +75,37 @@ export default class CrearGrupo extends Component {
             this.setState({
                 ramas:arreglo
             })
-            this.setState({
-                ramasCompletas:respuesta
-            })
         })
-    }
-
-    obtenerMonitores(selectedRama){
-        //console.log(ramasCrudo);
-        const ramasCrudo =this.state.ramasCompletas;
-        //const ramaNombre = this.state.selectedRama;
-        //console.log(ramaNombre);
-        let arreglo =[];
-        ramasCrudo.forEach(rama=>{
-            if(rama.nombreRama == selectedRama.value){
-                var miembros = rama.jefesGrupo;
-                if(miembros != undefined){
-                miembros.forEach(miembro=>{
-                    arreglo.push({
-                       value:miembro.id,
-                       label:miembro.nombre + miembro.apellido
-                    })
-                })
-                }
-                else{
-                    alert("Esta rama no tiene monitores")
-                }
-            }
-        }) 
-        this.setState({
-            monitores:arreglo
-        })
-    }
-
-    limpiarMonitor(){
-        this.state.monitores = []
     }
 
     limpiarRamas(){
         this.state.selectedRama = []
     }
 
-    limpiarMonitorSeleccionado(){
-        this.state.selectedMonitor = []
-    }
-
     onClick = (e) => {
-        if(this.state.nombreGrupo != ""){
-        axios.post("/guardarGrupo",{
-            nombreGrupo:this.state.nombreGrupo,
-            selectedZona:this.state.selectedZona,
-            selectedRama:this.state.selectedRama,
-            monitores:this.state.monitores
-        }).then(res =>{
-            if(!res.data.success){
-                alert(res.data.err);
-            }
-            else{
-                alert("Grupo guardada correctamente")
-            }
-        })
+        if(this.state.nombreGrupo != "" && this.state.selectedRama.length != 0 &&
+        this.state.selectedZona.length != 0){
+            axios.post("/guardarGrupo",{
+                nombreGrupo:this.state.nombreGrupo,
+                selectedZona:this.state.selectedZona,
+                selectedRama:this.state.selectedRama
+            }).then (res =>{
+                if(!res.data.success){
+                    alert(res.data.err);
+                }
+                else{
+                    alert("Grupo guardado correctamente");
+                    this.nombreRef.current.value="";
+                    this.setState({
+                        selectedRama:[],
+                        selectedZona:[],
+                        ramas:[]
+                    })
+                }
+            })
         } 
         else{
-            alert("Por favor ingresar el nombre del grupo")
+            alert("Por favor ingresar todos los datos");
         }
     }
 
@@ -163,7 +121,7 @@ export default class CrearGrupo extends Component {
                                 <h1 class="h1">Crear Grupo</h1>
                                 <div class="spacing-base">
                                     <label> Nombre del Nuevo Grupo</label>
-                                    <input type="text" name="nombreGrupo" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
+                                    <input ref={this.nombreRef} type="text" name="nombreGrupo" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
                                 </div>
                                 <div className="spacing-base">
                                     <label>Zona a la que pertenece</label>
@@ -173,11 +131,6 @@ export default class CrearGrupo extends Component {
                                     <label>Rama a la que pertenece</label>
                                     <Select components={makeAnimated} name="ramas" value={this.state.selectedRama} onChange={this.handleChangeRama} 
                                     options={this.state.ramas} className="basic-multi-select" classNamePrefix="select" />
-                                </div>
-                                <div className="spacing-base">
-                                    <label>Seleccione el Monitor del Grupo</label>
-                                    <Select components={makeAnimated} name="monitores" value={this.state.selectedMonitor} onChange={this.handleChangeMonitor} 
-                                    options={this.state.monitores} className="basic-multi-select" classNamePrefix="select" />
                                 </div>
                                 <div>
                                     <button type="button" class="btn btn-dark" onClick={this.onClick} >Guardar grupo </button>

@@ -8,6 +8,11 @@ import Header from '../General/Header.jsx';
 
 class CrearZona extends Component {
 
+    constructor(props){
+        super(props);
+        this.zonaRef=React.createRef();
+    }
+
     state = {
         nombreZona: ""
 
@@ -16,19 +21,23 @@ class CrearZona extends Component {
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
     onClick = (e) => {
-        // e.preventDefault();
-        console.log("ENTRE AL evento");
-        axios.post("/guardarZona", {
-            nombreZona: this.state.nombreZona
-        }).then(res => {
-            if (!res.data.success) {
-                alert(res.data.err);
-            }
-            else {
-                alert("Zona Guardada correctamente")
-            }
-        })
-
+        if(this.state.nombreZona != ""){
+            console.log("ENTRE AL evento");
+            axios.post("/guardarZona", {
+                nombreZona: this.state.nombreZona
+            }).then(res => {
+                if (!res.data.success) {
+                    alert(res.data.err);
+                }
+                else {
+                    alert("Zona Guardada correctamente")
+                    this.zonaRef.current.value="";
+                }
+            })
+        }
+        else{
+            alert("Ingrese todo los datos")
+        }
     }
 
 
@@ -44,7 +53,7 @@ class CrearZona extends Component {
                                     <h1 class="h1">Crear Zona</h1>
                                     <div>
                                         <label> Nombre de la nueva zona</label>
-                                        <input type="text" name="nombreZona" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
+                                        <input ref={this.zonaRef} type="text" name="nombreZona" autoComplete="on" onChange={this.onChange} tabIndex="1"></input>
                                     </div>
                                 </div>
                                 <div>

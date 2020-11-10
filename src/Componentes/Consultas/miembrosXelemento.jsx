@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-//import './miembrosXelemento.css'
+//import './miembrosXelemento.css' //JALE LOMBAX COCHINOOOOOOOOOOOOOOOOOOOOOOO
 import Card from './Card1'
 import Header from '../General/Header';
 import axios from 'axios';

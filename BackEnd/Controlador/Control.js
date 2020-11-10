@@ -14,7 +14,6 @@ module.exports = class Control{
     async logIn(req,res){
         var pName = req.body.pName;
         var pPassword = req.body.pPassword;
-        console.log(pName);
         req.session.loggedIn = true;
         req.session.user=pName;
         req.session.password=pPassword; 
@@ -39,13 +38,12 @@ module.exports = class Control{
     }
 
     async crearRama(req, res){
-        // await this.gestorEstructura.modificarZona(req,res);
         await this.gestorEstructura.crearRama(req,res);
     } 
 
     async guardarGrupo(req,res){
-        await this.gestorEstructura.modificarRama(req,res);
-        await this.gestorEstructura.crearGrupo(req,res)
+        await this.gestorEstructura.modificarRama(req);
+        await this.gestorEstructura.crearGrupo(req,res);
     }
 
     async definirEstructura(info){
@@ -71,29 +69,23 @@ module.exports = class Control{
         )
     }
 
-
-
     async allZonas(req, res){
         await this.gestorEstructura.obtenerZonas(req, res);
     }
 
     async allRama(req,res){
-        // await this.gestorEstructura(req,res)
         await this.gestorEstructura.obtenerRamas(req, res)
     }
 
     async allGrupos(req,res){
-        // await this.gestorEstructura(req,res)
         await this.gestorEstructura.obtenerGrupos(req, res)
     }
 
     async allPersona(req,res){
-        // await this.gestorEstructura(req,res)
         await this.gestorMiembro.obtenerPersonas(req, res)
     }
 
     async cambiarNombreGrupo(req,res){
-        // await this.gestorEstructura(req,res)
         await this.gestorEstructura.cambiarNombreGrupo(req, res)
     }
     

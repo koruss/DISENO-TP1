@@ -1,7 +1,7 @@
 var DAO = require('./DAO');
 var ZonaSchema = require("../Schemas/ZonaSchema.js");
 
-module.exports = class ZonaDao {
+module.exports = class ZonaDAO {
     List = [];
     dao = new DAO();
     zonaSchema = new ZonaSchema();

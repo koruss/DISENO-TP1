@@ -6,42 +6,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const axios = require('axios');
 
-//var cors = require('cors');
-//const logger = require('morgan');
-//const session = require('express-session');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-// const buildPath = path.join(__dirname, '..', 'build');
-// // add middlewares
-// app.use(express.static(path.join(buildPath)));
-
-// app.use((req, res, next) => {
-//   res.sendFile(path.join(buildPath));
-// });
-
-// app.get('*', (req, res) => {    
-//   res.sendFile(path.join(buildPath, 'index.html')), function(err) {             
-//   if (err) {                 
-//        res.status(500).send(err) 
-//        }        
-//   };
-// });
-//app.use(cors());
-/*app.get('/', function (req, res) {
-    res.send('Saludos desde express');
-  });
-*/
-
-
-//app.listen(3001, () => console.log(`LISTENING ON PORT ${API_PORT}`));
-/*app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(logger('dev'));
-*/
 
 var cord = new Coordinacion("116", "tec", "San Jose.com", "asd", "090123", "dasd", "asd", "asd", "asd");
 const control = new Control(cord);
@@ -89,11 +60,11 @@ app.post("/allPersona",(req, res)=>{
 })
 
 app.post("/guardarRama",(req, res)=>{
-  control.crearRama(req.body,res);
+  control.crearRama(req,res);
 })
 
 app.post("/guardarGrupo",(req, res)=>{
-  control.guardarGrupo(req.body,res);
+  control.guardarGrupo(req,res);
 })
 
 app.post("/cambiarNombreGrupo",(req, res)=>{
@@ -119,6 +90,10 @@ app.post("/logIn",(req, res)=>{
 
 app.post('/cerrarSesion', function (req, res) {
   control.cerrarSesion(req,res);
+})
+
+app.post('/guardarGrupo', function (req,res) {
+  control.guardarGrupo(req,res);
 })
 
 app.listen(PORT, () => console.log(`LISTENING ON PORT ${PORT}`));
