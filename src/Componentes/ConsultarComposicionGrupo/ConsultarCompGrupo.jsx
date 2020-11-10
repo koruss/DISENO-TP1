@@ -16,7 +16,8 @@ class ConsultarComposicionGrupo extends Component{
         zonas:[],
         ramas:[],
         grupos:[],
-        ramasCompletas: []
+        ramasCompletas: [],
+        pointerNull:'none'
 
     }
 
@@ -80,14 +81,18 @@ class ConsultarComposicionGrupo extends Component{
                 var grupos = rama.grupos;
                 grupos.forEach(grupo=>{
                     arreglo.push({
-                       value:grupo.nombre,
-                       label:grupo.nombre
+                    value:grupo.nombre,
+                    label:grupo.nombre,
+                    miembros: grupo.miembros,
+                    jefesGrupo: grupo.jefesGrupo,
+                    monitores: grupo.monitores
                     })
                 })
+
+                this.setState({
+                    grupos:arreglo
+                })
             }
-        }) 
-        this.setState({
-            grupos:arreglo
         })
     }
 
@@ -144,7 +149,8 @@ render() {
                 </div>
                 <button>
                     <Link to = {{ pathname:'/consultarGrupoResult', data:{zona:this.state.selectedZona.value,
-                    rama:this.state.selectedRama.value,grupo:this.state.selectedGrupo.value}}}>Consultar</Link>
+                    rama:this.state.selectedRama.value,grupo:this.state.selectedGrupo.value,
+                    miembros:this.state.selectedGrupo.miembros}} }>Consultar</Link>
                 </button>
         </main>
     </div>    

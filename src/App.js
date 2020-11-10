@@ -4,19 +4,16 @@ import './App.css';
 import './Componentes/General/Header'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Componentes/General/Header';
-import AsesorVentanaGeneral from './Componentes/General/AsesorVentanaPrincipal';
 import Login from './Componentes/Login/Login';
 import CrearGrupo from './Componentes/Paginas/CrearGrupo';
 import CrearRama from './Componentes/Paginas/CrearRama';
 import CrearZona from './Componentes/Paginas/CrearZona';
-import MenuEstructura from './Componentes/Paginas/MenuEstructuras';
 import RegistroMiembro from './Componentes/RegistroMiembro/RegistroMiembro';
 import TrasladarMiembro from './Componentes/TrasladarMiembro/TrasladarMiembro';
 import TreeContainer from './Componentes/Tree/TreeContainer';
 import CambiarNombreGrupo from './Componentes/CambiarNombreGrupo/CambiarNombreGrupo';
 import ConsultaMiembroXElemento from './Componentes/Consultas/miembrosXelemento';
 import AfiliacionMiembros from './Componentes/AfiliacionMiembros/AfiliacionMiembros';
-import AfiliacionPersonal from './Componentes/AfiliacionPersonal/AfiliacionPersonal';
 import AsignacionMiembros from './Componentes/AsignacionMiembros/AsignacionMiembros';
 import ConsultaGruposRolesXMiembro from './Componentes/GrupoRolesXMiembro/GrupoRolesXMiembro';
 import ConsultaCompGrupo from './Componentes/ConsultarComposicionGrupo/ConsultarCompGrupo';
@@ -36,7 +33,6 @@ function App() {
           <Route path="/creacionZona" component={CrearZona}/> 
           <Route path="/creacionRama" component={CrearRama}/> 
           <Route path="/creacionGrupo" component={CrearGrupo}/> 
-          <Route path="/estructura" component={MenuEstructura}/> 
           <Route path="/cambiarNombreGrupo" component={CambiarNombreGrupo}/> 
           <Route path="/arbolEstructural" component={TreeContainer}/> 
           {/*                       PENDIENTES          */}            
@@ -44,7 +40,6 @@ function App() {
           <Route path="/contacto" component={Contacto}/>
           */}
           <Route path="/afiliacionMiembros" component={AfiliacionMiembros}/>
-          <Route path="/afiliacionPersonal" component={AfiliacionPersonal}/>
           <Route path="/asignacionMiembros" component={AsignacionMiembros}/>
 
 
@@ -52,8 +47,6 @@ function App() {
           <Route path="/consultaMiembrosPorElemento" component={ConsultaMiembroXElemento}/> 
           <Route path="/consultaGruposPorMiembro" component={ConsultaGruposRolesXMiembro}/> 
           <Route path="/consultaComposicionGrupo" component={ConsultaCompGrupo}/> 
-          <Route path="/consultarGrupoResult" component={ConsultarGrupoResult}/> 
-
           {/*                        Creacion de estructuras */}
           <Route path="/crearGrupo" component={CrearGrupo}/> 
           <Route path="/crearZona" component={CrearZona}/> 
