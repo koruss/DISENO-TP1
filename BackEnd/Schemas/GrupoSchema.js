@@ -8,7 +8,8 @@ const GrupoSchema = new Schema(
         nombreGrupo:String,
         monitores:Array,
         jefesGrupo:Array,
-        miembros: Array
+        nombreGrupo:String,
+        miembros:Array
     }
 );
 

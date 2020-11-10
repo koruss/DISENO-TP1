@@ -8,7 +8,7 @@ class AfiliacionMiembros extends Component{
             <div >
                 <Header></Header>
                 <h1> ## Afiliciacion de nuevos Miembros ##</h1>
-                <h2>Debemos implementarlo o nos va a cargar la verga :/</h2>
+                <h2>404 Ventana Not Found :) </h2>
             </div>
         )
     };        

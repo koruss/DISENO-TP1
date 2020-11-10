@@ -37,4 +37,15 @@ module.exports = class RamaDao {
         console.log(respuesta);
     }
 
+    async cambiarNombreGrupo(req, res){
+        this.dao.cambiarNombreGrupo(req, RamaSchema, res);
+    }
+
+
+    //Funcion encargada de modificar una rama
+    async updateRama(req, res){
+        console.log(req)
+        this.dao.modificarRama(req, RamaSchema, res);
+    }
+
  }
