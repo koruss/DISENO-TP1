@@ -104,13 +104,13 @@ module.exports= class DAO {
             function(error, info) {
             if (error) {
                 res.json({
-                    resultado: false,
-                    msg: 'No se pudo modificar el cliente',
+                    success: false,
+                    error: 'No se pudo modificar el cliente',
                     error
                 });
             } else {
                 res.json({
-                    resultado: true,
+                    success: true,
                     info: info
                 })
             }
@@ -120,26 +120,35 @@ module.exports= class DAO {
     async trasladarMiembro(data, schema, res){
         const schema2= schema;
         this.openConnection();
-        // console.log(data);
-        // console.log(data.nombre.datosPersona._id);
         
         schema.updateOne({_id:data.grupoTo.identificacion}, {$push:{ miembros: data.nombre.datosPersona}}, 
             function(error, info) {
             if (error) {
                 res.json({
-                    resultado: false,
-                    msg: 'No se pudo modificar el cliente',
+                    success1: false,
+                    error1: 'No se pudo ingresar el miembro en el nuevo grupo',
                     error
                 });
             } else {
                 res.json({
-                    resultado: true,
-                    info: info
+                    success1: true,
+                    info1: info
                 })
             }
         })
-        schema2.update({_id:data.grupoFrom.identificacion}, {$pull:{ "miembros":{"_id":data.nombre.datosPersona._id}} }).then(res=>{
-            // console.log(res);
+        schema2.update({_id:data.grupoFrom.identificacion}, {$pull:{ "miembros":{"_id":data.nombre.datosPersona._id}} }).then((info,error)=>{
+            if (error) {
+                res.json({
+                    success2: false,
+                    error2: 'No se pudo borrar el miembro del grupo anterior',
+                    error
+                });
+            } else {
+                res.json({
+                    success2: true,
+                    info2: info
+                })
+            }
         })
     }
 

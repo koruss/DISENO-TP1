@@ -17,19 +17,14 @@ class CambiarNombreGrupo extends Component{
         selectedZona:[],
         selectedRama:[],
         selectedGrupo:[],
-        nombre:[],
+        nombre:"",
         zonas:[],
         ramas:[],
-        grupo:[]
+        grupos:[]
     }
 
     
     onChange = (e) => this.setState({[e.target.name]:e.target.value});
-
-    _handleChangeNombreAnterior(val) {
-        return val;
-    }
-
 
 
     componentWillMount() {
@@ -37,7 +32,6 @@ class CambiarNombreGrupo extends Component{
         let arreglo = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
             respuesta.forEach(zona=>{
                 arreglo.push({
                     value:zona.nombreZona,
@@ -45,7 +39,7 @@ class CambiarNombreGrupo extends Component{
                 })
             })   
             this.setState({
-                selectedZona:arreglo
+                zonas:arreglo
             })
         })
     }
@@ -65,7 +59,7 @@ class CambiarNombreGrupo extends Component{
                 }
             })   
             this.setState({
-                selectedRama:arreglo
+                ramas:arreglo
             })
         })
     }
@@ -86,7 +80,7 @@ class CambiarNombreGrupo extends Component{
                 }
             })   
             this.setState({
-                selectedGrupo:arreglo
+                grupos:arreglo
             })
         })
     }
@@ -96,10 +90,10 @@ class CambiarNombreGrupo extends Component{
         if(this.state.nombre != "" && this.state.selectedRama.length != 0 &&
         this.state.selectedZona.length != 0 && this.state.selectedGrupo.length != 0){
             axios.post("/cambiarNombreGrupo",{
-                zona:this.state.zona,
-                rama:this.state.rama,
-                grupo:this.state.grupo,
-                nombre:this.state.nombreNuevo
+                zona:this.state.selectedZona,
+                rama:this.state.selectedRama,
+                grupo:this.state.selectedGrupo,
+                nombre:this.state.nombre
             }).then(res =>{
                 if(!res.data.success){
                     alert(res.data.err);
@@ -124,12 +118,6 @@ class CambiarNombreGrupo extends Component{
         }
     }
 
-    handleChangeNombre = nombre => {
-        this.setState(
-            { nombre },     
-        );
-    };
-
     handleChangeZonas = selectedZona => {
         this.setState(
             { selectedZona }
@@ -146,9 +134,9 @@ class CambiarNombreGrupo extends Component{
         this.obtenerGrupos();
     }
 
-    handleChangeGrupo = grupo => {
+    handleChangeGrupo = selectedGrupo => {
         this.setState(
-            { grupo },     
+            { selectedGrupo },     
         );
     };
 
@@ -171,21 +159,21 @@ render() {
                     <div class="form-group">
                         <label for="zona">Seleccione la zona a la que pertenece el grupo:</label>
                         <Select components={makeAnimated} name="zona" onChange={this.handleChangeZonas} 
-                        value={this.state.zonas} options={this.state.selectedZona} classNamePrefix="select"/>
+                        value={this.state.selectedZona} options={this.state.zonas} classNamePrefix="select"/>
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="rama">Seleccione la rama a la que pertenece el grupo:</label>
                         <Select components={makeAnimated} name="rama" onChange={this.handleChangeRamas} 
-                        value={this.state.ramas} options={this.state.selectedRama} classNamePrefix="select"/>
+                        value={this.state.selectedRama} options={this.state.ramas} classNamePrefix="select"/>
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="grupo">Seleccione el grupo al que desea cambiarle el nombre:</label>
                         <Select components={makeAnimated} name="grupo" onChange={this.handleChangeGrupo} 
-                        value={this.state.grupos} options={this.state.selectedGrupo} classNamePrefix="select"/>
+                        value={this.state.selectedGrupo} options={this.state.grupos} classNamePrefix="select"/>
                     </div>
                     <div class="form-group" class="spacing-base">
                         <label for="nombreNuevo">Nuevo nombre:</label>
-                        <input ref={this.nombreRef} type="text" name="nombreNuevo" onChange={this.onChange}  className="input-standar"/>
+                        <input ref={this.nombreRef} type="text" name="nombre" onChange={this.onChange}  className="input-standar"/>
                     </div>
                 </div>
                 

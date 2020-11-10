@@ -144,8 +144,8 @@ class TrasladarMiembro extends Component {
                 grupoFrom:this.state.selectedGrupoFrom,
                 grupoTo: this.state.selectedGrupoTo
             }).then(res =>{
-                if(!res.data.success){
-                    alert(res.data.err);
+                if(!res.data.success1 && !res.data.success2){
+                    alert(res.data.error1, res.data.error2);
                 }
                 else{
                     alert("Miembro Guardado correctamente")
