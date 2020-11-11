@@ -38,6 +38,7 @@ module.exports = class Control{
     }
 
     async crearRama(req, res){
+        await this.gestorEstructura.modificarZona(req);
         await this.gestorEstructura.crearRama(req,res);
     } 
 

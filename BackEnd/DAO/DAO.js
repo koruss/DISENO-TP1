@@ -164,24 +164,15 @@ module.exports= class DAO {
         )
     }
 
-    async modificarZona(req, schema, res){
-        console.log(req)
+    async modificarZona(req, schema){
         this.openConnection();
-        schema.updateOne({_id:req.selectedZona.identificacion}, {$push:{ ramas: {nombre: req.nombreRama}}}, 
+        schema.updateOne({_id:req.body.selectedZona.identificacion}, {$push:{ ramas: {nombre: req.body.nombreRama}}}, 
             function(error, info) {
-            if (error) {
-                res.json({
-                    resultado: false,
-                    msg: 'No se pudo modificar las ramas',
-                    error
-                });
-                console.log("error: ",error)
+            /*if (error) {
+                res.json({ success: false, msg: 'No se pudo modificar las ramas', error});
             } else {
-                res.json({
-                    resultado: true,
-                    info: info
-                })
-            }
+                res.json({ success: true, info: info})
+            }*/
         })
     }
 

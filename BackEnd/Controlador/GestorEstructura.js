@@ -57,8 +57,8 @@ module.exports = class GestorEstructura{
         await this.grupoDAO.trasladarMiembro(req, res);
     }
 
-    async modificarZona(req, res){
-        await this.zonaDAO.updateZona(req, res);
+    async modificarZona(req){
+        await this.zonaDAO.updateZona(req);
     }
 
     async modificarRama(req){

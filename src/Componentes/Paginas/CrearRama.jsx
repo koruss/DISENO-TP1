@@ -35,14 +35,13 @@ export default class CrearRama extends Component {
         let arreglo =[];
         axios.post("/allZonas", {}).then(res => {
             const respuesta=res.data;
-            console.log(respuesta)
             respuesta.forEach(zona=>{
                 arreglo.push({
                     value:zona.nombreZona,
                     label:zona.nombreZona,
                     identificacion:zona._id
                 })
-            })   
+            })
             this.setState({
                 zonas:arreglo
             })
@@ -54,7 +53,7 @@ export default class CrearRama extends Component {
         if(this.state.selectedZona.length != 0 && this.state.nombreRama != ""){
             axios.post("/guardarRama",{
                 nombreRama:this.state.nombreRama,
-                selectedZona:this.state.selectedZona
+                selectedZona:this.state.selectedZona,
             }).then(res =>{
                 if(!res.data.success){
                     alert(res.data.err);
