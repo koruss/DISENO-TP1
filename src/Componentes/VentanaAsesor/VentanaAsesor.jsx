@@ -30,7 +30,7 @@ class VentanaAsesor extends Component {
         let arrGrup = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
+            //console.log(respuesta)
             respuesta.forEach(zona=>{
                 arreglo.push({
                     value:zona.nombreZona,
@@ -44,7 +44,7 @@ class VentanaAsesor extends Component {
 
         axios.post("/allRama", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
+           // console.log(respuesta)
             respuesta.forEach(rama=>{
                 arrRama.push({
                     value:rama.nombreRama,
@@ -58,7 +58,7 @@ class VentanaAsesor extends Component {
 
         axios.post("/allGrupos", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
+            //console.log(respuesta)
             respuesta.forEach(grupo=>{
                 arrGrup.push({
                     value:grupo.nombreGrupo,
