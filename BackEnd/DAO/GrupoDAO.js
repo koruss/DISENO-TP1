@@ -1,8 +1,10 @@
 var DAO = require('./DAO');
+var PersonaSchema = require("../Schemas/PersonSchema.js");
 var GrupoSchema = require("../Schemas/GrupoSchema.js");
 
 module.exports = class GrupoDAO {
     dao = new DAO();
+    personaSchema = new PersonaSchema();
     grupoSchema = new GrupoSchema();
 
     constructor(){
@@ -28,7 +30,7 @@ module.exports = class GrupoDAO {
     }
 
     async updateMiembroEnGrupo(data, res){
-        this.dao.updateMiembroEnGrupo(data, GrupoSchema, res);
+        this.dao.updateMiembroEnGrupo(data, GrupoSchema, PersonaSchema, res);
     }
 
     async cambiarNombreGrupo(data, res){

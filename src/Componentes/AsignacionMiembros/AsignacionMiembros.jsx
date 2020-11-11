@@ -31,7 +31,6 @@ class AsignacionMiembros extends Component{
         var self = this;
         let arreglo = [];
         let arrGrup = [];
-        let arrPers = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
             respuesta.forEach(zona=>{
@@ -45,31 +44,38 @@ class AsignacionMiembros extends Component{
             })
         })
 
+        this.obtenerPersonas()
+        
 
+
+    }
+
+    obtenerPersonas(){
+        let arrPers = [];
         axios.post("/allPersona", {}).then(res => {
             const respuesta = res.data;
             console.log(respuesta)
             respuesta.forEach(nombre=>{
-                arrPers.push({
-                    value:nombre.nombre,
-                    label:nombre.nombre,
-                    datosPersona:[{ _id:nombre._id,
-                        direccion: nombre.direccion,
-                        nombre:nombre.nombre,
-                        identificacion:nombre.identificacion,
-                        apellido1:nombre.apellido1,
-                        apellido2:nombre.apellido2,
-                        correo:nombre.correo,
-                        telefono:nombre.telefono,
-                        estado:nombre.estado}]
-                })
+                if(nombre.estado==false){
+                    arrPers.push({
+                        value:nombre.nombre,
+                        label:nombre.nombre,
+                        datosPersona:[{ _id:nombre._id,
+                            direccion: nombre.direccion,
+                            nombre:nombre.nombre,
+                            identificacion:nombre.identificacion,
+                            apellido1:nombre.apellido1,
+                            apellido2:nombre.apellido2,
+                            correo:nombre.correo,
+                            telefono:nombre.telefono,
+                            estado:nombre.estado }]
+                    })
+                }
             })   
             this.setState({
                 nombres:arrPers
             })
         })
-
-
     }
 
     obtenerRamas(){
@@ -135,8 +141,11 @@ class AsignacionMiembros extends Component{
                         selectedGrupo:[],
                         selectedRama:[],
                         selectedZona:[],
-                        selectedNombre:[]
+                        selectedNombre:[],
+                        nombres:[]
                     })
+                    
+                    this.obtenerPersonas()
                 }
             })
         }

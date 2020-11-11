@@ -51,8 +51,11 @@ module.exports= class DAO {
     }
 
 
-    async updateMiembroEnGrupo(data, schema, res){
+    async updateMiembroEnGrupo(data, schema, personSchema, res){
         this.openConnection();
+        console.log(data.body.nombre.datosPersona[0]._id)
+        personSchema.updateOne({_id:data.body.nombre.datosPersona[0]._id}, {$set:{ estado: true}}, 
+            function(error, info) { } )
         if (data.body.monitor.value=="Monitor"){
             schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ monitores: data.body.nombre.datosPersona}}, 
                 function(error, info) {if (error) {res.json({success: false, error: 'No se pudo modificar el cliente',error});
@@ -66,8 +69,6 @@ module.exports= class DAO {
                 function(error, info) {if (error) {res.json({success: false, error: 'No se pudo modificar el cliente',error});
                 } else {res.json({success: true, info: info })}})
         }
-       
-
     }
 
 
