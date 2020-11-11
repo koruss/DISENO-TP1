@@ -12,22 +12,19 @@ class CrearZona extends Component {
         super(props);
         this.zonaRef=React.createRef();
     }
-
     state = {
         nombreZona: ""
-
     }
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
     onClick = (e) => {
         if(this.state.nombreZona != ""){
-            console.log("ENTRE AL evento");
             axios.post("/guardarZona", {
                 nombreZona: this.state.nombreZona
             }).then(res => {
                 if (!res.data.success) {
-                    alert(res.data.err);
+                    alert(res.data.error);
                 }
                 else {
                     alert("Zona Guardada correctamente")

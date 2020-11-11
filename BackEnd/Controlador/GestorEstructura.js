@@ -21,8 +21,8 @@ module.exports = class GestorEstructura{
 
     }
 
-    async crearRama(data, res){
-        await this.ramaDAO.postRama(data,res);
+    async crearRama(req, res){
+        await this.ramaDAO.postRama(req,res);
     }
 
     async crearGrupo(req,res){
@@ -63,6 +63,10 @@ module.exports = class GestorEstructura{
 
     async modificarRama(req){
         await this.ramaDAO.updateRama(req);
+    }
+
+    async guardarZona(req, res){
+        await this.zonaDAO.postZona(req,res);
     }
 
     clientCode(component) {

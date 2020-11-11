@@ -9,6 +9,7 @@ const RamaSchema = new Schema(
         monitores:Array,
         jefesRama:Array,
         grupos: {
+            type: Array,
             nombre: String
         },
         jefesGrupo: {

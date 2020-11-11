@@ -54,6 +54,13 @@
     height: 85px;
 }
 
+.label-wrapper {
+    size: 50;
+    width: 50%;
+    float: left;
+    height: 85px;
+}   
+
 h1 {
     font-weight: 600;
     font-size: 32px;
@@ -91,3 +98,4 @@ body {
     margin-bottom: 50px;
     width: 100%;
 }
+

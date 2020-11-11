@@ -1,5 +1,7 @@
 var DAO = require('./DAO');
 var RamaSchema = require('../Schemas/RamaSchema.js');
+var ZonaSchema = require("../Schemas/ZonaSchema.js");
+
 
 module.exports = class RamaDao {
     List = [];
@@ -10,13 +12,14 @@ module.exports = class RamaDao {
     }
 
     //Funcion encargada de guardar una nueva zona en la base de datos
-    async postRama(data, res){
+    async postRama(req, res){
+        this.ramaSchema = new RamaSchema();
         this.ramaSchema.idCoordinacion="PRUEBA"; 
-        this.ramaSchema.nombreRama=data.body.nombreRama;
-        this.ramaSchema.zona = data.body.selectedZona.value;
+        this.ramaSchema.nombreRama=req.body.nombreRama;
+        this.ramaSchema.zona = req.body.selectedZona.value;
         this.ramaSchema.monitores = [];
         this.ramaSchema.jefesRama = [];
-        await this.dao.postData(this.ramaSchema, res);
+        await this.dao.crearRama(this.ramaSchema,ZonaSchema, req, res);
     }
 
     async updateRama(req){

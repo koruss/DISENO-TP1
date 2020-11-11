@@ -30,7 +30,6 @@ class VentanaAsesor extends Component {
         let arrGrup = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
-            //console.log(respuesta)
             respuesta.forEach(zona=>{
                 arreglo.push({
                     value:zona.nombreZona,
@@ -44,7 +43,6 @@ class VentanaAsesor extends Component {
 
         axios.post("/allRama", {}).then(res => {
             const respuesta = res.data;
-           // console.log(respuesta)
             respuesta.forEach(rama=>{
                 arrRama.push({
                     value:rama.nombreRama,
@@ -58,7 +56,6 @@ class VentanaAsesor extends Component {
 
         axios.post("/allGrupos", {}).then(res => {
             const respuesta = res.data;
-            //console.log(respuesta)
             respuesta.forEach(grupo=>{
                 if(grupo.monitores.length != 0){
                     arrGrup.push({
@@ -104,18 +101,6 @@ class VentanaAsesor extends Component {
                                 <label for="rama">{this.state.grupos.length}</label>
                             </div>
                         </div>
-                        {/* <div className="label-wrapper" >
-                            <div class="form-group" class="spacing-base">
-                                <label for="rama">Total de personas sin grupo asignado:</label>
-                                <label for="rama">30 personas</label>
-                            </div>
-                            <div class="form-group" class="spacing-base">
-                                <label for="grupo">Total de grupos sin jefe definido:</label>
-                                <label for="rama">6 grupos</label>
-                            </div>
-                        </div> */}
-                        
-                        {/* <button type="button" class="btn btn-dark">Atrás</button> */}
                     </div>
                     <div className="label-wrapper">
                     <div className="label-wrapper-right" class="spacing-base-hard">
@@ -123,21 +108,17 @@ class VentanaAsesor extends Component {
                     </div>
                     <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
-                                {/* <label for="rama">Asignar miembros a los grupos</label> */}
                                 <Link class="btn btn-dark" to='./asignacionMiembros'><img src={imagenAsignacion} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />Asignar miembros a grupos</Link>                                
                             </div>
                             <div class="form-group" class="spacing-base">
-                                {/* <label for="grupo">Asignar jefes a los grupos</label> */}
                                 <Link class="btn btn-dark" to='./registroMiembro'><img src={imagenJefes} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />  Registrar nuevo miembro</Link>    
                             </div>
                         </div>
                         <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
-                                {/* <label for="rama">Definir estructura organizacional</label> */}
                                 <Link class="btn btn-dark" to='./estructura'><img src={imagenDefinicion} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />  Definir estructura organizacional</Link>    
                             </div>
                             <div class="form-group" class="spacing-base">
-                                {/* <label for="grupo">Ver mapa organizacional</label> */}
                                 <Link class="btn btn-dark" to='./arbolEstuctural'><img src={imagenMapa} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />  Ver mapa organizacional</Link>    
                             </div>
                         </div>

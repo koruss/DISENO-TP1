@@ -9,7 +9,7 @@ module.exports = class GestorMiembro{
 
     //Funcion que crea un objeto de tipo persona y lo envia para ser guardado
     async agregarMiembro(data, res){
-        let response = await this.personaDAO.postPersona(data, res)
+        await this.personaDAO.postPersona(data, res)
     }
 
     //Funcion que crea un objeto de tipo persona y lo envia para ser guardado
@@ -29,37 +29,5 @@ module.exports = class GestorMiembro{
         await this.personaDAO.getAsesores(req,res);
     }
 
-    getMiembros(){
 
-    }
-
-    getMiembrosGrupo(){
-
-    }
-
-    // Operaciones sobre jefes
-    getJefesGrupo(){
-
-    }
-
-    getJefesRama(){
-
-    }
-
-    getJefesZona(){
-
-    }
-
-    // Operaciones sobre mentores
-    getMentores(){
-
-    }
-
-    asignarGrupoMentor(){
-
-    }
-
-    getMentoresGrupo(){
-
-    }
 }

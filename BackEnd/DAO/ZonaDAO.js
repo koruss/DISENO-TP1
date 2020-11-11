@@ -10,8 +10,10 @@ module.exports = class ZonaDAO {
     }
 
     //Funcion encargada de guardar una nueva zona en la base de datos
-    async postZona(data, res){
-
+    async postZona(req, res){
+        this.zonaSchema = new ZonaSchema();
+        this.zonaSchema.nombreZona= req.body.nombreZona;
+        await this.dao.postData(this.zonaSchema, res);
     }
 
     async updateZona(req){

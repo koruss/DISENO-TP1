@@ -89,7 +89,6 @@ class TrasladarMiembro extends Component {
     obtenerPersonas(selectedGrupoFrom){
         var self = this;
         let arreglo= [];
-        console.log(selectedGrupoFrom.miembros)
         axios.post("/allPersona", {}).then(res => {
             const respuesta=res.data; // tiene todos lo miembros
             const miembrosGrupo = this.state.selectedGrupoFrom.miembros //Miembros del grupo
@@ -143,8 +142,6 @@ class TrasladarMiembro extends Component {
             })
         })
     }
-
-
 
     onClick = (e) => {
         if(this.state.selectedNombre.length != 0 && this.state.selectedZona.length != 0 &&
@@ -252,13 +249,11 @@ class TrasladarMiembro extends Component {
                                 <Select components={makeAnimated} name="grupoFrom" value={this.state.selectedGrupoFrom} className="basic-multi-select"
                                     options={this.state.grupoFrom} classNamePrefix="select" onChange={this.handleChangeGrupoFrom} />
                             </div>
-                            
                             <div class="form-group" class="spacing-base">
                                 <label for="grupoTo">Seleccione el grupo al que pertenecerá la persona:</label>
                                 <Select components={makeAnimated} name="grupoTo" value={this.state.selectedGrupoTo} className="basic-multi-select"
                                     options={this.state.grupoTo} classNamePrefix="select" onChange={this.handleChangeGrupoTo} />
                             </div>
-
                             <div class="form-group" class="spacing-base">
                                 <label for="grupoTo">Nombre de la persona a cambiar de grupo:</label>
                                 <Select components={makeAnimated} name="nombre" value={this.state.selectedNombre} className="basic-multi-select"
