@@ -153,11 +153,7 @@ module.exports= class DAO {
     async modificarRama(req, schema){
         this.openConnection();
         schema.updateOne({_id:req.body.selectedRama.identificacion}, {$push:{ grupos: {nombre: req.body.nombreGrupo}}}, 
-            function(error, info) {
-                /*if(error)return res.json({success:false, error:"Se ha producido un error guardando"+error}) ;
-                else{
-                    return res.json({success: true});
-                }*/
+            function(error, info) { 
             }
         )
     }
@@ -166,11 +162,6 @@ module.exports= class DAO {
         this.openConnection();
         schema.updateOne({_id:req.body.selectedZona.identificacion}, {$push:{ ramas: {nombre: req.body.nombreRama}}}, 
             function(error, info) {
-            /*if (error) {
-                res.json({ success: false, msg: 'No se pudo modificar las ramas', error});
-            } else {
-                res.json({ success: true, info: info})
-            }*/
         })
     }
 

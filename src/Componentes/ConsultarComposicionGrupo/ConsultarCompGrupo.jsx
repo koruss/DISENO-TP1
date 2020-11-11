@@ -79,16 +79,17 @@ class ConsultarComposicionGrupo extends Component{
         ramasCrudo.forEach(rama=>{
             if(rama.nombreRama == selectedRama.value){
                 var grupos = rama.grupos;
-                grupos.forEach(grupo=>{
-                    arreglo.push({
-                    value:grupo.nombre,
-                    label:grupo.nombre,
-                    miembros: grupo.miembros,
-                    jefesGrupo: grupo.jefesGrupo,
-                    monitores: grupo.monitores
+                    grupos.forEach(grupo=>{
+                        //if(grupo.monitores.length != 0){
+                            arreglo.push({
+                            value:grupo.nombre,
+                            label:grupo.nombre,
+                            miembros: grupo.miembros,
+                            jefesGrupo: grupo.jefesGrupo,
+                            monitores: grupo.monitores
+                            })
+                        //}
                     })
-                })
-
                 this.setState({
                     grupos:arreglo
                 })

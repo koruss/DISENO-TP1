@@ -71,7 +71,7 @@ class CambiarNombreGrupo extends Component{
             const respuesta=res.data;
             const ramaNombre = this.state.selectedRama.value;
             respuesta.forEach(grupo=>{
-                if(grupo.nombreRama == ramaNombre){
+                if(grupo.nombreRama == ramaNombre && grupo.monitores.length != 0){
                     arreglo.push({
                         value:grupo.nombreGrupo,
                         label:grupo.nombreGrupo,

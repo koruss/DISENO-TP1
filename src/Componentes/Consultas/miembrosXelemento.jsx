@@ -76,10 +76,12 @@ export default class miembroXelemento extends Component {
             const respuesta = res.data;
             console.log(respuesta)
             respuesta.forEach(grupo=>{
-                arrGrup.push({
-                    value:grupo.nombreGrupo,
-                    label:grupo.nombreGrupo
-                })
+                if(grupo.monitores.length != 0){
+                    arrGrup.push({
+                        value:grupo.nombreGrupo,
+                        label:grupo.nombreGrupo
+                    })
+                }
             })   
             this.setState({
                 selectedGrupo:arrGrup
