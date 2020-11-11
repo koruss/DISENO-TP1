@@ -91,7 +91,7 @@ export default class CrearGrupo extends Component {
                 selectedRama:this.state.selectedRama
             }).then (res =>{
                 if(!res.data.success){
-                    alert(res.data.err);
+                    alert(res.data.error);
                 }
                 else{
                     alert("Grupo guardado correctamente");

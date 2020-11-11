@@ -56,7 +56,7 @@ export default class CrearRama extends Component {
                 selectedZona:this.state.selectedZona,
             }).then(res =>{
                 if(!res.data.success){
-                    alert(res.data.err);
+                    alert(res.data.error);
                 }
                 else{
                     alert("Rama guardada correctamente")

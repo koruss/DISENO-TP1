@@ -27,7 +27,7 @@ class CrearZona extends Component {
                 nombreZona: this.state.nombreZona
             }).then(res => {
                 if (!res.data.success) {
-                    alert(res.data.err);
+                    alert(res.data.error);
                 }
                 else {
                     alert("Zona Guardada correctamente")

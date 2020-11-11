@@ -30,21 +30,19 @@ module.exports = class Control{
     constructor(){
     }
 
-    setCoordinacion(coordinacion){
-    }
-
-    crearCoordinacion(){
-
-    }
 
     async crearRama(req, res){
-        await this.gestorEstructura.modificarZona(req);
-        await this.gestorEstructura.crearRama(req,res);
+        await this.gestorEstructura.crearRama(req,res)
+        if(!res.success){
+                this.gestorEstructura.modificarZona(req);
+        }
     } 
 
     async guardarGrupo(req,res){
-        await this.gestorEstructura.modificarRama(req);
         await this.gestorEstructura.crearGrupo(req,res);
+        if(!res.success){
+            await this.gestorEstructura.modificarRama(req);
+        }
     }
 
     async definirEstructura(info){
@@ -63,11 +61,8 @@ module.exports = class Control{
         await this.gestorEstructura.asignarMiembro(req, res);
     }
 
-    //HACER FUNCION EN GESTOR DE ESTRUCTURA DE CREAR ZONA
-    async prueba(info, res){
-            await this.dao.guardar(info, res).then(
-            console.log(res)
-        )
+    async guardarZona(req, res){
+        await this.gestorEstructura.guardarZona(req, res)
     }
 
     async allZonas(req, res){
@@ -89,38 +84,11 @@ module.exports = class Control{
     async cambiarNombreGrupo(req,res){
         await this.gestorEstructura.cambiarNombreGrupo(req, res)
     }
-    
-    registrarMiembro(){
-
-    }
-
-    consultarMiembro(){
-
-    }
-
-    modificarMiembro(){
-
-    }
-
-    modificarEstadoMiembro(){
-
-    }
 
     cambiarMiembroGrupo(data, res){
         this.gestorEstructura.trasladarMiembro(data, res);
     }
 
-    definirMonitor(){
-
-    }
-
-    crarGrupo(){
-
-    }
-
-    consultarComposicionGrupo(){
-
-    }
 }
 
 

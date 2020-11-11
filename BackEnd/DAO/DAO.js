@@ -1,8 +1,3 @@
-const Zona = require("../Schemas/ZonaSchema");
-const Rama = require("../Schemas/RamaSchema");
-const Grupo= require("../Schemas/GrupoSchema");
-const Persona = require("../Schemas/PersonSchema");
-const Asesor = require("../Schemas/AsesorSchema");
 const DataSource= require('./DataSource');
 
 
@@ -27,10 +22,10 @@ module.exports= class DAO {
     //Funcion que recibe un esquema para guardarlo en la base de datos
     async postData(schema, res){
         this.openConnection();
-        schema.save((err)=>{
-            if(err)return res.json({success:false, error:"Se ha producido un error guardando"+err}) ;
+        schema.save( function(error,info) {
+            if(error) { res.json({success:false, error:"Se ha producido un error guardando",error}) }
             else{
-                return res.json({success: true});
+                res.json({success: true, info: info});
             }
         });
     }
@@ -56,28 +51,8 @@ module.exports= class DAO {
     }
 
 
-    //LISTA PARA SER BORRADA? - cambiar a usar postData
-    async guardar(data,res){
-        const connection = this.dataSource.Connect;
-        let state = connection.connection;
-        state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
-        state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
-        console.log("Llegue al DAO");
-        console.log(data)
-        let zona = new Zona();
-        zona.nombreZona=data.nombreZona;
-        zona.save((err)=>{
-            if(err)return res.json({success:false, error:"Se ha producido un error guardando"+err}) ;
-            else{
-                console.log("Algo hice");
-                return res.json({success: true});
-            }
-        });
-    }
-
     async updateMiembroEnGrupo(data, schema, res){
         this.openConnection();
-        // console.log(data.body)
         if (data.body.monitor.value=="Monitor"){
             schema.updateOne({_id:data.body.grupo.identificacion}, {$push:{ monitores: data.body.nombre.datosPersona}}, 
                 function(error, info) {if (error) {res.json({success: false, error: 'No se pudo modificar el cliente',error});
