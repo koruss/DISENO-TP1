@@ -29,7 +29,6 @@ class TrasladarMiembro extends Component {
     componentWillMount() {
         var self = this;
         let arreglo = [];
-        let arrPers = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
             respuesta.forEach(zonas=>{
@@ -42,30 +41,6 @@ class TrasladarMiembro extends Component {
                 zonasFrom:arreglo
             })
         })
-
-
-        axios.post("/allPersona", {}).then(res => {
-            const respuesta = res.data;
-            respuesta.forEach(nombre=>{
-                arrPers.push({
-                    value:nombre.nombre,
-                    label:nombre.nombre,
-                    datosPersona:{ _id:nombre._id,
-                        direccion: nombre.direccion,
-                        nombre:nombre.nombre,
-                        identificacion:nombre.identificacion,
-                        apellido1:nombre.apellido1,
-                        apellido2:nombre.apellido2,
-                        correo:nombre.correo,
-                        telefono:nombre.telefono,
-                        estado:nombre.estado}
-                })
-            })   
-            this.setState({
-                nombres:arrPers
-            })
-        })
-
 
     }
 
@@ -100,12 +75,52 @@ class TrasladarMiembro extends Component {
                     arreglo.push({
                         value:grupo.nombreGrupo,
                         label:grupo.nombreGrupo,
-                        identificacion:grupo._id
+                        identificacion:grupo._id,
+                        miembros:grupo.miembros
                     })
                 }
             })   
             this.setState({
                 grupoFrom:arreglo
+            })
+        })
+    }
+
+    obtenerPersonas(selectedGrupoFrom){
+        var self = this;
+        let arreglo= [];
+        console.log(selectedGrupoFrom.miembros)
+        axios.post("/allPersona", {}).then(res => {
+            const respuesta=res.data; // tiene todos lo miembros
+            const miembrosGrupo = this.state.selectedGrupoFrom.miembros //Miembros del grupo
+            miembrosGrupo.forEach(miembroGrup => {
+                respuesta.forEach(persona => {
+                if(miembrosGrupo != undefined){
+                    if(persona._id == miembroGrup._id){
+                    console.log(persona._id)
+                    console.log(miembroGrup._id)
+                        arreglo.push({
+                            value:persona.nombre,
+                            label:persona.nombre,
+                            datosPersona:{ _id:persona._id,
+                                direccion: persona.direccion,
+                                nombre:persona.nombre,
+                                identificacion:persona.identificacion,
+                                apellido1:persona.apellido1,
+                                apellido2:persona.apellido2,
+                                correo:persona.correo,
+                                telefono:persona.telefono,
+                                estado:persona.estado}
+                        })
+                    }
+                }
+                else{
+                    alert("Este grupo no tiene miembros")
+                }
+                })
+            })
+            this.setState({
+                nombres:arreglo
             })
         })
     }
@@ -126,7 +141,7 @@ class TrasladarMiembro extends Component {
                 }
             })   
             this.setState({
-                grupoTo:arreglo
+                grupoTo:arreglo 
             })
         })
     }
@@ -164,11 +179,6 @@ class TrasladarMiembro extends Component {
         }
     }
 
-    handleChangeNombre = selectedNombre => {
-        this.setState(
-            { selectedNombre },     
-        );
-    };
 
     handleChangeZonas = selectedZona => {
         this.setState(
@@ -191,6 +201,14 @@ class TrasladarMiembro extends Component {
         this.setState(
             { selectedGrupoFrom },     
         );
+        this.limpiarPersonas();
+        this.obtenerPersonas(selectedGrupoFrom);
+    };
+
+    handleChangeNombre = selectedNombre => {
+        this.setState(
+            { selectedNombre },     
+        );
     };
 
     handleChangeGrupoTo = selectedGrupoTo => {
@@ -208,6 +226,10 @@ class TrasladarMiembro extends Component {
         this.state.selectedGrupoTo = []
     }
 
+    limpiarPersonas(){
+        this.state.selectedNombre = []
+    }
+
     render() {
         return (
             <div>
@@ -216,9 +238,6 @@ class TrasladarMiembro extends Component {
                     <form>
                         <h2>Trasladar miembro de grupo</h2>
                         <div id="center-section">
-                            <h5>Nombre de la persona a cambiar de grupo</h5>
-                            <Select components={makeAnimated} name="nombre" value={this.state.selectedNombre} className="basic-multi-select"
-                                options={this.state.nombres} classNamePrefix="select" onChange={this.handleChangeNombre} />
                             <div class="form-group" class="spacing-base">
                                 <label for="zona">Seleccione la zona a la que pertenece la persona:</label>
                                 <Select components={makeAnimated} name="zonaFrom" value={this.state.selectedZona} className="basic-multi-select"
@@ -239,6 +258,12 @@ class TrasladarMiembro extends Component {
                                 <label for="grupoTo">Seleccione el grupo al que pertenecerá la persona:</label>
                                 <Select components={makeAnimated} name="grupoTo" value={this.state.selectedGrupoTo} className="basic-multi-select"
                                     options={this.state.grupoTo} classNamePrefix="select" onChange={this.handleChangeGrupoTo} />
+                            </div>
+
+                            <div class="form-group" class="spacing-base">
+                                <label for="grupoTo">Nombre de la persona a cambiar de grupo:</label>
+                                <Select components={makeAnimated} name="nombre" value={this.state.selectedNombre} className="basic-multi-select"
+                                    options={this.state.nombres} classNamePrefix="select" onChange={this.handleChangeNombre} />
                             </div>
                             <button type="button" class="btn btn-dark" onClick={this.onClick}>Cambiar</button>
                         </div>
