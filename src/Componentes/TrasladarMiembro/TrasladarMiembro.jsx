@@ -97,8 +97,6 @@ class TrasladarMiembro extends Component {
                 respuesta.forEach(persona => {
                 if(miembrosGrupo != undefined){
                     if(persona._id == miembroGrup._id){
-                    console.log(persona._id)
-                    console.log(miembroGrup._id)
                         arreglo.push({
                             value:persona.nombre,
                             label:persona.nombre,
@@ -163,7 +161,7 @@ class TrasladarMiembro extends Component {
                     alert(res.data.error1, res.data.error2);
                 }
                 else{
-                    alert("Miembro Guardado correctamente")
+                    alert("Miembro trasladado correctamente")
                     this.setState({
                         selectedNombre:[],
                         selectedZona:[],
@@ -215,6 +213,7 @@ class TrasladarMiembro extends Component {
         this.setState(
             { selectedGrupoTo },     
         );
+        this.limpiarPersonas();
     };
 
     limpiarRamas(){
