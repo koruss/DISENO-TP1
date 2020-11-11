@@ -16,17 +16,15 @@ export default class CardGrupoResult extends Component {
         this.state.apellido = this.props.miembroData.apellido1
         
         return (
-            <div className="card1-container" >
-                <div id="center-section">
-                    <Card style={{ width: '13rem' }}>
-                        <Card.Body>
-                            <Card.Title>{this.state.indice}</Card.Title>
-                            <Card.Text>
-                                {this.state.nombre} {this.state.apellido}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </div>
+            <div >
+                <Card style={{ width: '13rem' }}>
+                    <Card.Body>
+                        <Card.Title>{this.state.indice}</Card.Title>
+                        <Card.Text>
+                            {this.state.nombre} {this.state.apellido}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
             </div>
         )
     };

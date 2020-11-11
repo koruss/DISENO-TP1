@@ -45,6 +45,13 @@ class ConsultarGrupoResult extends Component {
                     <div id="center-section">
                         <h2>Nombre del Grupo: {this.state.grupo}</h2>
                     </div>
+                    <div>
+                        <label for="CantMiembros">Cantidad de personas</label>
+                        <label for="ResultCantMiembros">{this.state.miembros.length+
+                        this.state.jefe.length +this.state.monitores.length }</label>
+                        <label for="CantMiembros">Cantidad de miembros</label>
+                        <label for="ResultCantMiembros">{this.state.miembros.length}</label>
+                    </div>
                     <div className="label-wrapper">
                         <div class="form-group" class="spacing-base">
                             <label for="zona">Zona a la que pertenece:</label>
@@ -60,23 +67,21 @@ class ConsultarGrupoResult extends Component {
                     </div>
                     <div className="label-wrapper">
                         <div class="form-group" class="spacing-base">
-                            <label for="jefe">Jefes:</label>
-                            {this.state.jefe.map((p, index) => <li>{ (<Card index={"Jefe"} miembroData={p} />)}</li>)}
+                            <label for="jefe"></label>
+                            {this.state.jefe.map((p, index) => (<Card index={"Jefe"} miembroData={p} />) )}
                         </div>
                     </div>
                     <div className="label-wrapper">
                         <div class="form-group" class="spacing-base">
-                            <label for="monitores">Monitores:</label>
-                            {this.state.monitores.map((p, index) => <li>{ (<Card index={"Monitor"} miembroData={p} />)}</li>)}
+                            <label for="monitores"></label>
+                            {this.state.monitores.map((p, index) =>  (<Card index={"Monitor"} miembroData={p} />) )}
                         </div>
                     </div>
 
                     <div className="label-wrapper">
                         <div class="spacing-base-hard">
-                            <label for="CantMiembros">Cantidad de usuarios</label>
-                            <label for="ResultCantMiembros">{this.state.miembros.length}</label>
                             <div class="form-group" class="spacing-base">
-                                
+                            <label for="monitores">Miembros:</label>
                                 {this.state.miembros.map((p, index) =>
                                     (<Card index={"Miembro"} miembroData={p} />))
                                 }

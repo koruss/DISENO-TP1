@@ -13,6 +13,7 @@ module.exports = class PersonDao {
 
     //Funcion encargada de guardar un nuevo usuario en la base de datos
     async postPersona(data, res){
+        this.personaSchema = new PersonaSchema();
         const direccion = {
             pais: data.pais.value,
             provincia: data.provincia.value,

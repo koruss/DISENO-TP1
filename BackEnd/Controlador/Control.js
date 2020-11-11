@@ -33,16 +33,16 @@ module.exports = class Control{
 
     async crearRama(req, res){
         await this.gestorEstructura.crearRama(req,res)
-        if(!res.success){
-                this.gestorEstructura.modificarZona(req);
-        }
+        //if(res_from_save.success == true){
+                await this.gestorEstructura.modificarZona(req);
+        
     } 
 
     async guardarGrupo(req,res){
         await this.gestorEstructura.crearGrupo(req,res);
-        if(!res.success){
+        //if(res.data.success == true){
             await this.gestorEstructura.modificarRama(req);
-        }
+        //}
     }
 
     async definirEstructura(info){
@@ -50,7 +50,7 @@ module.exports = class Control{
     }
 
     async guardarMiembro(data, res){
-        let response = await this.gestorMiembro.agregarMiembro(data, res);
+        await this.gestorMiembro.agregarMiembro(data, res);
     }
 
     async guardarAsesor(data, res){
