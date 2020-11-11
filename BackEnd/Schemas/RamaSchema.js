@@ -8,9 +8,10 @@ const RamaSchema = new Schema(
         zona: String,
         monitores:Array,
         jefesRama:Array,
-        grupos: {
-            nombre: String
-        },
+        grupos: [{
+            type: Array,
+            unique:true
+        }],
         jefesGrupo: {
             id: String,
             nombre: String,

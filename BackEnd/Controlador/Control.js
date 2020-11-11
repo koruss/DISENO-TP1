@@ -85,8 +85,19 @@ module.exports = class Control{
         await this.gestorMiembro.obtenerPersonas(req, res)
     }
 
+
+
+//falta que modifique el nombre del grupo en la rama 
     async cambiarNombreGrupo(req,res){
-        await this.gestorEstructura.cambiarNombreGrupo(req, res)
+        //console.log(req)
+        // this.gestorEstructura.cambiarNombreGrupoRama(req) = async () =>{
+        //     if(res.data.success){
+        //         await this.gestorEstructura.cambiarNombreGrupo(req, res)
+        //     }
+        
+        // }
+        const result = this.gestorEstructura.cambiarNombreGrupoRama(req);
+        console.log(result)
     }
     
     registrarMiembro(){

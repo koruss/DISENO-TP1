@@ -4,6 +4,7 @@ const Grupo= require("../Schemas/GrupoSchema");
 const Persona = require("../Schemas/PersonSchema");
 const Asesor = require("../Schemas/AsesorSchema");
 const DataSource= require('./DataSource');
+const { schema } = require("../Schemas/ZonaSchema");
 
 
 
@@ -12,6 +13,9 @@ module.exports= class DAO {
     dataSource = new DataSource();
     connection;
     state;
+    // constructor(){
+    //     this.openConnection();
+    // }
 
     openConnection() {
         //////////////////////////////
@@ -95,7 +99,7 @@ module.exports= class DAO {
 
     }
 
-
+//esta funcion se encarga de cambiar el nombre del grupo en la coleccion de grupos 
     async cambiarNombreGrupo(req, schema, res){
         this.openConnection();
         schema.updateOne({_id:req.body.grupo.identificacion}, {$set:{ nombreGrupo: req.body.nombre}}, 
@@ -114,6 +118,27 @@ module.exports= class DAO {
             }
         })
     }
+
+    //este metodo cambia el nombre del grupo en la rama
+    async cambiarNombreGrupoRama(req,schema){
+        console.log(req.body.grupo.value," ",req.body.rama.value );
+
+        schema.update({nombreRama:req.body.rama.value , "grupos.name": req.body.grupo.value} ,  
+        {$addToSet:{nombre:req.body.nombre}},
+            function(error){
+                if(error){
+                    return {success:false,erro:'No se pudo actualizar el Cliente',error};
+                }
+                else{
+                    return {success:true}
+                }
+
+            })
+    }
+    
+
+
+
 
     async trasladarMiembro(data, schema, res){
         const schema2= schema;
@@ -149,7 +174,7 @@ module.exports= class DAO {
             }
         })
     }
-
+//anade el grupo a la rama
     async modificarRama(req, schema){
         this.openConnection();
         schema.updateOne({_id:req.body.selectedRama.identificacion}, {$push:{ grupos: {nombre: req.body.nombreGrupo}}}, 

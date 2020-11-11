@@ -48,7 +48,7 @@ module.exports = class GestorEstructura{
     async asignarMiembro(req, res){
         await this.grupoDAO.updateMiembroEnGrupo(req, res);
     }
-
+//esta funcion llama a cambiar al nombre del grupo en el schema grupo
     async cambiarNombreGrupo(req, res){
         await this.grupoDAO.cambiarNombreGrupo(req, res);
     }
@@ -65,6 +65,9 @@ module.exports = class GestorEstructura{
         await this.ramaDAO.updateRama(req);
     }
 
+    async cambiarNombreGrupoRama(req){
+        await this.ramaDAO.cambiarNombreGrupoRama(req);
+    }
     clientCode(component) {
         console.log(`RESULT: ${component.operation()}`);
     }

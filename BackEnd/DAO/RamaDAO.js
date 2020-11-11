@@ -29,8 +29,10 @@ module.exports = class RamaDao {
         const respuesta = res.data;
     }
 
-    async cambiarNombreGrupo(req, res){
-        this.dao.cambiarNombreGrupo(req, RamaSchema, res);
+    //funcion encargada de llamar a la funcion que cambia el nombre del grupo en la rama
+    async cambiarNombreGrupoRama(req){
+        this.dao.cambiarNombreGrupoRama(req,RamaSchema);
+
     }
 
 
