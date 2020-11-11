@@ -13,7 +13,7 @@ class TreeContainer extends React.PureComponent{
         grupos:[],
         treeData: [
             {
-              name: 'Top Level',
+              name: 'Ejemplo',
 
               children: [
                 {
@@ -43,6 +43,7 @@ class TreeContainer extends React.PureComponent{
         svgSquare: {
             shape: 'rect',
             shapeProps: {
+                fill:'#333',
                 width: 20,
                 height: 20,
                 x: -10,
@@ -76,7 +77,7 @@ class TreeContainer extends React.PureComponent{
         this.setState({
             translate: {
                 x: dimensions.width / 2,
-                y: dimensions.height / 2
+                y: 30,
             }
         });
     }
@@ -87,12 +88,29 @@ class TreeContainer extends React.PureComponent{
         let ramas= this.state.ramas;
         let grupo= this.state.grupos;
         zonas.forEach(zona=>{
-            this.state.arbol[0].children.push({name:zona.nombreZona,id:zona._id, children:[]})
-        })
-        ramas.forEach(rama=>{
-            let nombreZona= rama.nombreZona;
+            let arregloRamas=[];
             
+            zona.ramas.forEach(rama=>{//ingreso al arreglo de ramas que esta en el doc zona
+                let arregloGrupo=[]
+                const ramaExacta =ramas.find(ramita=>ramita.nombreRama==rama.nombre)//entro a todas las ramas y saco el que tnga match
+                
+                ramaExacta.grupos.forEach(grupo=>{
+                    arregloGrupo.push({name:grupo.nombre, id:grupo.nombre,children:[] })
+
+                })
+                console.log(ramaExacta)
+                arregloRamas.push({name:rama.nombre, id:rama.nombre, children:arregloGrupo})
+            })
+            this.state.arbol[0].children.push({name:zona.nombreZona,id:zona.nombre, children:arregloRamas})
         })
+        // ramas.forEach(rama=>{
+        //     let nombreZona= rama.nombreZona;
+            
+        // })
+        // for(var i=0; i<zonas.length;i++){
+        //     console.log(zonas[i]);
+        //     this.state.arbol[0].children.push({name:zonas[i].nombreZona,id:zonas[i]._id, children:[]})
+        // } 
         
 
 
