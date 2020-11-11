@@ -45,9 +45,6 @@ module.exports = class Control{
     // coordinar la creación de un grupo nuevo
     async guardarGrupo(req,res){
         await this.gestorEstructura.crearGrupo(req,res);
-        //if(res.data.success == true){
-            await this.gestorEstructura.modificarRama(req);
-        //}
     }
 
     // Función que define la estructura de la organización en la aplicación

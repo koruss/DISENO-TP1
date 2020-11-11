@@ -1,6 +1,7 @@
 var DAO = require('./DAO');
 var PersonaSchema = require("../Schemas/PersonSchema.js");
 var GrupoSchema = require("../Schemas/GrupoSchema.js");
+var RamaSchema = require('../Schemas/RamaSchema.js');
 
 module.exports = class GrupoDAO {
     dao = new DAO();
@@ -15,7 +16,7 @@ module.exports = class GrupoDAO {
         this.grupoSchema = new GrupoSchema();
         this.grupoSchema.nombreRama= req.body.selectedRama.value;
         this.grupoSchema.nombreGrupo= req.body.nombreGrupo;
-        await this.dao.postData(this.grupoSchema,res);
+        await this.dao.crearGrupo(this.grupoSchema, RamaSchema, req, res);
     }
 
     updatePersona(data){

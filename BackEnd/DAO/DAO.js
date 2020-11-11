@@ -153,4 +153,16 @@ module.exports= class DAO {
         });
     }
 
+    async crearGrupo(schema, schemaRama, req, res){
+        this.openConnection();
+        schema.save( function(error,info) {
+            if(error) { res.json({success:false, error:"Se ha producido un error guardando",error}) }
+            else{
+                schemaRama.updateOne({_id:req.body.selectedRama.identificacion}, {$push:{ grupos: {nombre: req.body.nombreGrupo}}}, 
+                    function(error, info) { } )
+                res.json({success: true, info: info});
+            }
+        });
+    }
+
 }
