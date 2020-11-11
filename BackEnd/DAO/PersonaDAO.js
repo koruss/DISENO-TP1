@@ -49,7 +49,6 @@ module.exports = class PersonDao {
     async getAsesores(req, res){
         this.dao.getOneData(AsesorSchema, "usuario",req,res);
         const respuesta = res.data;
-        console.log(respuesta);
     }
 
  }

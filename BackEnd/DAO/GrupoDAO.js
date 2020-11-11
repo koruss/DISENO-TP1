@@ -26,7 +26,6 @@ module.exports = class GrupoDAO {
     async getGrupos(req, res){
         this.dao.getData(GrupoSchema, res);
         const respuesta = res.data;
-        console.log(respuesta);
     }
 
     async updateMiembroEnGrupo(data, res){

@@ -17,8 +17,6 @@ class RegistroMiembro extends Component{
         this.apellido2Ref=React.createRef();
     }
 
-
-
     state = {
         paisOpc:[
             { value: "Costa Rica", label: "Costa Rica" }

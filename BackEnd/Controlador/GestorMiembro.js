@@ -29,37 +29,5 @@ module.exports = class GestorMiembro{
         await this.personaDAO.getAsesores(req,res);
     }
 
-    getMiembros(){
 
-    }
-
-    getMiembrosGrupo(){
-
-    }
-
-    // Operaciones sobre jefes
-    getJefesGrupo(){
-
-    }
-
-    getJefesRama(){
-
-    }
-
-    getJefesZona(){
-
-    }
-
-    // Operaciones sobre mentores
-    getMentores(){
-
-    }
-
-    asignarGrupoMentor(){
-
-    }
-
-    getMentoresGrupo(){
-
-    }
 }

@@ -109,7 +109,6 @@ class ConsultarComposicionGrupo extends Component{
         let arrGrup = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
             respuesta.forEach(zona=>{
                 arreglo.push({
                     value:zona.nombreZona,
