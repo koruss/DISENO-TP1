@@ -39,9 +39,6 @@ module.exports = class Control{
     // coordinar la creación de una rama
     async crearRama(req, res){
         await this.gestorEstructura.crearRama(req,res)
-        //if(res_from_save.success == true){
-                await this.gestorEstructura.modificarZona(req);
-        
     } 
 
     // Función que conecta con el gestor de la estructura para

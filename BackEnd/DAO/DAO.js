@@ -141,6 +141,16 @@ module.exports= class DAO {
         })
     }
 
-}
+    async crearRama(schema, schemaZona, req, res){
+        this.openConnection();
+        schema.save( function(error,info) {
+            if(error) { res.json({success:false, error:"Se ha producido un error guardando",error}) }
+            else{
+                schemaZona.updateOne({_id:req.body.selectedZona.identificacion}, {$push:{ ramas: {nombre: req.body.nombreRama}}}, 
+                    function(error, info) { } )
+                res.json({success: true, info: info});
+            }
+        });
+    }
 
-// checks if connection with the database is successful
+}

@@ -1,5 +1,7 @@
 var DAO = require('./DAO');
 var RamaSchema = require('../Schemas/RamaSchema.js');
+var ZonaSchema = require("../Schemas/ZonaSchema.js");
+
 
 module.exports = class RamaDao {
     List = [];
@@ -17,7 +19,7 @@ module.exports = class RamaDao {
         this.ramaSchema.zona = req.body.selectedZona.value;
         this.ramaSchema.monitores = [];
         this.ramaSchema.jefesRama = [];
-        await this.dao.postData(this.ramaSchema, res);
+        await this.dao.crearRama(this.ramaSchema,ZonaSchema, req, res);
     }
 
     async updateRama(req){
