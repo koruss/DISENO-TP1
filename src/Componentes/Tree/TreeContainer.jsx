@@ -153,23 +153,6 @@ class TreeContainer extends React.PureComponent{
             </div>
 
             </div>    
-            
-
-        
-
-
-
-
-        // <div>
-        //     <div class= "center-section">
-        //         <Header></Header>
-        //     </div>
- 
-
-        // </div>
-
-
-
 
         )
     };

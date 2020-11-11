@@ -38,10 +38,8 @@ function App() {
           <Route path="/cambiarNombreGrupo" component={CambiarNombreGrupo}/> 
           <Route path="/arbolEstructural" component={TreeContainer}/> 
           <Route path="/contacto" component={contacto}/> 
-          {/*                       PENDIENTES          */}            
-          {/*
-          <Route path="/contacto" component={Contacto}/>
-          */}
+                    
+          
           <Route path="/afiliacionMiembros" component={AfiliacionMiembros}/>
           <Route path="/asignacionMiembros" component={AsignacionMiembros}/>
 

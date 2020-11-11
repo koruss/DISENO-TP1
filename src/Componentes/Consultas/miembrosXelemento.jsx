@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-//import './miembrosXelemento.css' //JALE LOMBAX COCHINOOOOOOOOOOOOOOOOOOOOOOO
+//import './miembrosXelemento.css' 
 import Card from './Card1'
 import Header from '../General/Header';
 import axios from 'axios';
@@ -46,7 +46,6 @@ export default class miembroXelemento extends Component {
         let arrGrup = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
             respuesta.forEach(zona=>{
                 arreglo.push({
                     value:zona.nombreZona,
@@ -60,7 +59,6 @@ export default class miembroXelemento extends Component {
 
         axios.post("/allRama", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
             respuesta.forEach(rama=>{
                 arrRama.push({
                     value:rama.nombreRama,
@@ -74,7 +72,6 @@ export default class miembroXelemento extends Component {
 
         axios.post("/allGrupo", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
             respuesta.forEach(grupo=>{
                 if(grupo.monitores.length != 0){
                     arrGrup.push({
@@ -124,13 +121,8 @@ export default class miembroXelemento extends Component {
                 {this.state.resultMembers.map((p,index) => 
                                     (<Card key={p._id} index={index} miembroData={p} isFriend={false} />)
                                 )}
-
                 </div>
-
             </div>
         )
     };
-
-
-
 }

@@ -23,7 +23,6 @@ export default class CrearRama extends Component {
         [e.target.name]: e.target.value
     });
 
-
     handleChange = selectedZona => {
         this.setState(
             { selectedZona },     

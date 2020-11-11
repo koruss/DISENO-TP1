@@ -13,7 +13,7 @@ class PopUp extends Component {
   };
     
   render() {
-  return (    
+    return (    
       <div className="popUp">
           <div className="modal_content">
               <span className="close" onClick={this.handleClick}>&times;    </span>

@@ -16,7 +16,7 @@ module.exports= class DAO {
         this.state = this.connection.connection;
         this.state.setMaxListeners(0);
         this.state.once('open', () => console.log('------->>> Conexion con MongoDB exitosa <<<------'));
-        this.state.on('error', console.error.bind(console, '------->>> Mamendez Con MongoDB <<<------:'));
+        this.state.on('error', console.error.bind(console, '------->>> Fallo en la conexión con MongoDB <<<------:'));
     }
 
     //Funcion que recibe un esquema para guardarlo en la base de datos
@@ -34,7 +34,7 @@ module.exports= class DAO {
     async getOneData(schema, param, req,res){
         this.openConnection();
         schema.findOne({usuario:req.body.usuario},(err,data)=>{
-            if(err) return console.log(err);
+            if(err) return 
             res.send(data);
             res.end();
         })
@@ -44,7 +44,7 @@ module.exports= class DAO {
     async getData(schema, res){
         this.openConnection();
         schema.find({},(err,data)=>{
-            if(err) return console.log(err);
+            if(err) return 
             res.send(data);
             res.end();
         })
@@ -141,18 +141,5 @@ module.exports= class DAO {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // checks if connection with the database is successful
