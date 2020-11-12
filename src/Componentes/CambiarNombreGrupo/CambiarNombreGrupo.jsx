@@ -7,7 +7,7 @@ import Header from '../General/Header';
 import axios from 'axios';
 
 class CambiarNombreGrupo extends Component{
-
+/*El constructor de la clase */ 
     constructor(props){
         super(props);
         this.nombreRef=React.createRef();
@@ -23,10 +23,14 @@ class CambiarNombreGrupo extends Component{
         grupos:[]
     }
 
-    
+   
+   /* esta funcion se encarga de recibir la info del componente y lo setea en un  state*/
+   
     onChange = (e) => this.setState({[e.target.name]:e.target.value});
 
-
+/*
+Esta funcion se ejecuta automaticamente, obtiene todas las zonas,
+*/
     componentWillMount() {
         var self = this;
         let arreglo = [];
@@ -44,6 +48,10 @@ class CambiarNombreGrupo extends Component{
         })
     }
 
+
+/*
+obtiene todas las ramas y las guarda en la ventana
+*/ 
     obtenerRamas(){
         var self = this;
         let arreglo =[];
@@ -64,6 +72,9 @@ class CambiarNombreGrupo extends Component{
         })
     }
 
+/*
+obtiene todos los  grupos y los guarda en la ventana
+*/
     obtenerGrupos(){
         var self = this;
         let arreglo =[];
@@ -117,7 +128,7 @@ class CambiarNombreGrupo extends Component{
             alert("Ingrese todos los datos")
         }
     }
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */ 
     handleChangeZonas = selectedZona => {
         this.setState(
             { selectedZona }
@@ -125,7 +136,7 @@ class CambiarNombreGrupo extends Component{
         this.limpiarRamas();
         this.obtenerRamas();
     }
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */ 
     handleChangeRamas = selectedRama => {
         this.setState(
             {selectedRama}
@@ -133,22 +144,26 @@ class CambiarNombreGrupo extends Component{
         this.limpiarGrupos();
         this.obtenerGrupos();
     }
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */ 
     handleChangeGrupo = selectedGrupo => {
         this.setState(
             { selectedGrupo },     
         );
     };
-
+/*
+Limpia los states 
+*/
     limpiarRamas(){
         this.state.selectedRama = []
     }
-
+/*
+Limpia los states 
+*/
     limpiarGrupos(){
         this.state.selectedGrupo = []
     }
 
-
+/* se encarga de renderizar el codigo html*/
 render() {
     return (
         <div>

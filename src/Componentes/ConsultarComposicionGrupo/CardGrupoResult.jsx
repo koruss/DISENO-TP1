@@ -9,7 +9,7 @@ export default class CardGrupoResult extends Component {
         apellido: "",
         indice: ""
     }
-
+/*Se encarga de renderizar el codigo html*/
     render() {
         this.state.nombre = this.props.miembroData.nombre;
         this.state.indice = this.props.index;  
