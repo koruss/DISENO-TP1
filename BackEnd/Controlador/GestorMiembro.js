@@ -17,14 +17,17 @@ module.exports = class GestorMiembro{
         let response = await this.personaDAO.postAsesor(data, res)
     }
 
+    //Funcion para cambiar un miembro de grupo
     cambiarMiembroGrupo(data, res){
         this.personaDAO.updatePersona(data, res);
     }
 
+    //Funcion para obtener todas las personas registradas
     async obtenerPersonas(req,res){
         await this.personaDAO.getPersonas(req,res);
     }
 
+    //Funcion para obtener los asesores
     async obtenerAsesores(req,res){
         await this.personaDAO.getAsesores(req,res);
     }
