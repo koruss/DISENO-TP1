@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import './PopUp.css'
 
+// Clase encargada de la visualización header en todas las ventanas
+// en la aplicación
 class PopUp extends Component {
 
+
+    // Setean los datos seleccionados en los comboBox
+    // y pasan la información a la ejecución del boton
   handleYes = () =>{
     this.props.toggle();
     this.props.action();
@@ -11,7 +16,9 @@ class PopUp extends Component {
   handleClick = () => {
     this.props.toggle();
   };
-    
+
+  // En esta parte se hace el diseño del popup
+  // y se llama a las funciones anteriores.
   render() {
     return (    
       <div className="popUp">

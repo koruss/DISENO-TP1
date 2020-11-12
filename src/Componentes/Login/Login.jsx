@@ -5,18 +5,26 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 //import {Redirect} from 'react-router-dom';
 import Header from '../General/Header';
 
+
+// Clase encargada para el acceso 
+// en la aplicación
 class Login extends Component{
 
+    // Metodo constructor de la clase que recibe los props para 
+    // la creación de grupos dentro de la aplicación
     constructor(props){
         super(props);
         this.userNameRef=React.createRef();
         this.passwordRef=React.createRef();
     }
 
+    // El state guarda los datos brindados por el usuario
+    // para ser utilizados cuando se cree en la aplicación
     state = {
         isAuth: false
     };
       
+    //Clase que se encarga de la validación y acceso de las personas
     logIn = (e) => {
         e.preventDefault();
         var self = this;
@@ -47,6 +55,9 @@ class Login extends Component{
         e.target.value}); 
 
     
+
+    // En esta parte se hace el diseño de la ventana de login
+    // y se llama a las funciones anteriores.
     render(){    
         if(!this.state.isAuth) {
         return(  

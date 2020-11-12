@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-//Esquema de rama de la base de datos
+// Esquema de la rama en la base de datos
 const RamaSchema = new Schema(
     {
         idCoordinacion:String,

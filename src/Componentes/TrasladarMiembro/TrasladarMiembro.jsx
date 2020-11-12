@@ -7,6 +7,8 @@ import './TrasladarMiembro.css'
 import '../../Componentes/General/Utils.css'
 import Header from '../General/Header';
 
+// Clase encargada de la transferencia de un miembro 
+// de un grupo a otro
 class TrasladarMiembro extends Component {
     
     state = {

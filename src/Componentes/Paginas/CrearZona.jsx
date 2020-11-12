@@ -6,18 +6,27 @@ import Header from '../General/Header.jsx';
 
 
 
+// Clase encargada de la creación de zonas  
+// en la aplicación
 class CrearZona extends Component {
 
+    // Metodo constructor de la clase que recibe los props para 
+    // la creación de grupos dentro de la aplicación
     constructor(props){
         super(props);
         this.zonaRef=React.createRef();
     }
+
+    // El state guarda los datos brindados por el usuario
+    // para ser utilizados cuando se cree en la aplicación
     state = {
         nombreZona: ""
     }
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
+
+    //Funcion para manejar los eventos de un boton
     onClick = (e) => {
         if(this.state.nombreZona != ""){
             axios.post("/guardarZona", {
@@ -38,6 +47,8 @@ class CrearZona extends Component {
     }
 
 
+    // En esta parte se hace el diseño de la ventana de Creación de zonas
+    // y se llama a las funciones anteriores.
     render() {
         return (
             <div>

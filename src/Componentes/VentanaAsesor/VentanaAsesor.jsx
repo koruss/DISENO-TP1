@@ -15,6 +15,8 @@ import imagenJefes from './jefes.png';
 
 // import Card from './CardGrupoResult'
 
+// Clase que implementa la ventana asesor, es la ventana
+// principal una vez se ingrese a la aplicación
 class VentanaAsesor extends Component {
     state = {
         zonas:[],

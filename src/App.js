@@ -27,7 +27,8 @@ function App() {
     return (
     <Router>
       <div>
-        <Switch>    
+        <Switch>   
+          {/*                     Funcionalidades                  */} 
           <Route exact path="/" component={Login}/>;
           <Route path="/ventanaAsesor" component={VentanaAsesor}/> 
           <Route path="/login" component={Login}/> 
