@@ -7,19 +7,20 @@ import makeAnimated from 'react-select/animated';
 import axios from 'axios';
 
 class AsignacionMiembros extends Component{
+    
     state = {
         ramasCompletas: [],
         gruposCompletos: [],
         selectedNombre:[],
         selectedZona:[],
-        selectedRoma:[],
+        selectedRama:[],
         selectedGrupo:[],
-        selectedMonitor:[{value:"Miembro", label:"Miembro"}, {value:"Monitor", label:"Monitor"}, {value:"Jefe Grupo", label:"Jefe Grupo"}],
-        nombre:[],
+        tipoMonitores:[{value:"Miembro", label:"Miembro"}, {value:"Monitor", label:"Monitor"}, {value:"Jefe Grupo", label:"Jefe Grupo"}],
+        nombres:[],
         zonas:[],
         ramas:[],
-        grupo:[],
-        monitor:""
+        grupos:[],
+        selectedMonitor:[]
     }
 
 
@@ -30,46 +31,50 @@ class AsignacionMiembros extends Component{
         var self = this;
         let arreglo = [];
         let arrGrup = [];
-        let arrPers = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
-            respuesta.forEach(zonas=>{
+            respuesta.forEach(zona=>{
                 arreglo.push({
-                    value:zonas.nombreZona,
-                    label:zonas.nombreZona
+                    value:zona.nombreZona,
+                    label:zona.nombreZona
                 })
             })   
             this.setState({
-                selectedZona:arreglo
+                zonas:arreglo
             })
         })
 
+        this.obtenerPersonas()
+        
 
+
+    }
+
+    obtenerPersonas(){
+        let arrPers = [];
         axios.post("/allPersona", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
             respuesta.forEach(nombre=>{
-                arrPers.push({
-                    value:nombre.nombre,
-                    label:nombre.nombre,
-                    datosPersona:[{ _id:nombre._id,
-                        direccion: nombre.direccion,
-                        nombre:nombre.nombre,
-                        identificacion:nombre.identificacion,
-                        apellido1:nombre.apellido1,
-                        apellido2:nombre.apellido2,
-                        correo:nombre.correo,
-                        telefono:nombre.telefono,
-                        estado:nombre.estado}]
-                })
+                if(nombre.estado==false){
+                    arrPers.push({
+                        value:nombre.nombre,
+                        label:nombre.nombre,
+                        datosPersona:[{ _id:nombre._id,
+                            direccion: nombre.direccion,
+                            nombre:nombre.nombre,
+                            identificacion:nombre.identificacion,
+                            apellido1:nombre.apellido1,
+                            apellido2:nombre.apellido2,
+                            correo:nombre.correo,
+                            telefono:nombre.telefono,
+                            estado:nombre.estado }]
+                    })
+                }
             })   
             this.setState({
-                selectedNombre:arrPers
+                nombres:arrPers
             })
         })
-
-
     }
 
     obtenerRamas(){
@@ -89,9 +94,6 @@ class AsignacionMiembros extends Component{
             this.setState({
                 ramas:arreglo
             })
-            this.setState({
-                ramasCompletas:respuesta
-            })
         })
     }
 
@@ -105,37 +107,57 @@ class AsignacionMiembros extends Component{
                 if(grupo.nombreRama == ramaNombre){
                     arreglo.push({
                         value:grupo.nombreGrupo,
-                        label:grupo.nombreGrupo
+                        label:grupo.nombreGrupo,
+                        identificacion:grupo._id,
+                        monitores:grupo.monitores,
+                        jefesGrupo:grupo.jefesGrupo
                     })
                 }
             })   
             this.setState({
-                selectedGrupo:arreglo
+                grupos:arreglo
             })
         })
     }
 
 
     onClick = (e) => {
-        axios.post("/asignarMiembro",{
-            nombre:this.state.nombre,
-            zona:this.state.zona,
-            rama:this.state.rama,
-            grupo:this.state.grupo,
-            monitor:this.state.monitor
-        }).then(res =>{
-            if(!res.data.success){
-                alert(res.data.err);
-            }
-            else{
-                alert("Miembro Guardado correctamente")
-            }
-        })
+        if(this.state.selectedNombre.length != 0 && this.state.selectedZona.length != 0 &&
+           this.state.selectedRama.length != 0 && this.state.selectedGrupo.length != 0 &&
+           this.state.selectedMonitor.length != 0){
+            axios.post("/asignarMiembro",{
+                nombre:this.state.selectedNombre,
+                zona:this.state.selectedZona,
+                rama:this.state.selectedRama,
+                grupo:this.state.selectedGrupo,
+                monitor:this.state.selectedMonitor
+            }).then(res =>{
+                if(!res.data.success){
+                    alert(res.data.err);
+                }
+                else{
+                    alert("Miembro asignado correctamente")
+                    this.setState({
+                        selectedMonitor:[],
+                        selectedGrupo:[],
+                        selectedRama:[],
+                        selectedZona:[],
+                        selectedNombre:[],
+                        nombres:[]
+                    })
+                    
+                    this.obtenerPersonas()
+                }
+            })
+        }
+        else{
+            alert("Ingrese todos los datos")
+        }
     }
 
-    handleChangeNombre = nombre => {
+    handleChangeNombre = selectedNombre => {
         this.setState(
-            { nombre },     
+            { selectedNombre },     
         );
     };
 
@@ -143,6 +165,9 @@ class AsignacionMiembros extends Component{
         this.setState(
             { selectedZona }
         );
+        this.state.selectedMonitor = [] 
+        this.state.selectedRama = []
+        this.state.selectedGrupo = []
         this.limpiarRamas();
         this.obtenerRamas();
     }
@@ -151,15 +176,48 @@ class AsignacionMiembros extends Component{
         this.setState(
             {selectedRama}
         );
+        this.state.selectedMonitor = []
         this.limpiarGrupos();
         this.obtenerGrupos();
     }
 
-    handleChangeGrupo = grupo => {
+    handleChangeGrupo = selectedGrupo => {
         this.setState(
-            { grupo },     
+            { selectedGrupo }, 
         );
+        this.state.selectedMonitor = []
     };
+
+    handleChangeMonitor = selectedMonitor => {
+        if(this.state.selectedGrupo.length != 0){
+            var estado = this.verificarSeleccion(selectedMonitor)
+            if(estado == true){
+                this.setState(
+                    { selectedMonitor },     
+                );
+            }
+            else{
+                alert("No se pueden asignar mas personas de este tipo al grupo")
+            }
+        }
+    };
+
+    verificarSeleccion(seleccion){
+        console.log("monitores",this.state.selectedGrupo.monitores.length)
+        console.log("jefes",this.state.selectedGrupo.jefesGrupo.length)
+        if(seleccion.value == "Monitor" && this.state.selectedGrupo.monitores.length < 2){
+            return true
+        }
+        else if(seleccion.value == "Jefe Grupo"  && this.state.selectedGrupo.jefesGrupo.length < 2){
+            return true
+        }
+        else if(seleccion.value == "Miembro"){
+            return true
+        }
+        else{
+            return false
+        }
+    }
 
     limpiarRamas(){
         this.state.selectedRama = []
@@ -179,27 +237,27 @@ class AsignacionMiembros extends Component{
                     <h2>Asignar miembros a grupos</h2>
                     <div class="spacing-base"></div>
                         <h3>Nombre:</h3>
-                            <Select components={makeAnimated} name="nombre" value={this.state.nombre} className="basic-multi-select"
-                            options={this.state.selectedNombre} classNamePrefix="select" onChange={this.handleChangeNombre}/> 
+                            <Select components={makeAnimated} name="nombre" value={this.state.selectedNombre} className="basic-multi-select"
+                            options={this.state.nombres} classNamePrefix="select" onChange={this.handleChangeNombre}/> 
                         <div class="form-group" class="spacing-base">
                             <label for="zona">Seleccione la zona a la que pertenecerá la persona:</label>
-                            <Select components={makeAnimated} name="zona" value={this.state.zonas} className="basic-multi-select"
-                            options={this.state.selectedZona} classNamePrefix="select" onChange={this.handleChangeZonas}/>
+                            <Select components={makeAnimated} name="zona" value={this.state.selectedZona} className="basic-multi-select"
+                            options={this.state.zonas} classNamePrefix="select" onChange={this.handleChangeZonas}/>
                         </div>
                         <div class="form-group" class="spacing-base">
                             <label for="rama">Seleccione la rama a la que pertenecerá la persona:</label>
-                            <Select components={makeAnimated} name="rama" value={this.state.ramas} className="basic-multi-select"
-                            options={this.state.selectedRoma} classNamePrefix="select" onChange={this.handleChangeRamas}/>
+                            <Select components={makeAnimated} name="rama" value={this.state.selectedRama} className="basic-multi-select"
+                            options={this.state.ramas} classNamePrefix="select" onChange={this.handleChangeRamas}/>
                         </div>
                         <div class="form-group" class="spacing-base">
                             <label for="grupo">Seleccione el grupo al que pertenecerá la persona:</label>
-                            <Select components={makeAnimated} name="grupo" value={this.state.grupo} className="basic-multi-select"
-                            options={this.state.selectedGrupo} classNamePrefix="select" onChange={this.handleChangeGrupo}/>
+                            <Select components={makeAnimated} name="grupo" value={this.state.selectedGrupo} className="basic-multi-select"
+                            options={this.state.grupos} classNamePrefix="select" onChange={this.handleChangeGrupo}/>
                         </div>
                         <div class="form-group" class="spacing-base">
                             <label for="monitor">Seleccione el tipo de persona:</label>
-                            <Select components={makeAnimated} name="monitor" value={this.state.monitor} className="basic-multi-select"
-                            options={this.state.selectedMonitor} classNamePrefix="select" onChange={this.handleChangeMonitor}/>
+                            <Select components={makeAnimated} name="monitor" value={this.state.selectedMonitor} className="basic-multi-select"
+                            options={this.state.tipoMonitores} classNamePrefix="select" onChange={this.handleChangeMonitor}/>
                         </div>
                     </div>
                     <button type="button" class="btn btn-dark" onClick={this.onClick} >Asignar</button> 

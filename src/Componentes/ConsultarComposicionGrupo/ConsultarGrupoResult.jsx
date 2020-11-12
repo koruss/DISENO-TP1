@@ -14,8 +14,7 @@ class ConsultarGrupoResult extends Component {
         rama: "",
         jefe: [],
         monitores: [],
-        resultMembers: [
-        ]
+        miembros: []
     }
 
     onChange = (e) => this.setState({
@@ -32,10 +31,12 @@ class ConsultarGrupoResult extends Component {
 
 
     render() {
-       // const info =(props) => { const {zona,rama,grupo} = props.location.data }
-        this.state.grupo = this.props.location.data.grupo
-        this.state.rama = this.props.location.data.rama
-        this.state.zona = this.props.location.data.zona
+         this.state.grupo = this.props.location.data.grupo
+         this.state.rama = this.props.location.data.rama
+         this.state.zona = this.props.location.data.zona
+         this.state.miembros = this.props.location.data.miembros
+         this.state.jefe = this.props.location.data.jefe
+         this.state.monitores =this.props.location.data.monitores
 
         return (
             <div>
@@ -43,6 +44,13 @@ class ConsultarGrupoResult extends Component {
                 <main className="container">
                     <div id="center-section">
                         <h2>Nombre del Grupo: {this.state.grupo}</h2>
+                    </div>
+                    <div>
+                        <label for="CantMiembros">Cantidad de personas</label>
+                        <label for="ResultCantMiembros">{this.state.miembros.length+
+                        this.state.jefe.length +this.state.monitores.length }</label>
+                        <label for="CantMiembros">Cantidad de miembros</label>
+                        <label for="ResultCantMiembros">{this.state.miembros.length}</label>
                     </div>
                     <div className="label-wrapper">
                         <div class="form-group" class="spacing-base">
@@ -59,25 +67,23 @@ class ConsultarGrupoResult extends Component {
                     </div>
                     <div className="label-wrapper">
                         <div class="form-group" class="spacing-base">
-                            <label for="jefe">Jefes:</label>
-                            {this.state.jefe.map((nombre) => <li>{(nombre)}</li>)}
+                            <label for="jefe"></label>
+                            {this.state.jefe.map((p, index) => (<Card index={"Jefe"} miembroData={p} />) )}
                         </div>
                     </div>
                     <div className="label-wrapper">
                         <div class="form-group" class="spacing-base">
-                            <label for="monitores">Monitores:</label>
-                            {this.state.monitores.map((nombre) => <li>{(nombre)}</li>)}
+                            <label for="monitores"></label>
+                            {this.state.monitores.map((p, index) =>  (<Card index={"Monitor"} miembroData={p} />) )}
                         </div>
                     </div>
 
                     <div className="label-wrapper">
                         <div class="spacing-base-hard">
-                            <label for="CantMiembros">Cantidad de usuarios</label>
-                            <label for="ResultCantMiembros">{this.state.resultMembers.length}</label>
                             <div class="form-group" class="spacing-base">
-                                
-                                {this.state.resultMembers.map((p, index) =>
-                                    (<Card index={index} miembroData={p} />))
+                            <label for="monitores">Miembros:</label>
+                                {this.state.miembros.map((p, index) =>
+                                    (<Card index={"Miembro"} miembroData={p} />))
                                 }
                             </div>
                         </div>

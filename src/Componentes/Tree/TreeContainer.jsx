@@ -7,13 +7,14 @@ import axios from 'axios';
 class TreeContainer extends React.PureComponent{
     state = {
         aux:true,
+        id:0,
         arbol:[{name:"Movilize",children:[]}],
         zonas:[],
         ramas:[],
         grupos:[],
         treeData: [
             {
-              name: 'Top Level',
+              name: 'Ejemplo',
 
               children: [
                 {
@@ -76,7 +77,7 @@ class TreeContainer extends React.PureComponent{
         this.setState({
             translate: {
                 x: dimensions.width / 2,
-                y: dimensions.height / 2
+                y: 30,
             }
         });
     }
@@ -85,14 +86,44 @@ class TreeContainer extends React.PureComponent{
         let arbol=this.state.arbol;
         let zonas= this.state.zonas;
         let ramas= this.state.ramas;
-        let grupo= this.state.grupos;
+        let grupos= this.state.grupos;
         zonas.forEach(zona=>{
-            this.state.arbol[0].children.push({name:zona.nombreZona,id:zona._id, children:[]})
-        })
-        ramas.forEach(rama=>{
-            let nombreZona= rama.nombreZona;
+            let arregloRamas=[];
             
+            zona.ramas.forEach(rama=>{//ingreso al arreglo de ramas que esta en el doc zona
+                let arregloGrupo=[]
+                const ramaExacta =ramas.find(ramita=>ramita.nombreRama==rama.nombre)//entro a todas las ramas y saco el que tnga match
+                
+                // ramaExacta.grupos.forEach(grupo=>{
+                //     this.state.id=(this.state.id+1)
+                //     arregloGrupo.push({name:grupo.nombre, id:this.state.id,children:[] })
+
+                // })
+    
+                ramaExacta.grupos.forEach(grupo=>{
+                    
+                    const grupoOriginal=grupos.find(element =>element.nombreGrupo==grupo.nombre)
+                    if(grupoOriginal.monitores.length != 0){
+                        this.state.id=(this.state.id+1)
+                        arregloGrupo.push({name:grupoOriginal.nombreGrupo, id:this.state.id,children:[] })
+
+                    }
+                    
+                })
+                this.state.id=(this.state.id+1)
+                arregloRamas.push({name:rama.nombre, id:this.state.id,children:arregloGrupo})
+            })
+            this.state.id=(this.state.id+1)
+            this.state.arbol[0].children.push({name:zona.nombreZona,id:this.state.id, children:arregloRamas})
         })
+        // ramas.forEach(rama=>{
+        //     let nombreZona= rama.nombreZona;
+            
+        // })
+        // for(var i=0; i<zonas.length;i++){
+        //     console.log(zonas[i]);
+        //     this.state.arbol[0].children.push({name:zonas[i].nombreZona,id:zonas[i]._id, children:[]})
+        // } 
         
 
 
@@ -146,30 +177,13 @@ class TreeContainer extends React.PureComponent{
                 data={this.state.treeData}
                  nodeSvgShape={this.state.svgSquare} 
                  orientation={"vertical"} 
-                 collapsible={false} 
+                 collapsible={true} 
                  translate={this.state.translate}
                 // onClick={this.onClick} 
                 />
             </div>
 
             </div>    
-            
-
-        
-
-
-
-
-        // <div>
-        //     <div class= "center-section">
-        //         <Header></Header>
-        //     </div>
- 
-
-        // </div>
-
-
-
 
         )
     };

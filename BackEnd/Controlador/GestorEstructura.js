@@ -21,13 +21,12 @@ module.exports = class GestorEstructura{
 
     }
 
-    async crearRama(data, res){
-        await this.ramaDAO.postRama(data,res);
+    async crearRama(req, res){
+        await this.ramaDAO.postRama(req,res);
     }
 
-    async crearGrupo(data,res){
-        await this.grupoDAO.postGrupo(data,res);
-        
+    async crearGrupo(req,res){
+        await this.grupoDAO.postGrupo(req,res);
     }
     
     async cargarComposite(){
@@ -49,10 +48,6 @@ module.exports = class GestorEstructura{
     async asignarMiembro(req, res){
         await this.grupoDAO.updateMiembroEnGrupo(req, res);
     }
-  
-    // async asignarMiembro(req, res){
-    //     await this.grupoDAO.cambiarNombreGrupo(data, res);
-    // }
 
     async cambiarNombreGrupo(req, res){
         await this.grupoDAO.cambiarNombreGrupo(req, res);
@@ -62,8 +57,16 @@ module.exports = class GestorEstructura{
         await this.grupoDAO.trasladarMiembro(req, res);
     }
 
-    async modificarRama(req, res){
-        await this.ramaDAO.updateRama(req, res);
+    async modificarZona(req){
+        await this.zonaDAO.updateZona(req);
+    }
+
+    async modificarRama(req){
+        await this.ramaDAO.updateRama(req);
+    }
+
+    async guardarZona(req, res){
+        await this.zonaDAO.postZona(req,res);
     }
 
     clientCode(component) {

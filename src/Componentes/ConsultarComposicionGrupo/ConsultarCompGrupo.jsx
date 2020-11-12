@@ -16,7 +16,8 @@ class ConsultarComposicionGrupo extends Component{
         zonas:[],
         ramas:[],
         grupos:[],
-        ramasCompletas: []
+        ramasCompletas: [],
+        pointerNull:'none'
 
     }
 
@@ -59,36 +60,40 @@ class ConsultarComposicionGrupo extends Component{
         })
     }
 
+    obtenerGrupos(){
+        var self = this;
+        let arreglo =[];
+        axios.post("/allGrupos", {}).then(res => {
+            const respuesta=res.data;
+            const ramaNombre = this.state.selectedRama.value;
+            respuesta.forEach(grupo=>{
+                if(grupo.nombreRama == ramaNombre && grupo.monitores.length != 0){
+                    arreglo.push({
+                        value:grupo.nombreGrupo,
+                        label:grupo.nombreGrupo,
+                        identificacion:grupo._id,
+                        miembros:grupo.miembros,
+                        jefesGrupo:grupo.jefesGrupo,
+                        monitores:grupo.monitores
+                    })
+                }
+            })   
+            this.setState({
+                grupos:arreglo
+            })
+        })
+    }
+
     handleChangeRama = selectedRama => {
         this.setState(
             { selectedRama },     
         );
         this.limpiarGrupo();
-        this.obtenerGrupos(selectedRama);
+        this.obtenerGrupos();
     };
 
     limpiarGrupo(){
         this.state.selectedGrupo = []
-    }
-
-
-    obtenerGrupos(selectedRama){
-        const ramasCrudo =this.state.ramasCompletas;
-        let arreglo =[];
-        ramasCrudo.forEach(rama=>{
-            if(rama.nombreRama == selectedRama.value){
-                var grupos = rama.grupos;
-                grupos.forEach(grupo=>{
-                    arreglo.push({
-                       value:grupo.nombre,
-                       label:grupo.nombre
-                    })
-                })
-            }
-        }) 
-        this.setState({
-            grupos:arreglo
-        })
     }
 
     handleChangeGrupo = selectedGrupo => {
@@ -104,7 +109,6 @@ class ConsultarComposicionGrupo extends Component{
         let arrGrup = [];
         axios.post("/allZonas", {}).then(res => {
             const respuesta = res.data;
-            console.log(respuesta)
             respuesta.forEach(zona=>{
                 arreglo.push({
                     value:zona.nombreZona,
@@ -144,7 +148,9 @@ render() {
                 </div>
                 <button>
                     <Link to = {{ pathname:'/consultarGrupoResult', data:{zona:this.state.selectedZona.value,
-                    rama:this.state.selectedRama.value,grupo:this.state.selectedGrupo.value}}}>Consultar</Link>
+                    rama:this.state.selectedRama.value,grupo:this.state.selectedGrupo.value,
+                    miembros:this.state.selectedGrupo.miembros, monitores:this.state.selectedGrupo.monitores, 
+                    jefe:this.state.selectedGrupo.jefesGrupo}} }>Consultar</Link>
                 </button>
         </main>
     </div>    
