@@ -61,8 +61,8 @@ class Header extends Component {
                             <Route render={() => {
                                 if(!session){ 
                                     return <> 
-                                        <Nav.Link href="/contacto">Contáctenos</Nav.Link>
-                                        <Nav.Link href="/registroMiembro">Registrarse</Nav.Link>
+                                        {/* <Nav.Link href="/contacto">Contáctenos</Nav.Link>
+                                        <Nav.Link href="/registroMiembro">Registrarse</Nav.Link> */}
                                         <Nav.Link href="/login">Iniciar Sesión</Nav.Link>
                                     </>
                                 }

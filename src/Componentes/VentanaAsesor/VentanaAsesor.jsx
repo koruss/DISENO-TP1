@@ -77,7 +77,7 @@ class VentanaAsesor extends Component {
                 <main className="container">
                     <div className="label-wrapper">
                         <div className="label-wrapper" >
-                            <label for="imagen">imagen : </label>
+                            <label for="imagen">Imagen Asesor Ideal: </label>
                             <img src={imagenAsesor} alt={"imagenAsesor"} width="100" height="100"/>
                         </div>
                         <div className="label-wrapper" align="right">
@@ -119,7 +119,7 @@ class VentanaAsesor extends Component {
                                 <Link class="btn btn-dark" to='./estructura'><img src={imagenDefinicion} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />  Definir estructura organizacional</Link>    
                             </div>
                             <div class="form-group" class="spacing-base">
-                                <Link class="btn btn-dark" to='./arbolEstuctural'><img src={imagenMapa} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />  Ver mapa organizacional</Link>    
+                                <Link class="btn btn-dark" to='./arbolEstructural'><img src={imagenMapa} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />  Ver mapa organizacional</Link>    
                             </div>
                         </div>
                     </div>

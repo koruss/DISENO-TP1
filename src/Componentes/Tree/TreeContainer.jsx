@@ -3,6 +3,7 @@ import '../../Componentes/General/Utils.css'
 import Header from '../General/Header';
 import Tree from 'react-hierarchy-tree-graph';
 import axios from 'axios';
+import '../General/Utils.css'
 
 class TreeContainer extends React.PureComponent{
     state = {
@@ -171,7 +172,11 @@ class TreeContainer extends React.PureComponent{
         return (
             <div>
                 <Header></Header>
-                <button type="button" class="btn btn-dark" onClick={this.btnClick}>Cambiar</button>
+                <div style={{width:"8%",margin:"auto", "margin-top" : "15px","margin-bottom" : "15px"}}>
+                <button type="button" class="btn btn-dark" onClick={this.btnClick}>Cargar Jerarquía</button>
+
+                </div>
+                
                 <div style ={this.state.style} ref={tc => (this.treeContainer = tc)}>
                 <Tree 
                 data={this.state.treeData}
