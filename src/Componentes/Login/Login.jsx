@@ -79,7 +79,7 @@ class Login extends Component{
                             <h5>You don't have an account?</h5>
                         </div>
                         <span id="registrationLink" class="button" >
-                            <button type="button" class="btn btn-dark" onClick={this.onClick}  disabled="true">Afiliar miembro</button>             
+                            <button type="button" class="btn btn-dark" onClick={this.onClick}  disabled="true">Registrar Asesor </button>             
                         </span>
                     </div>
                 </form>
