@@ -14,6 +14,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 
+
+const buildPath = path.join(__dirname, '..', 'build');
+// add middlewares
+app.use(express.static(path.join(buildPath)));
+
+app.use((req, res, next) => {
+  res.sendFile(path.join(buildPath));
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html')), function(err) {
+  if (err) {
+       res.status(500).send(err) 
+       }
+  };
+});
+
+
+
 var cord = new Coordinacion("116", "tec", "San Jose.com", "asd", "090123", "dasd", "asd", "asd", "asd");
 const control = new Control(cord);
 
