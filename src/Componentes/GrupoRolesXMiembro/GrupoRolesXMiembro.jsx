@@ -7,11 +7,16 @@ import makeAnimated from 'react-select/animated';
 import Header from '../General/Header.jsx';
 import axios from 'axios';
 
+
+// Clase encargada de la visualización de los grupo sy roles que tienen los miembros  
+// en la aplicación
 export default class GrupoRolesXMiembro extends Component {
+
+    // El state guarda los datos brindados por el usuario
+    // para ser utilizados cuando se cree en la aplicación
     state = {
         selectedMiembro: [],
         miembros: [],
-        // grupos: [{grupo:"1", rama:"2", rol:"3"}]
         grupos:[]
     }
 
@@ -21,6 +26,8 @@ export default class GrupoRolesXMiembro extends Component {
 
 
 
+    // Llena los arreglos con la información requerida para presentar
+    // cuando se accede a la ventana
     componentWillMount() {
         var self = this;
         let arreglo = [];
@@ -86,6 +93,8 @@ export default class GrupoRolesXMiembro extends Component {
         })
     }
 
+    // Setean los datos seleccionados en los comboBox
+    // y pasan la información a la ejecución del boton
     handleChangeMiembro = selectedMiembro => {
         this.setState(
             { selectedMiembro },
@@ -94,6 +103,8 @@ export default class GrupoRolesXMiembro extends Component {
         this.obtenerInformacionGrupos(selectedMiembro);
     };
 
+    // En esta parte se hace el diseño de la ventana para mostrar grupos y roles
+    // y se llama a las funciones anteriores.
     render() {
 
         return (

@@ -4,13 +4,20 @@ import axios from 'axios';
 import Header from '../General/Header';
 
 
+// Clase encargada de la comunicación por medio de una página de contacto  
+// en la aplicación
 export default class Contacto extends Component {
+
+    // El state guarda los datos brindados por el usuario
+    // para ser utilizados cuando se cree en la aplicación
     state = {
         Email: '',
         firstname: '',
         subject: ''
     };
 
+
+    //Funcion para manejar los eventos de un boton
     contacto = (e) => {
         e.preventDefault();
         var self = this;
@@ -23,6 +30,8 @@ export default class Contacto extends Component {
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value })
 
+    // En esta parte se hace el diseño de la ventana para mostrar grupos y roles
+    // y se llama a las funciones anteriores.
     render() {
         return (
             <div>

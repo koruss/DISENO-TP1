@@ -7,6 +7,8 @@ import './TrasladarMiembro.css'
 import '../../Componentes/General/Utils.css'
 import Header from '../General/Header';
 
+// Clase encargada de la transferencia de un miembro 
+// de un grupo a otro
 class TrasladarMiembro extends Component {
     
     state = {
@@ -26,6 +28,8 @@ class TrasladarMiembro extends Component {
     onChange = (e) => this.setState({[e.target.name]:e.target.value});
 
 
+    // Llena los arreglos con la información requerida para presentar
+    // cuando se accede a la ventana
     componentWillMount() {
         var self = this;
         let arreglo = [];
@@ -43,7 +47,7 @@ class TrasladarMiembro extends Component {
         })
 
     }
-
+    ventana
     obtenerRamas(){
         var self = this;
         let arreglo =[];
@@ -143,6 +147,8 @@ class TrasladarMiembro extends Component {
         })
     }
 
+
+    //Función ejecutada cuando se realiza una interacciónc con el boton
     onClick = (e) => {
         if(this.state.selectedNombre.length != 0 && this.state.selectedZona.length != 0 &&
             this.state.selectedRama.length != 0 && this.state.selectedGrupoFrom.length != 0 &&
@@ -174,7 +180,8 @@ class TrasladarMiembro extends Component {
         }
     }
 
-
+    // Setean los datos seleccionados en los comboBox
+    // y pasan la información a la ejecución del boton
     handleChangeZonas = selectedZona => {
         this.setState(
             { selectedZona }
@@ -226,6 +233,10 @@ class TrasladarMiembro extends Component {
         this.state.selectedNombre = []
     }
 
+
+
+    // En esta parte se hace el diseño de Trasladar Miembro
+    // y se llama a las funciones anteriores.
     render() {
         return (
             <div>

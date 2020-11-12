@@ -5,8 +5,13 @@ import Select from 'react-select';
 import './RegistroMiembro.css'; 
 import axios from 'axios';
 
+
+// Clase encargada de la creación de miembros/usuarios  
+// en la aplicación
 class RegistroMiembro extends Component{
 
+    // Metodo constructor de la clase que recibe los props para 
+    // la creación de una personas dentro de la aplicación
     constructor(props){
         super(props);
         this.identificacionRef=React.createRef();
@@ -17,6 +22,9 @@ class RegistroMiembro extends Component{
         this.apellido2Ref=React.createRef();
     }
 
+
+    // El state guarda los datos brindados por el usuario
+    // para ser utilizados cuando se cree en la aplicación
     state = {
         paisOpc:[
             { value: "Costa Rica", label: "Costa Rica" }
@@ -100,6 +108,9 @@ class RegistroMiembro extends Component{
         }
     }
 
+
+    // Setean los datos seleccionados en los comboBox
+    // y pasan la información a la ejecución del boton
     handleChangePais = pais => {
         this.setState(
             { pais },     
@@ -124,6 +135,10 @@ class RegistroMiembro extends Component{
         );
     };
 
+
+
+    // En esta parte se hace el diseño de la ventana de Registro de miembros
+    // y se llama a las funciones anteriores.
     render() {
         return (
             <div>

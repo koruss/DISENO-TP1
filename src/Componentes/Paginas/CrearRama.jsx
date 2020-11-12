@@ -6,13 +6,19 @@ import axios from 'axios';
 import "./Estructura.css"
 import Header from '../General/Header.jsx';
 
+// Clase encargada de la creación de ramas  
+// en la aplicación
 export default class CrearRama extends Component {
 
+    // Metodo constructor de la clase que recibe los props para 
+    // la creación de grupos dentro de la aplicación
     constructor(props){
         super(props);
         this.nombreRef=React.createRef();
     }
 
+    // El state guarda los datos brindados por el usuario
+    // para ser utilizados cuando se cree en la aplicación
     state = {
         selectedZona: [],
         zonas: [],
@@ -23,12 +29,16 @@ export default class CrearRama extends Component {
         [e.target.name]: e.target.value
     });
 
+    // Setean los datos seleccionados en los comboBox
+    // y pasan la información a la ejecución del boton
     handleChange = selectedZona => {
         this.setState(
             { selectedZona },     
         );
     };
 
+    // Llena los arreglos con la información requerida para presentar
+    // cuando se accede a la ventana
     componentWillMount() {
         var self = this;
         let arreglo =[];
@@ -71,6 +81,8 @@ export default class CrearRama extends Component {
         }
     }
 
+    // En esta parte se hace el diseño de la ventana de Creación de ramas
+    // y se llama a las funciones anteriores.
     render() {
         return (
             <div>

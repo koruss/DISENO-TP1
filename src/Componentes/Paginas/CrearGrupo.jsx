@@ -6,13 +6,21 @@ import Header from '../General/Header.jsx';
 import axios from 'axios';
 
 
+// Clase encargada de la creación de grupos  
+// en la aplicación
 export default class CrearGrupo extends Component {
 
+
+    // Metodo constructor de la clase que recibe los props para 
+    // la creación de grupos dentro de la aplicación
     constructor(props){
         super(props);
         this.nombreRef=React.createRef();
     }
 
+
+    // El state guarda los datos brindados por el usuario
+    // para ser utilizados cuando se cree en la aplicación
     state = {
         ramasCompletas: [],
         selectedZona: [],
@@ -27,6 +35,9 @@ export default class CrearGrupo extends Component {
         [e.target.name]: e.target.value
     });
 
+
+    // Setean los datos seleccionados en los comboBox
+    // y pasan la información a la ejecución del boton
     handleChangeZona = selectedZona => {
         this.setState(
             { selectedZona }
@@ -41,7 +52,8 @@ export default class CrearGrupo extends Component {
         );
     }
 
-
+    // Llena los arreglos con la información requerida para presentar
+    // cuando se accede a la ventana
     componentWillMount() {
         let arreglo =[];
         axios.post("/allZonas", {}).then(res => {
@@ -82,6 +94,9 @@ export default class CrearGrupo extends Component {
         this.state.selectedRama = []
     }
 
+
+
+    //Funcion para manejar los eventos de un boton
     onClick = (e) => {
         if(this.state.nombreGrupo != "" && this.state.selectedRama.length != 0 &&
         this.state.selectedZona.length != 0){
@@ -109,6 +124,8 @@ export default class CrearGrupo extends Component {
         }
     }
 
+    // En esta parte se hace el diseño de la ventana de Creación de grupos
+    // y se llama a las funciones anteriores.
     render() {
         return (
            <div>

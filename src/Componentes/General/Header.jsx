@@ -13,13 +13,16 @@ import idea from './idea.png';
 
 import './Header.css'
 
-
+// Clase encargada de la visualización header en todas las ventanas
+// en la aplicación
 class Header extends Component {
     state = {
         isAuth: false,
         reloadMainPage:false,
     }
 
+    // Llena los arreglos con la información requerida para presentar
+    // cuando se accede a la ventana
     componentWillMount(){
         var self=this;
         axios.post('/getSesion',{}).then(function(res){
@@ -28,6 +31,7 @@ class Header extends Component {
         })
     }
 
+    // PErmite el cierre de Sesión, para que otrp asesor pueda acceder
     logOut(){
         try {this.props.reload()} catch(error){}
         axios.post("/cerrarSesion",{})
@@ -41,6 +45,8 @@ class Header extends Component {
         })
     }
 
+    // En esta parte se hace el diseño del header en todas las ventanas
+    // y se llama a las funciones anteriores.
     render() {
         var session = this.state.isAuth;
         if(!this.state.reloadMainPage) {

@@ -15,6 +15,8 @@ import imagenJefes from './jefes.png';
 
 // import Card from './CardGrupoResult'
 
+// Clase que implementa la ventana asesor, es la ventana
+// principal una vez se ingrese a la aplicación
 class VentanaAsesor extends Component {
     state = {
         zonas:[],
@@ -23,6 +25,9 @@ class VentanaAsesor extends Component {
 
     }
 
+
+    // Llena los arreglos con la información requerida para presentar
+    // cuando se accede a la ventana
     componentWillMount() {
         var self = this;
         let arreglo =[];
@@ -70,6 +75,9 @@ class VentanaAsesor extends Component {
         })
     }
 
+
+    // En esta parte se hace el diseño de la ventana del asesor
+    // y se llama a las funciones anteriores.
     render() {
         return (
             <div>
