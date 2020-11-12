@@ -23,6 +23,8 @@ class VentanaAsesor extends Component {
 
     }
 
+    // Esta funcion se ejecuta automaticamente si la ventana se llama
+    //obtiene las zonas, los grupos y las ramas
     componentWillMount() {
         var self = this;
         let arreglo =[];
@@ -69,7 +71,7 @@ class VentanaAsesor extends Component {
             })
         })
     }
-
+    /* Es la funcion encargada de levantar el codigo html */
     render() {
         return (
             <div>

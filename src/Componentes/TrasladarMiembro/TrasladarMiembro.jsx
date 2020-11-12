@@ -25,7 +25,8 @@ class TrasladarMiembro extends Component {
 
     onChange = (e) => this.setState({[e.target.name]:e.target.value});
 
-
+// Esta funcion se ejecuta automaticamente si la ventana se llama
+//obtiene las zonas 
     componentWillMount() {
         var self = this;
         let arreglo = [];
@@ -44,6 +45,8 @@ class TrasladarMiembro extends Component {
 
     }
 
+//esta funcion se encarga de obtener todas las ramas y guardarlas en la 
+//pagina
     obtenerRamas(){
         var self = this;
         let arreglo =[];
@@ -64,6 +67,7 @@ class TrasladarMiembro extends Component {
         })
     }
 
+/*esta función se encarga de obtener todos los grupos y subirlos a la pantalla */
     obtenerGruposFrom(){
         var self = this;
         let arreglo =[];
@@ -86,6 +90,8 @@ class TrasladarMiembro extends Component {
         })
     }
 
+// esta función se encarga de obtener todos los registros de personas,
+// y los guarda en la pantalla
     obtenerPersonas(selectedGrupoFrom){
         var self = this;
         let arreglo= [];
@@ -122,6 +128,7 @@ class TrasladarMiembro extends Component {
         })
     }
 
+ /*esta función se encarga de obtener todos los grupos a los que puede trasladarse un miembro  y subirlos a la pantalla */
     obtenerGruposTo(){
         var self = this;
         let arreglo =[];
@@ -143,6 +150,9 @@ class TrasladarMiembro extends Component {
         })
     }
 
+ /*esta funcion se ejecuta al ser precionado el botón
+se encagada de recuperar los datos de los componentes 
+y enviarlos a la API*/
     onClick = (e) => {
         if(this.state.selectedNombre.length != 0 && this.state.selectedZona.length != 0 &&
             this.state.selectedRama.length != 0 && this.state.selectedGrupoFrom.length != 0 &&
@@ -174,7 +184,7 @@ class TrasladarMiembro extends Component {
         }
     }
 
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */
     handleChangeZonas = selectedZona => {
         this.setState(
             { selectedZona }
@@ -183,6 +193,7 @@ class TrasladarMiembro extends Component {
         this.obtenerRamas();
     }
 
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */
     handleChangeRamas = selectedRama => {
         this.setState(
             {selectedRama}
@@ -192,6 +203,7 @@ class TrasladarMiembro extends Component {
         this.obtenerGruposTo();
     }
 
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */
     handleChangeGrupoFrom = selectedGrupoFrom => {
         this.setState(
             { selectedGrupoFrom },     
@@ -200,12 +212,15 @@ class TrasladarMiembro extends Component {
         this.obtenerPersonas(selectedGrupoFrom);
     };
 
+ /*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */
     handleChangeNombre = selectedNombre => {
         this.setState(
             { selectedNombre },     
         );
     };
 
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */
+/* esta funcion se encarga de limpiar los states de los componentes*/
     handleChangeGrupoTo = selectedGrupoTo => {
         this.setState(
             { selectedGrupoTo },     
@@ -213,19 +228,23 @@ class TrasladarMiembro extends Component {
         this.limpiarPersonas();
     };
 
+ /* esta funcion se encarga de limpiar los states de los componentes*/
     limpiarRamas(){
         this.state.selectedRamaFrom = []
     }
 
+/* esta funcion se encarga de limpiar los states de los componentes*/
     limpiarGrupos(){
         this.state.selectedGrupoFrom = []
         this.state.selectedGrupoTo = []
     }
 
+/* esta funcion se encarga de limpiar los states de los componentes*/
     limpiarPersonas(){
         this.state.selectedNombre = []
     }
 
+/* Es la funcion encargada de levantar el codigo html */
     render() {
         return (
             <div>
