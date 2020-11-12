@@ -7,6 +7,7 @@ import axios from 'axios';
 class TreeContainer extends React.PureComponent{
     state = {
         aux:true,
+        id:0,
         arbol:[{name:"Movilize",children:[]}],
         zonas:[],
         ramas:[],
@@ -43,7 +44,6 @@ class TreeContainer extends React.PureComponent{
         svgSquare: {
             shape: 'rect',
             shapeProps: {
-                fill:'#333',
                 width: 20,
                 height: 20,
                 x: -10,
@@ -86,7 +86,7 @@ class TreeContainer extends React.PureComponent{
         let arbol=this.state.arbol;
         let zonas= this.state.zonas;
         let ramas= this.state.ramas;
-        let grupo= this.state.grupos;
+        let grupos= this.state.grupos;
         zonas.forEach(zona=>{
             let arregloRamas=[];
             
@@ -94,14 +94,27 @@ class TreeContainer extends React.PureComponent{
                 let arregloGrupo=[]
                 const ramaExacta =ramas.find(ramita=>ramita.nombreRama==rama.nombre)//entro a todas las ramas y saco el que tnga match
                 
-                ramaExacta.grupos.forEach(grupo=>{
-                    arregloGrupo.push({name:grupo.nombre, id:grupo.nombre,children:[] })
+                // ramaExacta.grupos.forEach(grupo=>{
+                //     this.state.id=(this.state.id+1)
+                //     arregloGrupo.push({name:grupo.nombre, id:this.state.id,children:[] })
 
+                // })
+    
+                ramaExacta.grupos.forEach(grupo=>{
+                    
+                    const grupoOriginal=grupos.find(element =>element.nombreGrupo==grupo.nombre)
+                    if(grupoOriginal.monitores.length != 0){
+                        this.state.id=(this.state.id+1)
+                        arregloGrupo.push({name:grupoOriginal.nombreGrupo, id:this.state.id,children:[] })
+
+                    }
+                    
                 })
-                console.log(ramaExacta)
-                arregloRamas.push({name:rama.nombre, id:rama.nombre, children:arregloGrupo})
+                this.state.id=(this.state.id+1)
+                arregloRamas.push({name:rama.nombre, id:this.state.id,children:arregloGrupo})
             })
-            this.state.arbol[0].children.push({name:zona.nombreZona,id:zona.nombre, children:arregloRamas})
+            this.state.id=(this.state.id+1)
+            this.state.arbol[0].children.push({name:zona.nombreZona,id:this.state.id, children:arregloRamas})
         })
         // ramas.forEach(rama=>{
         //     let nombreZona= rama.nombreZona;
@@ -164,7 +177,7 @@ class TreeContainer extends React.PureComponent{
                 data={this.state.treeData}
                  nodeSvgShape={this.state.svgSquare} 
                  orientation={"vertical"} 
-                 collapsible={false} 
+                 collapsible={true} 
                  translate={this.state.translate}
                 // onClick={this.onClick} 
                 />
