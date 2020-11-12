@@ -7,7 +7,7 @@ export default class Card1 extends Component {
     state = {
 
     }
-
+/*Esta función se encarga de renderizar el HTML*/
     render() {
         const { id,nombre}= this.props.miembroData;
         return (

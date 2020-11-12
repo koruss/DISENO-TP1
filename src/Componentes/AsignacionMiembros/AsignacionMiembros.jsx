@@ -26,7 +26,8 @@ class AsignacionMiembros extends Component{
 
     onChange = (e) => this.setState({[e.target.name]:e.target.value});
 
-
+// Esta funcion se ejecuta automaticamente si la ventana se llama
+//obtiene las zonas 
     componentWillMount() {
         var self = this;
         let arreglo = [];
@@ -49,7 +50,8 @@ class AsignacionMiembros extends Component{
 
 
     }
-
+// esta función se encarga de obtener todos los registros de personas,
+// y los guarda en la pantalla
     obtenerPersonas(){
         let arrPers = [];
         axios.post("/allPersona", {}).then(res => {
@@ -76,7 +78,8 @@ class AsignacionMiembros extends Component{
             })
         })
     }
-
+//esta funcion se encarga de obtener todas las ramas y guardarlas en la 
+//pagina
     obtenerRamas(){
         var self = this;
         let arreglo =[];
@@ -96,7 +99,7 @@ class AsignacionMiembros extends Component{
             })
         })
     }
-
+/*esta función se encarga de obtener todos los grupos y subirlos a la pantalla */
     obtenerGrupos(){
         var self = this;
         let arreglo =[];
@@ -120,6 +123,9 @@ class AsignacionMiembros extends Component{
         })
     }
 
+/*esta funcion se ejecuta al ser precionado el botón
+se encagada de recuperar los datos de los componentes 
+y enviarlos a la API*/
 
     onClick = (e) => {
         if(this.state.selectedNombre.length != 0 && this.state.selectedZona.length != 0 &&
@@ -154,13 +160,13 @@ class AsignacionMiembros extends Component{
             alert("Ingrese todos los datos")
         }
     }
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */
     handleChangeNombre = selectedNombre => {
         this.setState(
             { selectedNombre },     
         );
     };
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */ 
     handleChangeZonas = selectedZona => {
         this.setState(
             { selectedZona }
@@ -171,7 +177,7 @@ class AsignacionMiembros extends Component{
         this.limpiarRamas();
         this.obtenerRamas();
     }
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */
     handleChangeRamas = selectedRama => {
         this.setState(
             {selectedRama}
@@ -180,14 +186,14 @@ class AsignacionMiembros extends Component{
         this.limpiarGrupos();
         this.obtenerGrupos();
     }
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */
     handleChangeGrupo = selectedGrupo => {
         this.setState(
             { selectedGrupo }, 
         );
         this.state.selectedMonitor = []
     };
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */
     handleChangeMonitor = selectedMonitor => {
         if(this.state.selectedGrupo.length != 0){
             var estado = this.verificarSeleccion(selectedMonitor)
@@ -218,15 +224,15 @@ class AsignacionMiembros extends Component{
             return false
         }
     }
-
+/* esta funcion se encarga de limpiar los states de los componentes*/
     limpiarRamas(){
         this.state.selectedRama = []
     }
-
+/* esta funcion se encarga de limpiar los states de los componentes*/
     limpiarGrupos(){
         this.state.selectedGrupo = []
     }
-
+/* Es la funcion encargada de levantar el codigo html */
     render() {
         return (
             <div>
