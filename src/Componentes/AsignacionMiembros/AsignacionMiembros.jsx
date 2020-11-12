@@ -108,7 +108,9 @@ class AsignacionMiembros extends Component{
                     arreglo.push({
                         value:grupo.nombreGrupo,
                         label:grupo.nombreGrupo,
-                        identificacion:grupo._id
+                        identificacion:grupo._id,
+                        monitores:grupo.monitores,
+                        jefesGrupo:grupo.jefesGrupo
                     })
                 }
             })   
@@ -163,6 +165,9 @@ class AsignacionMiembros extends Component{
         this.setState(
             { selectedZona }
         );
+        this.state.selectedMonitor = [] 
+        this.state.selectedRama = []
+        this.state.selectedGrupo = []
         this.limpiarRamas();
         this.obtenerRamas();
     }
@@ -171,21 +176,48 @@ class AsignacionMiembros extends Component{
         this.setState(
             {selectedRama}
         );
+        this.state.selectedMonitor = []
         this.limpiarGrupos();
         this.obtenerGrupos();
     }
 
     handleChangeGrupo = selectedGrupo => {
         this.setState(
-            { selectedGrupo },     
+            { selectedGrupo }, 
         );
+        this.state.selectedMonitor = []
     };
 
     handleChangeMonitor = selectedMonitor => {
-        this.setState(
-            { selectedMonitor },     
-        );
+        if(this.state.selectedGrupo.length != 0){
+            var estado = this.verificarSeleccion(selectedMonitor)
+            if(estado == true){
+                this.setState(
+                    { selectedMonitor },     
+                );
+            }
+            else{
+                alert("No se pueden asignar mas personas de este tipo al grupo")
+            }
+        }
     };
+
+    verificarSeleccion(seleccion){
+        console.log("monitores",this.state.selectedGrupo.monitores.length)
+        console.log("jefes",this.state.selectedGrupo.jefesGrupo.length)
+        if(seleccion.value == "Monitor" && this.state.selectedGrupo.monitores.length < 2){
+            return true
+        }
+        else if(seleccion.value == "Jefe Grupo"  && this.state.selectedGrupo.jefesGrupo.length < 2){
+            return true
+        }
+        else if(seleccion.value == "Miembro"){
+            return true
+        }
+        else{
+            return false
+        }
+    }
 
     limpiarRamas(){
         this.state.selectedRama = []
