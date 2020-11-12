@@ -25,9 +25,8 @@ class VentanaAsesor extends Component {
 
     }
 
-
-    // Llena los arreglos con la información requerida para presentar
-    // cuando se accede a la ventana
+    // Esta funcion se ejecuta automaticamente si la ventana se llama
+    //obtiene las zonas, los grupos y las ramas
     componentWillMount() {
         var self = this;
         let arreglo =[];
@@ -74,10 +73,7 @@ class VentanaAsesor extends Component {
             })
         })
     }
-
-
-    // En esta parte se hace el diseño de la ventana del asesor
-    // y se llama a las funciones anteriores.
+    /* Es la funcion encargada de levantar el codigo html */
     render() {
         return (
             <div>

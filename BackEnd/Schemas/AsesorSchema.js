@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
-// Esquema del asesor en la base de datos
+//Esquema de asesor de la base de datos
 const AsesorSchema= new Schema(
     {
       usuario: String,

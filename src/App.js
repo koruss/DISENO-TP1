@@ -22,6 +22,7 @@ import VentanaAsesor from './Componentes/VentanaAsesor/VentanaAsesor';
 import arbolEstructural from './Componentes/Tree/TreeContainer';
 import contacto from './Componentes/Contacto/Contacto';
 
+//Funcion para establecer las rutas de la aplicacion con su respectivo componente
 function App() {
     return (
     <Router>
