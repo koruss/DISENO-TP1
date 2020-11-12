@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//Esquema de grupo de la base de datos
 const GrupoSchema = new Schema(
     {
         idCoordinacion:String,

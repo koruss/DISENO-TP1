@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//Esquema de zona de la base de datos
 const ZonaSchema = new Schema(
     {
         idCoordinacion:String,

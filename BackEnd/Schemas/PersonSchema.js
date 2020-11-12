@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//Esquema de persona de la base de datos
 const PersonSchema= new Schema(
     {
       identificacion: String,

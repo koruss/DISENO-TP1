@@ -38,20 +38,23 @@ class AbstractPersona {
     }
 
 
-    
+    //Funcion para anadir un hijo a algun composite
     anadirHijo(){
       throw new Error("Method 'anadirHijo()' must be implemented.");
     }
 
+    //Funcion para remover un hijo del composite
     removerHijo(){
       throw new Error("Method 'removerHijo()' must be implemented.");
     }
 
+    //Funcion para saber si es un composite
     isComposite() {
         return false;
     }
 
 
+    //Funcion que hace un recorrido por todo el composite
     operation() {
         throw new Error("Method 'operation()' must be implemented.");
     }
