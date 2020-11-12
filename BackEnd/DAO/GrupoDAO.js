@@ -11,7 +11,7 @@ module.exports = class GrupoDAO {
     constructor(){
     }
 
-    
+    //Funcion para hacer un post de un grupo en la base de datos
     async postGrupo(req,res){
         this.grupoSchema = new GrupoSchema();
         this.grupoSchema.nombreRama= req.body.selectedRama.value;
@@ -29,14 +29,17 @@ module.exports = class GrupoDAO {
         const respuesta = res.data;
     }
 
+    //Funcion para anadir un miembro a un grupo
     async updateMiembroEnGrupo(data, res){
         this.dao.updateMiembroEnGrupo(data, GrupoSchema, PersonaSchema, res);
     }
 
+    //Funcion para cambiar el nombre de un grupo
     async cambiarNombreGrupo(data, res){
         this.dao.cambiarNombreGrupo(data, GrupoSchema, res);
     }
 
+    //Funcion para trasladar un miembro de un grupo a otro
     async trasladarMiembro(data, res){
         this.dao.trasladarMiembro(data.body, GrupoSchema, res);
     }
