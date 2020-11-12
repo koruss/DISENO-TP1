@@ -42,10 +42,12 @@ module.exports = class PersonDao {
 
     }
 
+    //Funcion para obtener todas las personas 
     async getPersonas(req, res){
         await this.dao.getData(PersonaSchema, res);
     }
 
+    //Funcion para obtener los asesores
     async getAsesores(req, res){
         this.dao.getOneData(AsesorSchema, "usuario",req,res);
         const respuesta = res.data;

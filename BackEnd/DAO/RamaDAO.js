@@ -21,7 +21,8 @@ module.exports = class RamaDao {
         this.ramaSchema.jefesRama = [];
         await this.dao.crearRama(this.ramaSchema,ZonaSchema, req, res);
     }
-
+    
+    //Funcion para modificar una rama
     async updateRama(req){
         this.dao.modificarRama(req, RamaSchema);
     }
@@ -32,6 +33,7 @@ module.exports = class RamaDao {
         const respuesta = res.data;
     }
 
+    //Funcion para cambiar el nombre de un grupo
     async cambiarNombreGrupo(req, res){
         this.dao.cambiarNombreGrupo(req, RamaSchema, res);
     }

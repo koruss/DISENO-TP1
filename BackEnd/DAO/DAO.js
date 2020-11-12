@@ -51,6 +51,7 @@ module.exports= class DAO {
     }
 
 
+    //Funcion que inserta un miembro en un grupo y le establece un tipo
     async updateMiembroEnGrupo(data, schema, personSchema, res){
         this.openConnection();
         console.log(data.body.nombre.datosPersona[0]._id)
@@ -72,6 +73,7 @@ module.exports= class DAO {
     }
 
 
+    //Funcion que le cambia el nombre a un grupo
     async cambiarNombreGrupo(req, schema, res){
         this.openConnection();
         schema.updateOne({_id:req.body.grupo.identificacion}, {$set:{ nombreGrupo: req.body.nombre}}, 
@@ -91,6 +93,7 @@ module.exports= class DAO {
         })
     }
 
+    //Funcion que traslado un miembro de un grupo
     async trasladarMiembro(data, schema, res){
         const schema2= schema;
         this.openConnection();
@@ -126,6 +129,7 @@ module.exports= class DAO {
         })
     }
 
+    //Funcion que modifica una rama para establecerle un grupo nuevo
     async modificarRama(req, schema){
         this.openConnection();
         schema.updateOne({_id:req.body.selectedRama.identificacion}, {$push:{ grupos: {nombre: req.body.nombreGrupo}}}, 
@@ -134,6 +138,7 @@ module.exports= class DAO {
         )
     }
 
+    //Funcion que modifica una zona para agregarle una rama nueva
     async modificarZona(req, schema){
         this.openConnection();
         schema.updateOne({_id:req.body.selectedZona.identificacion}, {$push:{ ramas: {nombre: req.body.nombreRama}}}, 
@@ -141,6 +146,7 @@ module.exports= class DAO {
         })
     }
 
+    //Funcion para crear una rama en una base de datos
     async crearRama(schema, schemaZona, req, res){
         this.openConnection();
         schema.save( function(error,info) {
@@ -153,6 +159,7 @@ module.exports= class DAO {
         });
     }
 
+    //Funcion para crear un grupo en la base de datos
     async crearGrupo(schema, schemaRama, req, res){
         this.openConnection();
         schema.save( function(error,info) {

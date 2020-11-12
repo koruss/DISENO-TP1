@@ -20,11 +20,11 @@ class ConsultarComposicionGrupo extends Component{
         pointerNull:'none'
 
     }
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */ 
     onChange = (e) => this.setState({
         [e.target.name]: e.target.value
     });
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */ 
     handleChangeZona = selectedZona => {
         this.setState(
             { selectedZona },     
@@ -36,7 +36,9 @@ class ConsultarComposicionGrupo extends Component{
     limpiarRamas(){
         this.state.selectedRama = []
     }
-
+/*
+Esta funcion se encarga de recuperar todas las ramas y almacenarlas en la ventana
+*/ 
     obtenerRamas(){
         var self = this;
         let arreglo =[];
@@ -60,6 +62,10 @@ class ConsultarComposicionGrupo extends Component{
         })
     }
 
+/*
+esta funcion se encarga de obtener todos los grupos y
+guardarlos en el respectivo state
+*/
     obtenerGrupos(){
         var self = this;
         let arreglo =[];
@@ -83,7 +89,7 @@ class ConsultarComposicionGrupo extends Component{
             })
         })
     }
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */ 
     handleChangeRama = selectedRama => {
         this.setState(
             { selectedRama },     
@@ -95,13 +101,14 @@ class ConsultarComposicionGrupo extends Component{
     limpiarGrupo(){
         this.state.selectedGrupo = []
     }
-
+/*Esta funcion lo que hace es asignar los datos del componente en su respectivo state */ 
     handleChangeGrupo = selectedGrupo => {
         this.setState(
             { selectedGrupo },     
         );
     };
-
+/* Esta funcion se ejecuta automaticamente,
+obtiene todas las zonas y las gurada en la ventana*/
     componentWillMount() {
         var self = this;
         let arreglo =[];
@@ -122,7 +129,7 @@ class ConsultarComposicionGrupo extends Component{
     }
 
     
-
+/* Se encarga de renderizar el html */ 
 render() {
     return (
         <div>

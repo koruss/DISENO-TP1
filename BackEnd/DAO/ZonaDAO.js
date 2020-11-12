@@ -16,6 +16,7 @@ module.exports = class ZonaDAO {
         await this.dao.postData(this.zonaSchema, res);
     }
 
+    //Funcion para modificar una zona
     async updateZona(req){
         this.dao.modificarZona(req, ZonaSchema);
     }
