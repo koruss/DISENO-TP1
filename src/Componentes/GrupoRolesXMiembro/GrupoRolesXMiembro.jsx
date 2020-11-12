@@ -1,20 +1,101 @@
 import React, { Component } from 'react'
 //import './GrupoRolesXMiembro.css'
 import Card from './CardGrupoRoles'
-import Header from '../General/Header';
+import '../../Componentes/General/Utils.css'
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+import Header from '../General/Header.jsx';
+import axios from 'axios';
 
 export default class GrupoRolesXMiembro extends Component {
     state = {
-        nombre:'',
-        resultMembers: [],
+        selectedMiembro: [],
+        miembros: [],
+        // grupos: [{grupo:"1", rama:"2", rol:"3"}]
+        grupos:[]
     }
 
     onChange = (e) => this.setState({
-        [e.target.name]: //Connects state attribute with the input in the html
-            e.target.value
+        [e.target.name]: e.target.value
     });
 
+
+
+    componentWillMount() {
+        var self = this;
+        let arreglo = [];
+        axios.post("/allPersona", {}).then(res => {
+            const respuesta = res.data;
+            respuesta.forEach(persona => {
+                arreglo.push({
+                    value: persona.nombre,
+                    label: persona.nombre +" "+persona.apellido1+" "+persona.apellido2,
+                    id:persona._id
+                })
+            })
+            this.setState({
+                miembros: arreglo
+            })
+        })
+    }
+
+    obtenerInformacionGrupos(selectedMiembro){
+        var self = this;
+        let arreglo = [];
+        axios.post("/allGrupos", {}).then(res => {
+            const respuesta=res.data;
+            const miembrosGrupo = this.state.selectedMiembro
+            respuesta.forEach(persona =>{
+                persona.monitores.forEach(monitor =>{
+                    if (monitor.nombre == miembrosGrupo.value){
+                        arreglo.push({
+                            grupo: persona.nombreGrupo,
+                            rama: persona.nombreRama,
+                            rol: "Monitor"
+                        })
+                    }
+                })
+    
+                persona.jefesGrupo.forEach(jefe =>{
+                    if (jefe.nombre == miembrosGrupo.value){
+                        arreglo.push({
+                            grupo: persona.nombreGrupo,
+                            rama: persona.nombreRama,
+                            rol: "Jefe"
+                        })
+                    }
+                }
+                )
+    
+                persona.miembros.forEach(miembro =>{
+                    if (miembro.nombre == miembrosGrupo.value){
+                        arreglo.push({
+                            grupo: persona.nombreGrupo,
+                            rama: persona.nombreRama,
+                            rol: "Miembro"
+                        })
+                    }
+                })
+    
+            })
+            
+        this.setState({
+            grupos: arreglo
+        })
+
+        })
+    }
+
+    handleChangeMiembro = selectedMiembro => {
+        this.setState(
+            { selectedMiembro },
+        );
+
+        this.obtenerInformacionGrupos(selectedMiembro);
+    };
+
     render() {
+
         return (
             <div>
                 <form >
@@ -26,15 +107,18 @@ export default class GrupoRolesXMiembro extends Component {
                     <div className="container">
                         <form action="/action_page.php">
                             <div className="spacing-base"></div>
-                            <label htmlFor="fname">Nombre: {this.state.nombre}</label>
+                            <div class="form-group" class="spacing-base">
+                                <label for="grupo">Seleccione el Miembro:</label>
+                                <Select components={makeAnimated} name="grupo" onChange={this.handleChangeMiembro}
+                                    value={this.state.selectedMiembro} options={this.state.miembros} classNamePrefix="select" />
+                            </div>
                             <div id="center-section">
-                                <div className="spacing-base">
-                                    <div className="box-container">
-                                        <div className="center-section">
-                                            {this.state.resultMembers.map((p, index) =>
-                                                (<Card key={p._id} index={index} miembroData={p} />))
-                                            }
-                                        </div>
+                                <div className="label-wrapper">
+                                    <div class="form-group" class="spacing-base">
+                                        <label for="nombre">Información:</label>
+                                        {this.state.grupos.map((p, index) =>
+                                            (<Card index={"Miembro"} miembroData={p} />))
+                                        }
                                     </div>
                                 </div>
                             </div>
