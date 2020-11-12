@@ -47,11 +47,6 @@ module.exports = class Control{
         await this.gestorEstructura.crearGrupo(req,res);
     }
 
-    // Función que define la estructura de la organización en la aplicación
-    async definirEstructura(info){
-        console.log( this.dao.guardarZona(info));
-    }
-
     // Función encargada de enviar los datos de un miembro al gestor de 
     // miembros, esto para ser creado posteriormente
     async guardarMiembro(data, res){

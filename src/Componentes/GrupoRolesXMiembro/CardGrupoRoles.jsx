@@ -5,19 +5,24 @@ import './CardGrupoRoles.css'
 export default class CardGrupoRoles extends Component {
 
     state = {
-
+        rol: "",
+        grupo: "",
+        rama: ""
     }
 
     render() {
-        const { id, zona, rama, grupo, rol } = this.props.miembroData;
+        this.state.rol = this.props.miembroData.rol;
+        this.state.grupo = this.props.miembroData.grupo;  
+        this.state.rama = this.props.miembroData.rama;
+
         return (
             <div className="card1-container" >
                 <div id="center-section">
-                    <Card style={{ width: '25rem' }}>
+                    <Card style={{ width: '30rem' }}>
                         <Card.Body>
-                            <Card.Title>{id}</Card.Title>
+                            <Card.Title></Card.Title>
                             <Card.Text>
-                                | Zona: {zona} | Rama: {rama} | Grupo: {grupo} | Rol: {rol} |
+                                | Rol: {this.state.rol} | Grupo: {this.state.grupo} | Rama: {this.state.rama} |
                             </Card.Text>
                         </Card.Body>
                     </Card>

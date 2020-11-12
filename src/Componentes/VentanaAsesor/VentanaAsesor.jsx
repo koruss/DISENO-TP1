@@ -116,7 +116,7 @@ class VentanaAsesor extends Component {
                         </div>
                         <div className="label-wrapper" >
                             <div class="form-group" class="spacing-base">
-                                <Link class="btn btn-dark" to='./estructura'><img src={imagenDefinicion} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />  Definir estructura organizacional</Link>    
+                                <Link class="btn btn-dark" to='./consultaComposicionGrupo'><img src={imagenDefinicion} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} /> Consultar composicion de grupo</Link>    
                             </div>
                             <div class="form-group" class="spacing-base">
                                 <Link class="btn btn-dark" to='./arbolEstructural'><img src={imagenMapa} alt={"imagenAsesor"} width="50" height="50" style={{"float":"left"}} />  Ver mapa organizacional</Link>    
